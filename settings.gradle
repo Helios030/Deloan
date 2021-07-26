@@ -1,2 +1,6 @@
 rootProject.name = "Deloan"
 include ':app'
+include ':liveness'
+include ':Camera'
+include ':ucrop'
+include ':picture'

@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="touch_to_focus">แตะหน้าจอเพื่อโฟกัส</string>
+    <string name="crop_fail">การครอบตัดล้มเหลว</string>
+    <string name="no_flash">อุปกรณ์ไม่รองรับแฟลช</string>
+    <string name="no_camera_permission">Please manually open the required permissions for the app</string>
+</resources>

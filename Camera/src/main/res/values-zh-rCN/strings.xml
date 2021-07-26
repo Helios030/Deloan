@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="touch_to_focus">触摸屏幕对焦</string>
+    <string name="crop_fail">裁剪失败</string>
+    <string name="no_flash">该设备不支持闪光灯</string>
+    <string name="no_camera_permission">请手动打开该应用需要的权限</string>
+</resources>
