@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragment.ApprovalRejectedFragment">
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/img_review_filed">
+
+
+        <com.neutron.deloan.view.ThemeTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/app_name"
+            app:textSize="18"
+            app:textColor="@color/white"
+            android:layout_marginTop="30dp"
+            />
+
+
+        <com.neutron.deloan.view.ThemeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="90dp"
+            android:text="@string/filed_title"
+            android:textStyle="bold"
+            app:textColor="@color/text_color"
+            app:textSize="18" />
+
+    </RelativeLayout>
+
+
+
+    <com.neutron.deloan.view.ThemeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/filed_tip_1"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp"
+        app:textColor="@color/text_color"
+        app:textSize="18"
+
+        />
+
+    <com.neutron.deloan.view.ThemeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="11dp"
+        android:text="@string/filed_tip_2"
+        app:textColor="@color/color_gray_b1"
+        app:textSize="12"
+        android:gravity="center"
+        android:layout_marginLeft="27dp"
+        android:layout_marginRight="27dp"
+
+        />
+
+
+</LinearLayout>

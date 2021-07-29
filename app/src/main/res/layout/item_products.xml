@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="111dp"
+    android:layout_height="85dp"
+    android:layout_margin="10dp"
+    android:background="@mipmap/img_item_bg"
+    android:orientation="vertical"
+>
+
+
+    <com.neutron.deloan.view.ThemeTextView
+        android:id="@id/tv_money"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="2000"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="18dp"
+        android:textStyle="bold"
+        app:textColor="@color/white"
+        app:textSize="22"
+
+        />
+
+
+    <com.neutron.deloan.view.ThemeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="บาท"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:textColor="@color/color_gray_c6"
+        app:textSize="16"
+
+        />
+
+
+</LinearLayout>

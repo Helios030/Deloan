@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_gray_f9"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="177dp"
+        android:layout_marginLeft="-20dp"
+        android:layout_marginRight="-20dp"
+        android:background="@drawable/shape_bg_blue"
+        />
+
+<RelativeLayout
+    android:id="@+id/rl_user"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_marginLeft="19dp"
+    android:layout_marginRight="19dp"
+    android:layout_marginTop="76dp"
+    android:background="@drawable/shape_btn_white"
+    android:layout_centerHorizontal="true">
+
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/icon_user"
+
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp"
+        />
+
+
+    <com.neutron.deloan.view.ThemeTextView
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9404****039"
+
+        android:layout_alignTop="@+id/iv_icon"
+        android:layout_toRightOf="@+id/iv_icon"
+        android:layout_marginLeft="13dp"
+        app:textSize="22"
+        android:layout_marginTop="5dp"
+        />
+
+    <com.neutron.deloan.view.ThemeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已认证"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:background="@drawable/shape_btn_blue_small"
+android:layout_below="@+id/tv_phone"
+        android:layout_alignLeft="@+id/tv_phone"
+
+        android:layout_toRightOf="@+id/iv_icon"
+
+        app:textColor="@color/color_blue_65"
+        app:textSize="10"
+        android:layout_marginTop="7dp"
+        />
+
+
+
+
+
+</RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_info"
+        android:layout_width="match_parent"
+        android:layout_height="177dp"
+        android:layout_below="@+id/rl_user"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:background="@color/white"
+        >
+
+
+        <com.neutron.deloan.view.ThemeTextView
+            android:id="@+id/tv_pay"
+            android:layout_width="wrap_content"
+            android:drawableLeft="@mipmap/icon_pay"
+            android:drawablePadding="14dp"
+            android:layout_marginTop="14dp"
+            app:textColor="@color/deep_blue"
+            app:textSize="16"
+           
+            android:gravity="center"
+            android:text="@string/pay_order"
+            android:layout_height="wrap_content"/>
+
+
+        <com.neutron.deloan.view.ThemeTextView
+            android:id="@+id/tv_info"
+            android:layout_width="wrap_content"
+            android:drawableLeft="@mipmap/icon_user_info"
+            android:drawablePadding="14dp"
+            android:layout_toRightOf="@+id/tv_pay"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="14dp"
+            app:textColor="@color/deep_blue"
+            app:textSize="16"
+           
+            android:gravity="center"
+            android:text="@string/my_info"
+            android:layout_height="wrap_content"/>
+
+
+
+
+        <com.neutron.deloan.view.ThemeTextView
+            android:id="@+id/tv_call"
+            android:layout_width="wrap_content"
+            android:drawableLeft="@mipmap/icon_user_call"
+            android:drawablePadding="14dp"
+            android:layout_marginTop="30dp"
+            app:textColor="@color/deep_blue"
+            app:textSize="16"
+           
+            android:layout_below="@+id/tv_pay"
+            android:gravity="center"
+            android:text="@string/call_user"
+            android:layout_height="wrap_content"/>
+
+
+
+        <com.neutron.deloan.view.ThemeTextView
+            android:id="@+id/tv_about"
+            android:layout_width="wrap_content"
+            android:drawableLeft="@mipmap/icon_about"
+            android:drawablePadding="14dp"
+            android:layout_marginTop="30dp"
+           
+            android:layout_alignLeft="@+id/tv_info"
+            android:layout_below="@+id/tv_info"
+            app:textColor="@color/deep_blue"
+            app:textSize="16"
+            android:gravity="center"
+            android:text="@string/about_us"
+            android:layout_height="wrap_content"/>
+
+
+
+    </RelativeLayout>
+
+
+
+    <com.neutron.deloan.view.ThemeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_info"
+        app:textColor="@color/orange"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true"
+        app:textSize="18"
+        android:text="@string/exit_login"
+        />
+
+
+
+</RelativeLayout>

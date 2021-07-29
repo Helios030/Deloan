@@ -3,7 +3,7 @@
     <string name="login_iuput_phone">请输入手机号码</string>
     <string name="login_iuput_code">输入验证码</string>
     <string name="login_get_code">获取验证码</string>
-    <string name="login_pp_check">我已仔细阅读并同意遵守：</string>
+
     <string name="login_pp">《隐私政策》</string>
     <string name="login_login">登录</string>
     <string name="dialog_ok">确认</string>
@@ -222,7 +222,7 @@
     <string name="input_nick_name">请填写昵称!</string>
     <string name="plese_input">请填写</string>
     <string name="take_id_photo">请拍摄身份证</string>
-    <string name="loan_term">贷款期限：%s天</string>
+    <string name="loan_term">贷款期限</string>
 
 
     <string name="main_str_money">借款金额（泰铢）</string>

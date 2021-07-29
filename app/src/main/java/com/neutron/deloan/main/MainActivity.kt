@@ -1,0 +1,251 @@
+package com.neutron.deloan.main
+
+import android.content.Intent
+import android.view.KeyEvent
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.neutron.deloan.R
+import com.neutron.deloan.base.BaseActivity
+import com.neutron.deloan.bean.LoanStatusResult
+import com.neutron.deloan.bean.UserConfigResult
+import com.neutron.deloan.net.BaseResponse
+import com.neutron.deloan.product.ProductFragment
+import com.neutron.deloan.user.UserFragment
+import com.neutron.deloan.utils.MoneyState
+import com.neutron.deloan.utils.PreferencesHelper
+import com.neutron.deloan.utils.Slog
+import com.neutron.deloan.utils.toast
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.toolbar_common.*
+
+class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), MainContract.View {
+
+    override fun setPresenter(): MainContract.Presenter {
+        return MainPresenter()
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
+    }
+    override fun initData() {
+//        showLoading()
+        mPresenter?.getRequestState()
+    }
+    fun getRefresh(): SwipeRefreshLayout? {
+        return sfl_main
+    }
+
+
+
+    val mProductFragment = ProductFragment()
+    val mUserFragment = UserFragment()
+    val mReviewFragment = ReviewFragment()
+    val mApprovalRejectedFragment = ApprovalRejectedFragment()
+    val mPendingRepaymentFragment = PendingRepaymentFragment()
+    val mOverdueFragment = OverdueFragment()
+
+    var fragmentList = mutableListOf(
+        mProductFragment,
+        mUserFragment,
+        mReviewFragment,
+        mApprovalRejectedFragment,
+        mPendingRepaymentFragment,
+        mOverdueFragment
+
+    )
+
+
+
+
+    override fun initView() {
+
+
+        nsv_main.adapter = ViewPagerAdapter(supportFragmentManager)
+        nsv_main.offscreenPageLimit = fragmentList.size
+        bnv_main.setOnItemSelectedListener { item ->
+
+            if (sfl_main.isRefreshing) {
+                sfl_main.isRefreshing = false
+            }
+
+            when (item.itemId) {
+
+                R.id.tab_main -> {
+
+                    showStateView(currLoanStatus)
+                    nsv_main.setCurrentItem(indexFragmentByName(currFragment.javaClass.simpleName), false)
+                    currFragment.onResume()
+
+                }
+
+                R.id.tab_user -> {
+
+                    nsv_main.setCurrentItem(
+                        indexFragmentByName(mUserFragment.javaClass.simpleName),
+                        false
+                    )
+                    mUserFragment.onResume()
+                }
+            }
+
+            true
+        }
+
+
+
+
+
+        sfl_main.setOnRefreshListener {
+            initData()
+        }
+
+
+    }
+
+    private fun indexFragmentByName(name: String): Int {
+        var index = 0
+        fragmentList.forEach {
+            if (it.javaClass.simpleName == name) {
+                index = fragmentList.indexOf(it)
+            }
+        }
+        return index
+    }
+
+    var loanStatusResult: LoanStatusResult? = null
+    fun getloanStatusResult(): LoanStatusResult? {
+        return loanStatusResult
+    }
+    var currLoanStatus = 1
+    override fun returnRequestState(loanStatus: BaseResponse<LoanStatusResult>?) {
+        Slog.d("returnRequestState $loanStatus ")
+        loanStatus?.let {
+            if (it.code == "200") {
+                loanStatusResult = it.result
+                currLoanStatus = it.result.loan_status.toInt()
+                showStateView(currLoanStatus)
+                bnv_main.selectedItemId = bnv_main.menu.getItem(0).itemId
+            } else {
+                toast(it.message)
+            }
+        }
+        hideLoading()
+        if (sfl_main.isRefreshing) {
+            sfl_main.isRefreshing = false
+        }
+    }
+
+    override fun returnUserConfig(userConfig: BaseResponse<UserConfigResult>) {
+        if (userConfig.code == "200") {
+            PreferencesHelper.setAboutUs(userConfig.result.about_us)
+            PreferencesHelper.setHotTel(userConfig.result.hot_tel)
+            PreferencesHelper.setPPrivate(userConfig.result.k_private)
+//            PreferencesHelper.setLine(userConfig.result.line.toString())
+        } else {
+            toast(userConfig.message)
+
+        }
+    }
+
+    override fun showError(e: Exception) {
+        e.printStackTrace()
+    }
+
+
+    var currFragment: Fragment = mProductFragment
+    fun showStateView(LoanStatus: Int) {
+        when (LoanStatus) {
+            MoneyState.STATE_LOANING, MoneyState.STATE_APPLYING -> {
+                currFragment = mReviewFragment
+                PreferencesHelper.setShowFeiled(true)
+            }
+            MoneyState.STATE_APPROVAL_REJECTED -> {
+                currFragment = mApprovalRejectedFragment
+
+                if (PreferencesHelper.isShowFeiled()) {
+                    PreferencesHelper.setShowFeiled(false)
+                } else {
+                    currFragment =  mProductFragment
+                }
+
+            }
+            MoneyState.STATE_PENDING_REPAYMENT -> {
+                currFragment = mPendingRepaymentFragment
+            }
+            MoneyState.STATE_OVERDUE -> {
+                currFragment = mOverdueFragment
+            }
+            MoneyState.STATE_BORROWABLE -> {
+
+                currFragment = mProductFragment
+            }
+//            MoneyState.STATE_PAY_REVIEW -> {
+//                currFragment = mProductFragment
+//            }
+        }
+
+        if(currFragment.javaClass.simpleName==mProductFragment.javaClass.simpleName){
+            Slog.d("移除刷新监听")
+            mOverdueFragment.removeListener()
+            mPendingRepaymentFragment.removeListener()
+        }
+
+    }
+
+    inner class ViewPagerAdapter(fragmentManager: FragmentManager) :
+        FragmentPagerAdapter(fragmentManager) {
+
+        var fm: FragmentManager? = null
+
+        init {
+            this.fm = fragmentManager
+        }
+
+        override fun getItem(position: Int): Fragment {
+            return fragmentList[position]
+        }
+
+        override fun getCount(): Int {
+            return fragmentList.size
+        }
+
+        override fun getItemPosition(`object`: Any): Int {
+            return POSITION_NONE
+        }
+
+        override fun getItemId(position: Int): Long {
+            return fragmentList[position].hashCode().toLong()
+        }
+    }
+
+    // 点击两次退出应用程序的第一个时间
+    private var firstTime: Long = 0
+
+
+    /**
+     * 返回键按下两次退出应用程序
+     */
+    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
+        when (keyCode) {
+            KeyEvent.KEYCODE_BACK -> {
+                val secondTime = System.currentTimeMillis()
+                return if (secondTime - firstTime > 2000) {
+                    toast(R.string.quit_app)
+                    firstTime = secondTime
+                    true
+                } else {
+                    val intent = Intent(Intent.ACTION_MAIN)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    intent.addCategory(Intent.CATEGORY_HOME)
+                    startActivity(intent)
+                    true
+                }
+            }
+        }
+        return super.onKeyUp(keyCode, event)
+    }
+
+}

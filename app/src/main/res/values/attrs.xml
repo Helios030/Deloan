@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主题配置颜色属性-->
+    <attr name="colorAppBg" format="reference|color" />
+    <attr name="colorTabBg" format="reference|color" />
+    <attr name="colorDateBg" format="reference|color" />
+    <attr name="colorDateText" format="reference|color" />
+
+    <declare-styleable name="ThemeTextView">
+        <attr name="textFont" format="integer" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="float" />
+    </declare-styleable>
+
+</resources>
+

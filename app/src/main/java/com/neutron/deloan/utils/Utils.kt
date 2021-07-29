@@ -16,8 +16,11 @@ import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.view.ViewConfiguration
 import android.view.inputmethod.InputMethodManager
+import com.google.gson.Gson
 
 import com.neutron.deloan.NApplication
+import okhttp3.MediaType
+import okhttp3.RequestBody
 
 import java.io.File
 import java.lang.reflect.Method
@@ -230,38 +233,38 @@ class Utils {
             return str
         }
 
-//        fun createBody(map:HashMap<String,Any>): RequestBody {
-//          map["sign"]=signParameter(map)
-//
-//            val json=  Gson().toJson(map)
-//            Slog.d("createBody  参数  $map")
-//            Slog.d("createBody  json  $json")
-//            return RequestBody.create(
-//                MediaType.parse("application/json;charset=UTF-8"),
-//                json
-//            )
-//        }
-//
-//
-//        fun createCommonParams(hashMap:HashMap<String,Any>): HashMap<String, Any> {
-//            val map = HashMap<String, Any>()
-//            val version = getVersionName(NApplication.sContext)
-//            val IMEI = PreferencesHelper.getIMEI()
-//            map.apply {
-//                this["app_version"] = version
-//                this["appversion"] = version
-//                this["version"] = "1.0"
-//                this["channel"] = "1"
-//                this["sign"] = ""
-//                this["imei"] = IMEI
-//                this["timestamp"] = System.currentTimeMillis().toString()
-//                this["pkg_name"] = NApplication.sContext.packageName
-//                hashMap.forEach { (key, value) ->
-//                    this[key] = value
-//                }
-//            }
-//            return map
-//        }
+        fun createBody(map:HashMap<String,Any>): RequestBody {
+          map["sign"]=signParameter(map)
+
+            val json=  Gson().toJson(map)
+            Slog.d("createBody  参数  $map")
+            Slog.d("createBody  json  $json")
+            return RequestBody.create(
+                MediaType.parse("application/json;charset=UTF-8"),
+                json
+            )
+        }
+
+
+        fun createCommonParams(hashMap:HashMap<String,Any>): HashMap<String, Any> {
+            val map = HashMap<String, Any>()
+            val version = getVersionName(NApplication.sContext)
+            val IMEI = PreferencesHelper.getIMEI()
+            map.apply {
+                this["app_version"] = version
+                this["appversion"] = version
+                this["version"] = "1.0"
+                this["channel"] = "1"
+                this["sign"] = ""
+                this["imei"] = IMEI
+                this["timestamp"] = System.currentTimeMillis().toString()
+                this["pkg_name"] = NApplication.sContext.packageName
+                hashMap.forEach { (key, value) ->
+                    this[key] = value
+                }
+            }
+            return map
+        }
 
 
         /**

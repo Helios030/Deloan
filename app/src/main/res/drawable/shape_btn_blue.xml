@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- android:radius 圆角的半径 -->
+    <corners
+        android:bottomLeftRadius="6dp"
+        android:bottomRightRadius="6dp"
+        android:topLeftRadius="6dp"
+        android:topRightRadius="6dp"
+
+        />
+
+    <gradient
+        android:angle="0"
+        android:centerColor="#65C7F7"
+        android:endColor="#0052D4"
+        android:startColor="#9CECFB"
+        android:type="linear" />
+
+<!--    <item android:width="375dp" android:height="177dp">-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <gradient android:type="linear" android:useLevel="true" android:startColor="#ff00a2ff" android:centerColor="#ff004fff" android:endColor="#ff004fff" android:angle="180" />-->
+<!--        </shape>-->
+<!--    </item>-->
+
+</shape>

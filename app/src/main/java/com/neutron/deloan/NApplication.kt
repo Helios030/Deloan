@@ -27,10 +27,11 @@ class NApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         sContext = this
-//        initAF()
+        initAF()
 //        GuardianLivenessDetectionSDK.init(this, Market.Thailand)
-//        AfPointUtils.trackEvent(Constants.AF_APP_ACTIVATION, this)
-        val isDeBug = false
+        AfPointUtils.trackEvent(Constants.AF_APP_ACTIVATION, this)
+        val isDeBug = BuildConfig.DEBUG
+        Slog.d("isDeBug  $isDeBug")
         Slog.getSettings().setLogEnable(isDeBug).setBorderEnable(isDeBug)
     }
 

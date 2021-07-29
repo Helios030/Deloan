@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".product.ProductFragment">
+
+
+    <include layout="@layout/toolbar_common"/>
+
+
+
+
+
+    <com.neutron.deloan.view.ThemeTextView
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/icon_money"
+        android:gravity="center_vertical"
+        android:drawablePadding="8dp"
+        android:text="@string/loan_count"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/icon_index"
+        android:layout_marginLeft="70dp"
+        />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/rv_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+    />
+
+
+    <com.neutron.deloan.view.ThemeTextView
+        android:id="@+id/tv_loan_time"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/icon_money"
+        android:gravity="center_vertical"
+        android:drawablePadding="8dp"
+        android:text="@string/loan_term"
+        />
+
+    <LinearLayout
+        android:layout_width="111dp"
+        android:layout_height="85dp"
+
+        android:layout_marginLeft="47dp"
+        android:layout_marginTop="22dp"
+        android:background="@mipmap/img_item_bg"
+        android:orientation="vertical"
+        >
+
+
+        <com.neutron.deloan.view.ThemeTextView
+            android:id="@id/tv_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="2000"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="18dp"
+            android:textStyle="bold"
+            app:textColor="@color/white"
+            app:textSize="22"
+
+            />
+
+
+        <com.neutron.deloan.view.ThemeTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="บาท"
+            android:gravity="center"
+            android:textStyle="bold"
+            app:textColor="@color/color_gray_c6"
+            app:textSize="16"
+
+            />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_now"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+
+        android:background="@drawable/shape_btn_blue"
+        android:text="@string/main_pay_now"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/img_pro"
+        android:layout_marginTop="40dp"
+        />
+
+</LinearLayout>

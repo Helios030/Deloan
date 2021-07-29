@@ -2,6 +2,9 @@ package com.neutron.deloan
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,8 +20,22 @@ import org.junit.Assert.*
 class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.neutron.deloan", appContext.packageName)
+
+        var str ="你好"
+        print(str)
+
+        GlobalScope.launch(Dispatchers.Main) {
+
+            str=  returnThis()
+            print(str)
+        }
+
     }
+
+    suspend fun returnThis():String{
+        Thread.sleep(2000)
+        return "延迟返回"
+
+    }
+    
 }

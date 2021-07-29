@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+
+
+
+
+        <ImageView
+            android:id="@+id/iv_select"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@mipmap/icon_pp_not_select" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/text_color_gray_a8"
+            android:text="@string/login_pp_check" />
+
+
+        <TextView
+            android:id="@+id/tv_permison"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_pp"
+            android:textColor="#007AFF"
+            android:textSize="12sp" />
+
+
+
+</LinearLayout>

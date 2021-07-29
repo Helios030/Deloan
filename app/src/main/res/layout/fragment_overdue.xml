@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+android:orientation="vertical"
+    tools:context=".fragment.OverdueFragment">
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/img_review">
+
+                <com.neutron.deloan.view.ThemeTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    app:textSize="18"
+                    app:textColor="@color/white"
+                    android:layout_marginTop="30dp"
+                    />
+
+
+                <com.neutron.deloan.view.ThemeTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="90dp"
+                    android:text="@string/state_overdue"
+                    android:textStyle="bold"
+                    app:textColor="@color/red"
+                    app:textSize="18" />
+
+            </RelativeLayout>
+
+
+            <com.neutron.deloan.view.ThemeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/state_pending_repayment"
+                android:textStyle="bold"
+                app:textColor="@color/red"
+                app:textSize="18"
+
+                />
+
+            <com.neutron.deloan.view.ThemeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="11dp"
+                android:text="@string/over_tip"
+                app:textColor="@color/color_gray_b1"
+                app:textSize="12"
+                android:layout_marginLeft="27dp"
+                android:layout_marginRight="27dp"
+
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="27dp"
+                android:background="@color/light_blue"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/due_time"
+
+                        app:textSize="14" />
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:id="@+id/tv_due_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+
+
+                        app:textSize="14" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="11dp"
+                    android:background="@color/light_blue_d4" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/due_money"
+                        app:textSize="14" />
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:id="@+id/tv_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+
+
+                        app:textSize="14" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="11dp"
+                    android:background="@color/light_blue_d4" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/loan_amount"
+                        app:textSize="14" />
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:id="@+id/tv_due_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+
+                        app:textSize="14" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="11dp"
+                    android:background="@color/light_blue_d4" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/loan_time"
+                        app:textSize="14" />
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:id="@+id/tv_date_p"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+
+                        app:textSize="14" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="11dp"
+                    android:background="@color/light_blue_d4" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/interest"
+                        app:textSize="14" />
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:id="@+id/tv_pen_interest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+
+                        app:textSize="14" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:paddingBottom="20dp">
+
+
+                <Button
+                    android:id="@+id/btn_sub_pay_r"
+                    android:layout_width="165dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+
+                    android:background="@mipmap/img_line_btn"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/rollover_repayment"
+                    android:textColor="@color/deep_blue_1a"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+
+
+                    />
+
+                <Button
+                    android:id="@+id/btn_pay"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/icon_btn_bg"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/repay_immediately"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+
+                    />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+
+
+<!--  <RelativeLayout
+        android:id="@+id/rl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        >
+
+        <com.neutron.deloan.view.ThemeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+
+            android:text="Gold เงินกู้"
+            android:textStyle="bold"
+            app:textColor="@color/white"
+            app:textSize="24" />
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_toolbar"
+
+        />
+
+    <ScrollView
+        android:id="@+id/scrollView_o"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_below="@+id/rl_toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="20dp"
+            android:paddingBottom="20dp"
+            android:layout_height="wrap_content">
+
+
+            <com.neutron.deloan.view.ThemeTextView
+
+                android:id="@+id/tv_str"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="9dp"
+
+                android:paddingTop="5dp"
+                android:text="@string/state_overdue"
+                android:textStyle="bold"
+                app:textColor="@color/white"
+                app:textSize="20" />
+
+            <LinearLayout
+                android:id="@+id/ll_1"
+                android:layout_width="335dp"
+                android:layout_height="230dp"
+                android:layout_below="@+id/tv_str"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="20dp"
+                android:paddingRight="20dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/due_money"
+
+                            app:textSize="12" />
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:id="@+id/tv_money"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center"
+
+                            android:textStyle="bold"
+
+                            app:textSize="24" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="71dp"
+                        android:layout_centerInParent="true"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/loan_time"
+
+                            app:textSize="12" />
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:id="@+id/tv_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center"
+
+                            android:textStyle="bold"
+
+                            app:textSize="24" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/due_time"
+
+                        app:textSize="14" />
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:id="@+id/tv_over_due_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+
+
+                        app:textSize="14" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="12dp"
+                    />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/loan_amount"
+
+                        app:textSize="14" />
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:id="@+id/tv_over_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+
+
+                        app:textSize="14" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="12dp"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/order_id"
+
+                        app:textSize="14" />
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:id="@+id/tv_order_count"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+
+                        android:maxLines="1"
+                        android:ellipsize="end"
+
+                        app:textSize="14" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_2"
+                android:layout_width="335dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="20dp"
+                android:paddingRight="20dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="157dp"
+                        android:layout_height="match_parent"
+
+                        android:orientation="vertical">
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/interest"
+
+                            app:textSize="14" />
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:id="@+id/tv_over_interest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+
+                            android:textStyle="bold"
+
+                            app:textSize="14" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="71dp"
+
+                        android:layout_centerInParent="true"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="157dp"
+                        android:layout_height="match_parent"
+
+                        android:orientation="vertical">
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/fees_for_technical_services"
+
+                            app:textSize="14" />
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:id="@+id/tv_over_risk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+
+                            android:textStyle="bold"
+
+                            app:textSize="14" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="157dp"
+                        android:layout_height="wrap_content"
+
+
+                        android:orientation="vertical">
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/audit_consulting_responsibility"
+
+                            app:textSize="14" />
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:id="@+id/tv_over_service"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+
+                            android:textStyle="bold"
+
+                            app:textSize="14" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="71dp"
+                        android:layout_centerInParent="true"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="157dp"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="vertical">
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/pay_the_fee"
+
+                            app:textSize="14" />
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:id="@+id/tv_over_pay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+
+                            android:textStyle="bold"
+
+                            app:textSize="14" />
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+
+                    android:layout_marginBottom="12dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="157dp"
+                        android:layout_height="wrap_content"
+
+
+                        android:orientation="vertical">
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/fine"
+
+                            app:textSize="14" />
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:id="@+id/tv_over_penalty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+
+                            android:textStyle="bold"
+
+                            app:textSize="14" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="71dp"
+                        android:layout_centerInParent="true"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="157dp"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="vertical">
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/late_fee"
+
+                            app:textSize="14" />
+
+                        <com.neutron.deloan.view.ThemeTextView
+                            android:id="@+id/tv_over_fale_fee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+
+                            android:textStyle="bold"
+
+                            app:textSize="14" />
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_below="@+id/ll_2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
+                android:paddingBottom="20dp"
+                android:layout_height="wrap_content">
+
+
+                <Button
+                    android:id="@+id/btn_sub_pay"
+                    android:layout_width="165dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginRight="10dp"
+
+                    android:text="@string/rollover_repayment"
+
+                    />
+
+                <Button
+                    android:id="@+id/btn_pay"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+
+                    android:text="@string/repay_immediately"
+
+                    />
+
+
+
+
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>-->

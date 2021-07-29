@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.ReviewFragment">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+
+        >
+
+        <com.neutron.deloan.view.ThemeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+
+
+            android:textStyle="bold"
+            app:textSize="24"
+            android:text="Gold เงินกู้"
+            android:layout_marginBottom="5dp"
+            />
+
+    </RelativeLayout>
+
+
+
+    <ImageView
+        android:layout_below="@+id/rl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+    <com.neutron.deloan.view.ThemeTextView
+        android:id="@+id/tv_str"
+        android:layout_below="@+id/rl_toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/state_under_review"
+        app:textSize="20"
+        app:textColor="@color/white"
+
+        android:paddingTop="5dp"
+        android:textStyle="bold"
+        />
+
+    <LinearLayout
+        android:layout_below="@+id/tv_str"
+        android:layout_width="335dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+
+        android:layout_height="202dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                >
+
+                <com.neutron.deloan.view.ThemeTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/loan_amount"
+                     app:textSize="12"
+
+                    />
+
+                <com.neutron.deloan.view.ThemeTextView
+                    android:id="@+id/tv_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:textStyle="bold"
+                    android:text="3000.00"
+                    app:textSize="24"
+
+                    />
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="71dp"
+                android:layout_centerInParent="true"
+
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                >
+                <com.neutron.deloan.view.ThemeTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/loan_time"
+                    app:textSize="12"
+
+                    />
+
+                <com.neutron.deloan.view.ThemeTextView
+                    android:id="@+id/tv_due_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:textStyle="bold"
+                    android:text="120 วัน"
+                    app:textSize="24"
+
+                    />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <com.neutron.deloan.view.ThemeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/request_time"
+                app:textSize="14"
+
+                />
+
+            <com.neutron.deloan.view.ThemeTextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="2021-07-05"
+                app:textSize="12"
+                android:layout_alignParentRight="true"
+
+                />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="12dp"
+
+
+            />
+
+        <com.neutron.deloan.view.ThemeTextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/request_tip"
+
+            app:textSize="14"
+            />
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Deloan</string>
+    <string name="camera">相机</string>
+    <string name="camera_tip">启动相机权限讲允许您的移动设备上传时拍摄</string>
+    <string name="pp_tip">在使用 Deloan 中的某些功能时，需要激活以下权限</string>
+    <string name="phone_book">通讯录</string>
+    <string name="phone_book_tip">启动通讯录权限将使得您的移动设备在填写紧急联系人或共享信息时快速选择朋友</string>
+    <string name="call">电话</string>
+    <string name="call_tip">启动拨打电话权限将允许应用跳转至拨打电话界面快速联系我们</string>
+    <string name="login_pp">《隐私政策》</string>
+    <string name="login_pp_tip">通过使用此应用程序，您需要仔细阅读并同意遵守：</string>
+    <string name="login_pp_check">我已仔细阅读并同意遵守：</string>
+    <string name="ok_and_go">同意并继续</string>
+    <string name="loan_count">贷款额度</string>
+    <string name="pay_order">借还款记录</string>
+    <string name="exit">返回</string>
+    <string name="pr_loan_ok">您的贷款已到账</string>
+    <string name="pr_tip">您的贷款已经发放到您申请贷款的银行账户上,清注意查收,注意还款时间,并及时还款获得更高额度.</string>
+    <string name="over_tip">您的贷款已逾期，请尽快偿还。我们将收取逾期费用。 如有任何疑问，请联系我们。</string>
+
+    <string name="filed_tip_1">抱歉,没能申请成功</string>
+    <string name="filed_tip_2">抱歉，您的贷款申请没有通过。请保持良好的信誉，欢迎您在7天后再次申请该产品。</string>
+    <string name="filed_title">审核拒绝</string>
+
 </resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+android:id="@+id/rl_toolbar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_gray_f7"
+    android:layout_height="?actionBarSize">
+
+
+
+
+    <com.neutron.deloan.view.ThemeTextView
+        android:id="@+id/iv_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        android:drawableLeft="@mipmap/icon_exit"
+        android:text="@string/exit"
+        android:gravity="center"
+        android:drawablePadding="10dp"
+        app:textSize="16"
+        app:textColor="@color/color_gray_9b"
+        />
+
+
+    <com.neutron.deloan.view.ThemeTextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        android:layout_centerInParent="true"
+
+        android:text="Title"
+        android:gravity="center"
+
+        app:textSize="18"
+
+        />
+
+
+
+
+
+
+</RelativeLayout>

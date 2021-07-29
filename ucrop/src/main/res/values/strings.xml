@@ -213,7 +213,7 @@
     <string name="data_submitted_failed">การส่งข้อมูลล้มเหลว โปรดลองอีกครั้งในภายหลัง</string>
     <string name="input_nick_name">กรุณากรอกชื่อเล่น!</string>
     <string name="take_id_photo">กรุณาถ่ายรูปบัตรประจำตัวประชาชน</string>
-    <string name="loan_term">ระยะเวลากู้: %s วัน </string>
+    <string name="loan_term">ระยะเวลากู้</string>
     <string name="main_str_money">จำนวนเงินกู้(บาท)</string>
     <string name="plese_input">กรุณากรอก</string>
     <string name="main_str_money_repay">จำนวนเงินที่ชำระคืน (บาท)</string>

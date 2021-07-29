@@ -1,0 +1,33 @@
+package com.neutron.deloan.bean
+
+data class SUserInfoResult(
+    val birthday: String,
+    val dura_occupancy: Any,
+    val education: String,
+    val email: String,
+    val facebook: Any,
+    val first_name: Any,
+    val gender: String,
+    val home_address: String,
+    val home_region_1: String,
+    val home_region_2: String,
+    val home_region_3: String,
+    val home_region_4: String,
+    val home_region_value: Any,
+    val home_region_1_value: Any,
+    val home_region_2_value: Any,
+    val home_region_3_value: Any,
+    val home_region_4_value: Any,
+    val home_type: String,
+    val idType: Any,
+    val last_name: Any,
+    val line: Any,
+    val marital_status: String,
+    val middle_name: Any,
+    val name_mother: Any,
+    val no_ktp: String,
+    val number_children: String,
+    val real_name: String,
+    val religion: Any,
+    val user_id: String
+)
