@@ -2,7 +2,6 @@ package com.neutron.deloan.main
 
 import android.content.Intent
 import android.view.KeyEvent
-import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -11,15 +10,16 @@ import com.neutron.deloan.R
 import com.neutron.deloan.base.BaseActivity
 import com.neutron.deloan.bean.LoanStatusResult
 import com.neutron.deloan.bean.UserConfigResult
+import com.neutron.deloan.fragment.ApprovalRejectedFragment
+import com.neutron.deloan.fragment.OverdueFragment
+import com.neutron.deloan.fragment.PendingRepaymentFragment
+import com.neutron.deloan.fragment.ReviewFragment
 import com.neutron.deloan.net.BaseResponse
 import com.neutron.deloan.product.ProductFragment
 import com.neutron.deloan.user.UserFragment
-import com.neutron.deloan.utils.MoneyState
-import com.neutron.deloan.utils.PreferencesHelper
-import com.neutron.deloan.utils.Slog
-import com.neutron.deloan.utils.toast
+import com.neutron.deloan.utils.*
+import com.neutron.deloan.web.WebViewActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.toolbar_common.*
 
 class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), MainContract.View {
 
@@ -30,15 +30,14 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     override fun getLayoutId(): Int {
         return R.layout.activity_main
     }
+
     override fun initData() {
-//        showLoading()
         mPresenter?.getRequestState()
     }
+
     fun getRefresh(): SwipeRefreshLayout? {
         return sfl_main
     }
-
-
 
     val mProductFragment = ProductFragment()
     val mUserFragment = UserFragment()
@@ -58,51 +57,53 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     )
 
 
-
-
     override fun initView() {
 
 
         nsv_main.adapter = ViewPagerAdapter(supportFragmentManager)
         nsv_main.offscreenPageLimit = fragmentList.size
-        bnv_main.setOnItemSelectedListener { item ->
-
+        tv_tab_main.setOnClickListener {
+            showTabIsMain(true)
             if (sfl_main.isRefreshing) {
                 sfl_main.isRefreshing = false
             }
-
-            when (item.itemId) {
-
-                R.id.tab_main -> {
-
-                    showStateView(currLoanStatus)
-                    nsv_main.setCurrentItem(indexFragmentByName(currFragment.javaClass.simpleName), false)
-                    currFragment.onResume()
-
-                }
-
-                R.id.tab_user -> {
-
-                    nsv_main.setCurrentItem(
-                        indexFragmentByName(mUserFragment.javaClass.simpleName),
-                        false
-                    )
-                    mUserFragment.onResume()
-                }
-            }
-
-            true
+            showStateView(currLoanStatus)
+            nsv_main.setCurrentItem(indexFragmentByName(currFragment.javaClass.simpleName), false)
+            currFragment.onResume()
         }
 
-
-
-
-
+        tv_tab_user.setOnClickListener {
+            showTabIsMain(false)
+            if (sfl_main.isRefreshing) {
+                sfl_main.isRefreshing = false
+            }
+            nsv_main.setCurrentItem(
+                indexFragmentByName(mUserFragment.javaClass.simpleName),
+                false
+            )
+            mUserFragment.onResume()
+        }
         sfl_main.setOnRefreshListener {
             initData()
         }
 
+    }
 
+
+    private fun showTabIsMain(b: Boolean) {
+        val textColor = getColor(R.color.text_color)
+        val textGrayColor = getColor(R.color.color_gray_e0)
+        if (b) {
+            tv_tab_main.setDrawableTop(R.mipmap.icon_main_y)
+            tv_tab_main.setTextColor(textColor)
+            tv_tab_user.setTextColor(textGrayColor)
+            tv_tab_user.setDrawableTop(R.mipmap.icon_user_n)
+        } else {
+            tv_tab_main.setTextColor(textGrayColor)
+            tv_tab_user.setTextColor(textColor)
+            tv_tab_main.setDrawableTop(R.mipmap.icon_main_n)
+            tv_tab_user.setDrawableTop(R.mipmap.icon_user_y)
+        }
     }
 
     private fun indexFragmentByName(name: String): Int {
@@ -119,6 +120,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     fun getloanStatusResult(): LoanStatusResult? {
         return loanStatusResult
     }
+
     var currLoanStatus = 1
     override fun returnRequestState(loanStatus: BaseResponse<LoanStatusResult>?) {
         Slog.d("returnRequestState $loanStatus ")
@@ -127,7 +129,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                 loanStatusResult = it.result
                 currLoanStatus = it.result.loan_status.toInt()
                 showStateView(currLoanStatus)
-                bnv_main.selectedItemId = bnv_main.menu.getItem(0).itemId
+//                bnv_main.selectedItemId = bnv_main.menu.getItem(0).itemId
             } else {
                 toast(it.message)
             }
@@ -146,12 +148,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
 //            PreferencesHelper.setLine(userConfig.result.line.toString())
         } else {
             toast(userConfig.message)
-
         }
-    }
-
-    override fun showError(e: Exception) {
-        e.printStackTrace()
     }
 
 
@@ -168,7 +165,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                 if (PreferencesHelper.isShowFeiled()) {
                     PreferencesHelper.setShowFeiled(false)
                 } else {
-                    currFragment =  mProductFragment
+                    currFragment = mProductFragment
                 }
 
             }
@@ -187,9 +184,8 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
 //            }
         }
 
-        if(currFragment.javaClass.simpleName==mProductFragment.javaClass.simpleName){
+        if (currFragment.javaClass.simpleName == mProductFragment.javaClass.simpleName) {
             Slog.d("移除刷新监听")
-            mOverdueFragment.removeListener()
             mPendingRepaymentFragment.removeListener()
         }
 

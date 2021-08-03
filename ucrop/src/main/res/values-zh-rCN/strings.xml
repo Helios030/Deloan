@@ -96,7 +96,7 @@
     <string name="contact_number">联系电话</string>
     <string name="select_contact_number">请填写联系电话</string>
     <string name="contact_information">联系人信息</string>
-    <string name="face_tip">为验证是您本人 \n 请完成人脸认证，将会为您放款</string>
+
     <string name="confirm_tip">您的申请已提交 \n 请耐心等待审核， 请保持电话联系</string>
     <string name="know_this">我知道了</string>
     <string name="confirm_request">确认申请</string>

@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import androidx.fragment.app.Fragment
 import  com.neutron.deloan.R
+import com.neutron.deloan.bean.LoanStatusResult
 import com.neutron.deloan.main.MainActivity
 
 import  com.neutron.deloan.utils.Constants
 import  com.neutron.deloan.utils.Slog
+import com.neutron.deloan.web.WebViewActivity
 import kotlinx.android.synthetic.main.fragment_overdue.*
 import kotlinx.android.synthetic.main.fragment_overdue.btn_pay
 
@@ -19,14 +21,22 @@ import kotlinx.android.synthetic.main.fragment_overdue.tv_money
 
 
 class OverdueFragment : Fragment() {
+    fun openUri(uri: String, isMain: Boolean, result: LoanStatusResult) {
+        startActivity(Intent(activity, WebViewActivity::class.java).apply {
+            putExtra(Constants.Intent_URI, "${Constants.H5BaseUri}${uri}")
+            putExtra(Constants.IS_MAIN, isMain)
+            putExtra(Constants.LOAN_STATUS_RESULT, result)
+        })
+    }
 
+    var loanStatusResult: LoanStatusResult? = null
     override fun onResume() {
         super.onResume()
         Slog.d("OverdueFragment onResume")
 
         val mainActivity = (activity as MainActivity)
 //        mainActivity.setStatusBarColor(mainActivity, R.color.red_ef)
-        val loanStatusResult = mainActivity.getloanStatusResult()
+        loanStatusResult = mainActivity.getloanStatusResult()
         loanStatusResult?.let { result ->
 //            tv_money.text = result.principal
             tv_money.text = result.remainAmount
@@ -48,33 +58,10 @@ class OverdueFragment : Fragment() {
             amount = result.remainAmount
 
         }
-        isNeed=true
-//        scrollView_o?.viewTreeObserver?.addOnScrollChangedListener(lister)
-
 
     }
 
 
-    var isNeed=true
-
-    fun removeListener(){
-        isNeed=false
-    }
-
-
-    val lister = ViewTreeObserver.OnScrollChangedListener {
-
-//      if(isNeed){
-//          (activity as MainActivity?)?.getRefresh()?.isEnabled = scrollView_o.scrollY === 0
-//
-//      }
-
-
-    }
-
-
-
-    var isPayAll: Boolean? = null
     var applicationId: String? = null
     var amount: String? = null
 
@@ -82,29 +69,22 @@ class OverdueFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btn_pay.setOnClickListener {
-            isPayAll = true
-            startToPay(isPayAll!!)
+            startToPay(true)
         }
-
-
-//        btn_sub_pay.setOnClickListener {
-//            isPayAll = false
-//            startToPay(isPayAll!!)
-//        }
-
+        btn_sub_pay.setOnClickListener {
+            startToPay(false)
+        }
 
     }
 
-    private fun startToPay(payAll: Boolean) {
-//        val intent = Intent(activity, RepaymentActivity::class.java)
-//        val bundle = Bundle()
-//        bundle.putBoolean("isPayAll", payAll)
-//        bundle.putString("applicationId", applicationId)
-//        bundle.putString("amount", amount)
-//        Slog.d("startToPay  $payAll   applicationId $applicationId")
-//        intent.putExtra("bundle", bundle)
-//        startActivity(intent)
-
+    fun startToPay(payAll: Boolean) {
+        loanStatusResult?.let {
+            if (payAll) {
+                openUri(Constants.REPAY, true, it)
+            } else {
+                openUri(Constants.PERIOD, true, it)
+            }
+        }
     }
 
     override fun onCreateView(

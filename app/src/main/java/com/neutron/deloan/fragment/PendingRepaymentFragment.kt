@@ -1,6 +1,7 @@
 package  com.neutron.deloan.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,17 +9,31 @@ import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import androidx.fragment.app.Fragment
 import  com.neutron.deloan.R
+import com.neutron.deloan.bean.LoanStatusResult
 import com.neutron.deloan.main.MainActivity
+import com.neutron.deloan.utils.Constants
+import com.neutron.deloan.web.WebViewActivity
 
 
 import kotlinx.android.synthetic.main.fragment_pending_repayment.*
 import kotlinx.android.synthetic.main.fragment_pending_repayment.btn_pay
 
 class PendingRepaymentFragment : Fragment() {
+
+    fun openUri(uri: String, isMain: Boolean, result: LoanStatusResult) {
+        startActivity(Intent(activity, WebViewActivity::class.java).apply {
+            putExtra(Constants.Intent_URI, "${Constants.H5BaseUri}${uri}")
+            putExtra(Constants.IS_MAIN, isMain)
+            putExtra(Constants.LOAN_STATUS_RESULT, result)
+        })
+    }
+
+    var loanStatusResult: LoanStatusResult? = null
+
     override fun onResume() {
         super.onResume()
         val mainActivity = (activity as MainActivity)
-        val loanStatusResult = mainActivity.getloanStatusResult()
+        loanStatusResult = mainActivity.getloanStatusResult()
 //        mainActivity.setStatusBarColor(mainActivity, R.color.meet_fc)
         loanStatusResult?.let { result ->
             tv_money.text = result.principal
@@ -53,7 +68,6 @@ class PendingRepaymentFragment : Fragment() {
 
     }
 
-
     var isPayAll: Boolean? = null
     var applicationId: String? = null
     var amount: String? = null
@@ -73,26 +87,22 @@ class PendingRepaymentFragment : Fragment() {
 
     }
 
-
     private fun startToPay(payAll: Boolean) {
-//        val intent = Intent(activity, RepaymentActivity::class.java)
-//        val bundle = Bundle()
-//        bundle.putBoolean("isPayAll", payAll)
-//        bundle.putString("applicationId", applicationId)
-//        bundle.putString("amount", amount)
-//        Slog.d("startToPay  $payAll   applicationId $applicationId")
-//        intent.putExtra("bundle", bundle)
-//        startActivity(intent)
-
+        loanStatusResult?.let {
+            if (payAll) {
+                openUri(Constants.REPAY, true, it)
+            } else {
+                openUri(Constants.PERIOD, true, it)
+            }
+        }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-
         return inflater.inflate(R.layout.fragment_pending_repayment, container, false)
     }
 

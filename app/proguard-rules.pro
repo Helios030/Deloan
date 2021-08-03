@@ -142,3 +142,5 @@
 #----------------------AndroidAutoSize  -----------
 -keep class com.github.** { *; }
 #---------------------------------
+
+-keep class com.annimon:stream

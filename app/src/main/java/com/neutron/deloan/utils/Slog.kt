@@ -170,7 +170,7 @@ class Slog private constructor() {
         private val NULL = "null"
         private val ARGS = "args"
         private var mLogDir: String = "" // log存储目录
-        private var mLogEnable = false // log总开关 isenable
+        private var mLogEnable = true // log总开关 isenable
         private val mGlobalLogTag = "Slog" // log标签
         //            private val mGlobalLogTag = "" // log标签
         private val mTagIsSpace = false // log标签是否为空白

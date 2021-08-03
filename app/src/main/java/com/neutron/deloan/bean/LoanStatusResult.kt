@@ -1,5 +1,7 @@
 package com.neutron.deloan.bean
 
+import java.io.Serializable
+
 data class LoanStatusResult(
     val amount2Account: String,
     val app_time: String,
@@ -27,4 +29,4 @@ data class LoanStatusResult(
     val pay: String,
     val va: String,
     val valid_time: String
-)
+):Serializable

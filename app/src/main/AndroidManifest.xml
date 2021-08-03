@@ -20,10 +20,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppLightTheme">
-        <activity android:name=".web.WebViewActivity"></activity>
+
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".web.WebViewActivity" android:screenOrientation="portrait"></activity>
         <activity
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".confirm.ConfirmActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".facedetection.FaceDetectionActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".PermisonActivity"
             android:screenOrientation="portrait" />
@@ -68,6 +83,11 @@
         <meta-data
             android:name="design_height_in_dp"
             android:value="667" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
     </application>
 
 </manifest>

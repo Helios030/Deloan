@@ -8,9 +8,11 @@ import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.Point
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.net.Uri
 import android.os.Build
 import android.util.DisplayMetrics
 import android.view.Gravity
@@ -21,6 +23,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -323,6 +326,23 @@ private fun Context.getActiveNetworkInfo(): NetworkInfo? {
 }
 
 
+fun Context.makeCall(phoneNumber: String) {
+    val intent = Intent(Intent.ACTION_DIAL)
+    val data: Uri = Uri.parse("tel:${phoneNumber}")
+    intent.data = data
+    startActivity(intent)
+}
+
+
+fun Fragment.makeCall(phoneNumber: String) {
+    val intent = Intent(Intent.ACTION_DIAL)
+    val data: Uri = Uri.parse("tel:${phoneNumber}")
+    intent.data = data
+    activity?.startActivity(intent)
+
+}
+
+
 /**
  * 设置颜色直接使用colors.xml中定义的颜色即可
  */
@@ -348,10 +368,15 @@ fun TextView.setDrawableTop(resId: Int) {
     this.setCompoundDrawables(null, drawable, null, null)
 }
 
+
 fun TextView.setDrawableBottom(resId: Int) {
     var drawable = this.context.resources.getDrawable(resId)
     drawable.setBounds(0, 0, drawable.minimumWidth, drawable.minimumHeight)
     this.setCompoundDrawables(null, null, null, drawable)
 }
+
+
+
+
 
 

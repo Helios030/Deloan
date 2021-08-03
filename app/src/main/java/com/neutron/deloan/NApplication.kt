@@ -15,11 +15,6 @@ import com.ronal.crazy.util.AfPointUtils
 class NApplication : Application() {
 
 
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-//        MultiDex.install(base);
-    }
-
     companion object {
         lateinit var sContext: Context
     }
@@ -28,11 +23,14 @@ class NApplication : Application() {
         super.onCreate()
         sContext = this
         initAF()
-//        GuardianLivenessDetectionSDK.init(this, Market.Thailand)
+
         AfPointUtils.trackEvent(Constants.AF_APP_ACTIVATION, this)
-        val isDeBug = BuildConfig.DEBUG
+        val isDeBug = true
         Slog.d("isDeBug  $isDeBug")
         Slog.getSettings().setLogEnable(isDeBug).setBorderEnable(isDeBug)
+
+        GuardianLivenessDetectionSDK.init(this, Market.Thailand)
+
     }
 
 

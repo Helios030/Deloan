@@ -13,6 +13,7 @@ import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.DisplayMetrics
 import android.view.ViewConfiguration
 import android.view.inputmethod.InputMethodManager
@@ -21,8 +22,8 @@ import com.google.gson.Gson
 import com.neutron.deloan.NApplication
 import okhttp3.MediaType
 import okhttp3.RequestBody
+import java.io.*
 
-import java.io.File
 import java.lang.reflect.Method
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -35,6 +36,52 @@ class Utils {
 
 
     companion object {
+
+
+        /**
+         * 序列化对象
+         */
+        fun fromBean(obj: Any?): String {
+            if (obj == null) { return "" }
+            try {
+                val byteArrayOutputStream = ByteArrayOutputStream()
+                var objectOutputStream: ObjectOutputStream? = null
+                objectOutputStream = ObjectOutputStream(byteArrayOutputStream)
+                objectOutputStream.writeObject(obj)
+                return base64(
+                    byteArrayOutputStream.toByteArray(),
+                    Base64.DEFAULT
+                )
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            return ""
+        }
+
+        /**
+         * String转base64
+         */
+        fun base64(bytes: ByteArray?, flag: Int): String {
+            return if (bytes != null && bytes.size > 0) Base64.encodeToString(bytes, flag) else ""
+        }
+
+
+        /**
+         * 反序列化对象
+         */
+        fun toBean(str: String?): Any? {
+            try {
+                val bytes = Base64.decode(str, Base64.NO_WRAP)
+                val byteArrayInputStream = ByteArrayInputStream(bytes)
+                val objectInputStream = ObjectInputStream(byteArrayInputStream)
+                return objectInputStream.readObject()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } catch (e: ClassNotFoundException) {
+                e.printStackTrace()
+            }
+            return null
+        }
 
 
         /**

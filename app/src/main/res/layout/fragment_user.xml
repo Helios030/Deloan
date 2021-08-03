@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/color_gray_f9"
+    android:id="@+id/rl_main"
     android:layout_height="match_parent">
 
     <View
@@ -153,10 +154,13 @@ android:layout_below="@+id/tv_phone"
 
 
     <com.neutron.deloan.view.ThemeTextView
+        android:id="@+id/tv_exit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_info"
         app:textColor="@color/orange"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:layout_marginTop="32dp"
         android:layout_centerHorizontal="true"
         app:textSize="18"

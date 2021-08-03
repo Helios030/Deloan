@@ -18,7 +18,7 @@ import java.util.*
 
 class WelcomeActivity : IBaseActivity() {
 
-    var startTime = 1000L
+    var startTime = 2000L
 
     override fun getLayoutId(): Int {
         return R.layout.activity_welcome
@@ -29,25 +29,21 @@ class WelcomeActivity : IBaseActivity() {
 
 
     override fun initView() {
-
-
-
-
-
+        if (PreferencesHelper.isFirstStart()) {
+            AfPointUtils.userAppsFlyerReturnDataEvent(Constants.AF_APP_INSTALL, Constants.EVENT_CODE_INSTALL, "", this)
+            uploadAppDownload()
+            PreferencesHelper.setFirstStart(false)
+        }
         iv_welcome.post {
 
             Handler(Looper.getMainLooper()).postDelayed({
-                if (PreferencesHelper.isFirstStart()) {
-                    AfPointUtils.userAppsFlyerReturnDataEvent(Constants.AF_APP_INSTALL, Constants.EVENT_CODE_INSTALL, "", this)
-                    uploadAppDownload()
-                    PreferencesHelper.setFirstStart(false)
-                }
+
                 if (PreferencesHelper.getUserID().isNullOrEmpty()) {
                     startTo(PermisonActivity::class.java,true)
                 } else {
                     startTo(MainActivity::class.java,true)
                 }
-
+finish()
             },startTime)
 
         }

@@ -248,7 +248,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-
                     android:background="@mipmap/img_line_btn"
                     android:ellipsize="end"
                     android:maxLines="1"
@@ -256,8 +255,6 @@
                     android:textColor="@color/deep_blue_1a"
                     android:textSize="20dp"
                     android:textStyle="bold"
-
-
                     />
 
                 <Button

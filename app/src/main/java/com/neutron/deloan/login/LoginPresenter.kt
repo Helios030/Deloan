@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import com.neutron.deloan.base.BasePresenter
 import com.neutron.deloan.net.RetrofitUtil
 import com.neutron.deloan.utils.LoginType
+import com.neutron.deloan.utils.Slog
 import com.neutron.deloan.utils.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -21,10 +22,13 @@ class LoginPresenter : BasePresenter<LoginContract.View>(),
             val map = HashMap<String, Any>();
             map["phone"] = phoneNumber
             map["type"] = LoginType.type_login
+            Slog.d("getVerificationCode $map")
             try {
                 mView?.getCodeState(RetrofitUtil.service.sendSms(Utils.createBody(Utils.createCommonParams(map))))
+
             } catch (e: Exception) {
                 e.printStackTrace()
+                Slog.e("请求验证码出错  $e")
                 mView?.showError(e)
             }
 
@@ -38,12 +42,12 @@ class LoginPresenter : BasePresenter<LoginContract.View>(),
             map["vcode"] = code
 //            map["socialType"] = type
 //            map["socialId"] = id
-            try {
+//            try {
                 mView?.loginState(RetrofitUtil.service.smsLogin(Utils.createBody(Utils.createCommonParams(map))))
-            } catch (e: Exception) {
-                e.printStackTrace()
-                mView?.showError(e)
-            }
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//                mView?.showError(e)
+//            }
         }
     }
 

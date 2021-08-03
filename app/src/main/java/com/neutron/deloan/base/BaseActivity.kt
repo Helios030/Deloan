@@ -21,6 +21,14 @@ abstract class BaseActivity<in V : IView, P : IPresenter<V>>() : IBaseActivity()
 
     protected abstract fun setPresenter(): P
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mPresenter = setPresenter()
+        mPresenter?.attachView(this as V)
+    }
+
+
     override fun onDestroy() {
         mPresenter?.detachView()
         mPresenter = null

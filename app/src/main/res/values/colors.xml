@@ -18,6 +18,9 @@
     <color name="color_gray_c6">#C6E2F8</color>
     <color name="color_gray_f9">#F9F9F9</color>
     <color name="color_gray_b1">#B1B1BF</color>
+    <color name="color_gray_ed">#EDEDED</color>
+    <color name="color_gray_be">#BEBEBE</color>
+    <color name="color_gray_97">#9797AA</color>
     <color name="deep_blue">#1F3068</color>
     <color name="light_blue">#F4FBFF</color>
     <color name="light_blue_d4">#D4F0FF</color>

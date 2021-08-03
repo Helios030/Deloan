@@ -23,18 +23,22 @@ android:orientation="vertical"
         android:gravity="center_vertical"
         android:drawablePadding="8dp"
         android:text="@string/loan_count"
+        app:textSize="22"
         />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/icon_index"
         android:layout_marginLeft="70dp"
+        android:visibility="gone"
         />
 
 
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/rv_product"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -51,6 +55,7 @@ android:orientation="vertical"
         android:gravity="center_vertical"
         android:drawablePadding="8dp"
         android:text="@string/loan_term"
+        app:textSize="22"
         />
 
     <LinearLayout

@@ -21,5 +21,14 @@
     <string name="filed_tip_1">抱歉,没能申请成功</string>
     <string name="filed_tip_2">抱歉，您的贷款申请没有通过。请保持良好的信誉，欢迎您在7天后再次申请该产品。</string>
     <string name="filed_title">审核拒绝</string>
+    <string name="request_ok_title">申请成功</string>
+    <string name="face_dtip">完成认证步骤，立即收到您的贷款</string>
+    <string name="confirm_tip_top">根据您的信用情况和金额选择，当前订单的贷款详情为：</string>
+    <string name="confirm_loan">贷款额度</string>
+    <string name="start_call">拨打电话</string>
+    <string name="request_loan_ok">贷款申请成功</string>
+    <string name="request_loan_ok_tip">我们已收到您的贷款申请</string>
+    <string name="wait_review">等待审核中</string>
+    <string name="wait_review_tip">我们将尽快审核，请保持电话畅通注意接听</string>
 
 </resources>

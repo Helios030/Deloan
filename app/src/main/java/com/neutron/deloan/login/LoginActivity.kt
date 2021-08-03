@@ -15,6 +15,7 @@ import com.neutron.deloan.base.BaseActivity
 import com.neutron.deloan.base.IBaseActivity
 import com.neutron.deloan.bean.LoginResuleResult
 import com.neutron.deloan.bean.SmsLoginResult
+import com.neutron.deloan.bean.UserInfo
 import com.neutron.deloan.net.BaseResponse
 import com.neutron.deloan.net.RetrofitUtil
 import com.neutron.deloan.utils.*
@@ -32,14 +33,23 @@ import java.lang.StringBuilder
 class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(),
     LoginContract.View {
 
+    override fun setPresenter(): LoginContract.Presenter {
+        return LoginPresenter()
+    }
+
 
 
     override fun getLayoutId(): Int {
         return R.layout.activity_login
     }
+
+
+
+
     override fun initData() {
         DeviceFactory.getInstance().getIMEI()
     }
+
     var isSelected = false
     var phoneNumber = ""
     override fun initView() {
@@ -58,10 +68,12 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
                 if (phoneNumber.isNullOrEmpty()) {
                     toast(R.string.phone_not_null)
                 } else {
+                    Utils.hideSoftInputWindow(this)
                     btn_login.isEnabled = false
                     timer.cancel()
                     timer.start()
-                   mPresenter?. getVerificationCode(phoneNumber)
+                    Slog.d("btn_login  $phoneNumber  ${mPresenter==null}")
+                    mPresenter?.getVerificationCode(phoneNumber)
 
                 }
             } else {
@@ -69,7 +81,6 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
             }
         }
     }
-
 
 
     var codeStr = StringBuilder()
@@ -252,15 +263,14 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
         }
     }
 
-    override fun setPresenter(): LoginContract.Presenter {
-        return LoginPresenter()
-    }
+
 
     override fun getCodeState(loginResult: BaseResponse<LoginResuleResult>?) {
-
+           Slog.d("getCodeState  $loginResult ")
         loginResult?.let {
             if (it.code == "200") {
                 toast(R.string.get_code_success)
+                Utils.hideSoftInputWindow(this)
                 showPopupWindow()
 
             } else {
@@ -276,6 +286,22 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
             PreferencesHelper.setUserID(it.result.user_id)
             PreferencesHelper.setPhone(it.result.phone)
             PreferencesHelper.setPhoneEPRE(it.result.phonepre)
+
+
+            val vCode=if(it.result.vcode==null){""}else{it.result.vcode.toString()}
+            val register=if(it.result.register==null){""}else{it.result.register.toString()}
+
+            PreferencesHelper.setUserInfo(
+                UserInfo(
+                    it.result.user_id,
+                    it.result.userName,
+                    it.result.signKeyToken,
+                    vCode,
+                    it.result.phone,
+                    it.result.phonepre,
+                    register
+                )
+            )
             if (!it.result.register) {
                 AfPointUtils.userAppsFlyerReturnDataEvent(
                     Constants.AF_APP_REGISTER,

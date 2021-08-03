@@ -6,38 +6,24 @@ import com.neutron.deloan.NApplication
 class Constants {
     companion object {
         const val Intent_URI: String = "Intent_URI"
+        const val IS_MAIN: String = "IS_MAIN" //是否从首页进入
+        const val LOAN_STATUS_RESULT: String = "LOAN_STATUS_RESULT" //是否从首页进入
         const val ACTIVITY_ACTION_TITLE: String = "ACTIVITY_ACTION_TITLE"
         const val SIGNKEY = "signkey1"
         const val SIGNRANDOMCODE = "signkey2"
         const val Unit = "วัน"
         const val AF_APP_KEY = "yGBMuxgzaU8tuLWvbjqrA8"
         val BaseUri = "http://api.th.golden-union.top/"
-
-//
         val H5BaseUri = "http://192.168.1.79:9930"
-
-
-       const val APPROVE = "/approve"//      个人认证
-       const val BASEINFO = "/baseInfo"//       基本信息
-       const val WORKINFO = "/workInfo"//     工作信息
-       const val CONNECTINFO = "/connectInfo"//         联系人信息
-       const val BANKCARDINFO = "/bankCardInfo"//           银行卡信息
-       const val MYPROFILE = "/myProfile"//        我的资料
-       const val RECORD = "/record"//        借还款记录
-       const val PERIOD = "/period"//     展期还款
-       const val REPAY = "/repay"//       立即还款
-
-//        地址：http://192.168.1.79:9930
-///#
-///#
-///#
-///#
-///#
-///#
-///#
-///#
-///#
-
+        const val APPROVE = "/approve"//      个人认证
+        const val BASEINFO = "/baseInfo"//       基本信息
+        const val WORKINFO = "/workInfo"//     工作信息
+        const val CONNECTINFO = "/connectInfo"//         联系人信息
+        const val BANKCARDINFO = "/bankCardInfo"//           银行卡信息
+        const val MYPROFILE = "/myProfile"//        我的资料
+        const val RECORD = "/record"//        借还款记录
+        const val PERIOD = "/period"//     展期还款
+        const val REPAY = "/repay"//       立即还款
 
         var privacypolicy = PreferencesHelper.getPPrivate()
         val REALM_VERSION = 1L
@@ -139,6 +125,7 @@ class PreferencesKey {
         const val USERPHONE = "USERPHONE"
         const val USERID = "USERID"
         const val PHONEPRE = "PHONEPRE"
+        const val USERINFO = "USERINFO"
 
 
     }
