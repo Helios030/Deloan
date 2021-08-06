@@ -24,35 +24,50 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:orientation="horizontal"
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/color_gray_b1"
+        android:layout_height="0.7dp"/>
 
-            >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:paddingTop="4dp"
+        android:orientation="horizontal"
 
-            <TextView
-                android:id="@+id/tv_tab_main"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
 
-                android:drawableTop="@mipmap/icon_main_y"
-                android:gravity="center"
+        android:background="@color/white"            >
 
-                android:text="@string/loan" />
+        <TextView
+            android:id="@+id/tv_tab_main"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
 
-            <TextView
-                android:id="@+id/tv_tab_user"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:drawableTop="@mipmap/icon_user_n"
-                android:gravity="center"
-                android:text="@string/my_info" />
+            android:drawableTop="@mipmap/icon_main_y"
+            android:gravity="center"
 
-        </LinearLayout>
+            android:text="@string/loan" />
+
+        <TextView
+            android:id="@+id/tv_tab_user"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/icon_user_n"
+            android:gravity="center"
+            android:text="@string/my_info" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
 
 <!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
 <!--            android:id="@+id/bnv_main"-->

@@ -102,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center"
-
+app:textColor="@color/red"
 
                         app:textSize="14" />
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,6 +31,7 @@ import com.ronal.camera.utils.ImageUtils;
 import com.ronal.camera.utils.PermissionUtils;
 import com.ronal.camera.utils.ScreenUtils;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 
@@ -244,15 +246,20 @@ public class CameraActivity extends Activity implements View.OnClickListener {
                 (int) ((rightProportion - leftProportion) * (float) bitmap.getWidth()),
                 (int) ((bottomProportion - topProportion) * (float) bitmap.getHeight()));
 
+
+
+//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//        mCropBitmap.compress(Bitmap.CompressFormat.JPEG, 70, bos);
+//        byte[] bytes = bos.toByteArray();
+//        mCropBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
+
         /*设置成手动裁剪模式*/
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                //将手动裁剪区域设置成与扫描框一样大
-                mCropImageView.setLayoutParams(new LinearLayout.LayoutParams(mIvCameraCrop.getWidth(), mIvCameraCrop.getHeight()));
-                setCropLayout();
-                mCropImageView.setImageBitmap(mCropBitmap);
-            }
+        runOnUiThread(() -> {
+            //将手动裁剪区域设置成与扫描框一样大
+            mCropImageView.setLayoutParams(new LinearLayout.LayoutParams(mIvCameraCrop.getWidth(), mIvCameraCrop.getHeight()));
+            setCropLayout();
+            mCropImageView.setImageBitmap(mCropBitmap);
         });
     }
 
@@ -298,6 +305,9 @@ public class CameraActivity extends Activity implements View.OnClickListener {
                 /*保存图片到sdcard并返回图片路径*/
                 String imagePath = FileUtils.getImageCacheDir(CameraActivity.this) + File.separator +
                         System.currentTimeMillis() + ".jpg";
+
+
+
                 if (ImageUtils.save(bitmap, imagePath, Bitmap.CompressFormat.JPEG)) {
                     Intent intent = new Intent();
                     intent.putExtra(IDCardCamera.IMAGE_PATH, imagePath);

@@ -23,7 +23,6 @@ class NApplication : Application() {
         super.onCreate()
         sContext = this
         initAF()
-
         AfPointUtils.trackEvent(Constants.AF_APP_ACTIVATION, this)
         val isDeBug = true
         Slog.d("isDeBug  $isDeBug")

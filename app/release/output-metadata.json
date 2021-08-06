@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.neutron.deloan",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 21080603,
+      "versionName": "1.0",
+      "outputFile": "neutron.deloan_1.0_21080603.apk"
+    }
+  ]
+}

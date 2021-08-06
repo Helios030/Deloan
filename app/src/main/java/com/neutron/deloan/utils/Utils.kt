@@ -302,7 +302,6 @@ class Utils {
                 this["appversion"] = version
                 this["version"] = "1.0"
                 this["channel"] = "1"
-                this["sign"] = ""
                 this["imei"] = IMEI
                 this["timestamp"] = System.currentTimeMillis().toString()
                 this["pkg_name"] = NApplication.sContext.packageName

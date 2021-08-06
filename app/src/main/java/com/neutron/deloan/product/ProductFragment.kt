@@ -1,5 +1,6 @@
 package  com.neutron.deloan.product
 
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -11,7 +12,7 @@ import com.neutron.deloan.bean.ProductsResult
 import com.neutron.deloan.bean.UserStatusResult
 import com.neutron.deloan.facedetection.FaceDetectionActivity
 import com.neutron.deloan.main.MainActivity
-import com.neutron.deloan.net.BaseResponse
+import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.utils.Constants
 import com.neutron.deloan.utils.PreferencesHelper
 import com.neutron.deloan.utils.Slog
@@ -59,12 +60,15 @@ class ProductFragment : BaseFragment<ProductContract.View, ProductContract.Prese
 //        PagerSnapHelper().attachToRecyclerView(rv_product)
         LinearSnapHelper().attachToRecyclerView(rv_product)
         adapter?.setBtnClickListener(object : ProductCommAdapter.onBtnClickListener {
-            override fun onClick(data: ProductsResult) {
-                Slog.d("setOnItemChildClickListener $data ")
+            override fun onClick(data: ProductsResult, view: View, index: Int, realIndex: Int) {
+                (rv_product.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(realIndex-1, 0)
+                tv_money_date.text=data.duration.toString()
                 PreferencesHelper.setProductId(data.productId.toString())
-                mPresenter?.getUserStatus(true)
+
             }
+
         })
+
 
         val scrollY = 0
 
@@ -114,14 +118,19 @@ class ProductFragment : BaseFragment<ProductContract.View, ProductContract.Prese
     }
 
     override fun returnRequestState(products: BaseResponse<List<ProductsResult>>) {
+        if(products.result.isNotEmpty()){
+            if(PreferencesHelper.getProductId().isEmpty()){
+                PreferencesHelper.setProductId(products.result.first().productId.toString())
+            }
+        }
         productsResults.clear()
         productsResults.addAll(products.result)
         Slog.d("产品列表 $productsResults")
         adapter?.notifyDataSetChanged()
 //        rv_product.scrollToPosition(Int.MAX_VALUE/2)
         (rv_product.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(
-            Int.MAX_VALUE / 2,
-            ScreenUtils.dip2px(activity, 29F)
+            (Int.MAX_VALUE / 2)-1,
+            0
         )
 
 
@@ -129,13 +138,22 @@ class ProductFragment : BaseFragment<ProductContract.View, ProductContract.Prese
 
     override fun returnUserStatus(isClick: Boolean, result: BaseResponse<UserStatusResult>) {
 
-        if (result.result.person_status == "0" || result.result.comp_status == "0" || result.result.card_status == "0" || result.result.contact_status == "0") {
+        if (result.result.person_status == "0") {
             if (isClick) {
-                //跳转认证
-                openUri(Constants.APPROVE, true)
-
+                openUri(Constants.BASEINFO, true)
             }
-
+        } else if (result.result.comp_status == "0") {
+            if (isClick) {
+                openUri(Constants.WORKINFO, true)
+            }
+        } else if (result.result.contact_status == "0") {
+            if (isClick) {
+                openUri(Constants.CONNECTINFO, true)
+            }
+        }else if (result.result.card_status == "0") {
+            if (isClick) {
+                openUri(Constants.BANKCARDINFO, true)
+            }
         } else {
             if (isClick) {
                 startTo(FaceDetectionActivity::class.java)

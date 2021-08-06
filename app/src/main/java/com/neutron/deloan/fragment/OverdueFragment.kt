@@ -38,19 +38,21 @@ class OverdueFragment : Fragment() {
 //        mainActivity.setStatusBarColor(mainActivity, R.color.red_ef)
         loanStatusResult = mainActivity.getloanStatusResult()
         loanStatusResult?.let { result ->
-//            tv_money.text = result.principal
+            tv_money.text = result.remainAmount
             tv_money.text = result.remainAmount
 //            tv_over_money.text = result.principal
 //            tv_over_money.text = result.amount2Account
 //            tv_date.text = "${result.duration} "
 //            tv_over_due_date.text = result.app_time
 //
+
 //            tv_over_interest.text = result.interest
 //            tv_over_risk.text = result.risk
 //            tv_over_service.text = result.service
 //            tv_over_pay.text = result.pay
-//            tv_over_penalty.text = result.penalty
-//            tv_over_fale_fee.text = result.fale_fee
+            tv_over_penalty.text = result.penalty
+            tv_due_over_date.text = result.deposit_time
+            tv_over_fale_fee.text = result.fale_fee
 //            tv_order_count.text = result.application_id
 
 

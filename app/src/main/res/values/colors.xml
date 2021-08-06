@@ -21,12 +21,14 @@
     <color name="color_gray_ed">#EDEDED</color>
     <color name="color_gray_be">#BEBEBE</color>
     <color name="color_gray_97">#9797AA</color>
+
     <color name="deep_blue">#1F3068</color>
     <color name="light_blue">#F4FBFF</color>
     <color name="light_blue_d4">#D4F0FF</color>
     <color name="orange">#FF5403</color>
     <color name="deep_blue_1a">#1A70DD</color>
     <color name="red">#FF3910</color>
+    <color name="status_colors">#47A4EC</color>
 
 
 

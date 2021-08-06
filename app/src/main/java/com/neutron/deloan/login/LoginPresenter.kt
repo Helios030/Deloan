@@ -42,12 +42,12 @@ class LoginPresenter : BasePresenter<LoginContract.View>(),
             map["vcode"] = code
 //            map["socialType"] = type
 //            map["socialId"] = id
-//            try {
+            try {
                 mView?.loginState(RetrofitUtil.service.smsLogin(Utils.createBody(Utils.createCommonParams(map))))
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//                mView?.showError(e)
-//            }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                mView?.showError(e)
+            }
         }
     }
 

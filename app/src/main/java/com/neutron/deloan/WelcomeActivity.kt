@@ -24,8 +24,6 @@ class WelcomeActivity : IBaseActivity() {
         return R.layout.activity_welcome
     }
 
-    override fun initData() {
-    }
 
 
     override fun initView() {

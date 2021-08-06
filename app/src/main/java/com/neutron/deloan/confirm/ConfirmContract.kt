@@ -4,7 +4,7 @@ import com.neutron.deloan.base.IPresenter
 import com.neutron.deloan.base.IView
 import com.neutron.deloan.bean.ConfirmInfoResult
 import com.neutron.deloan.bean.RequestOrderResult
-import com.neutron.deloan.net.BaseResponse
+import com.neutron.deloan.bean.BaseResponse
 import java.util.*
 
 class ConfirmContract {

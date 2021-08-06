@@ -35,7 +35,7 @@ abstract class IBaseActivity : AppCompatActivity(), IView {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         initView()
         AppManager.instance.addActivity(this)
-        initData()
+
     }
 
     open fun setStatusBarColor(activity: Activity, statusColor: Int) {
@@ -57,7 +57,7 @@ abstract class IBaseActivity : AppCompatActivity(), IView {
     }
 
     abstract fun getLayoutId(): Int
-    abstract fun initData()
+
     abstract fun initView()
 
 

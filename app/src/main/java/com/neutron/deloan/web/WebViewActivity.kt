@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import android.widget.LinearLayout
+import com.google.gson.Gson
 import com.just.agentweb.AgentWeb
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
@@ -21,12 +22,9 @@ import com.neutron.deloan.R
 import com.neutron.deloan.base.IBaseActivity
 import com.neutron.deloan.bean.LoanStatusResult
 import com.neutron.deloan.facedetection.FaceDetectionActivity
-import com.neutron.deloan.utils.Constants
-import com.neutron.deloan.utils.GlideEngine
-import com.neutron.deloan.utils.Slog
-import com.neutron.deloan.utils.startTo
+import com.neutron.deloan.utils.*
 import com.neutron.deloan.view.CameraDialog
-import com.neutron.deloan.webview.JsUtils
+import com.neutron.deloan.webview.JavaScriptFunction
 import com.ronal.camera.camera.IDCardCamera
 import kotlinx.android.synthetic.main.activity_web_view.*
 import java.io.File
@@ -39,20 +37,17 @@ class WebViewActivity : IBaseActivity() {
         return R.layout.activity_web_view
     }
 
-    override fun initData() {
+    fun initData() {
         Slog.d("initData $intent")
         val intent = intent
         if (intent != null) {
             val uri = intent.getStringExtra(Constants.Intent_URI)
-            val isMain = intent.getBooleanExtra(Constants.IS_MAIN,true)
-            loanStatusResult = intent.getSerializableExtra(Constants.LOAN_STATUS_RESULT) as LoanStatusResult?
-
-
+            val isMain = intent.getBooleanExtra(Constants.IS_MAIN, true)
+            loanStatusResult =
+                intent.getSerializableExtra(Constants.LOAN_STATUS_RESULT) as LoanStatusResult?
             Slog.d("测试  ====     uri $uri  isMain  $isMain  loanStatusResult $loanStatusResult")
-
-
             uri?.let {
-                loadURI(it,isMain)
+                loadURI(it, isMain)
             }
 
         }
@@ -64,6 +59,9 @@ class WebViewActivity : IBaseActivity() {
 //            titleStr = it
 //        }
 //        initToolbar(titleStr,true)
+        initData()
+//        setStatusBarColor(this, R.color.color_gray_f7)
+
 
     }
 
@@ -83,6 +81,8 @@ class WebViewActivity : IBaseActivity() {
 
     override fun onResume() {
         mAgentWeb!!.webLifeCycle.onResume()
+
+
         super.onResume()
     }
 
@@ -105,17 +105,6 @@ class WebViewActivity : IBaseActivity() {
 
     val mWebViewClient: com.just.agentweb.WebChromeClient =
         object : com.just.agentweb.WebChromeClient() {
-
-
-//            override fun onProgressChanged(view: WebView?, newProgress: Int) {
-//                super.onProgressChanged(view, newProgress)
-//                if (newProgress < 100) {
-//                    showLoading()
-//                } else {
-//                    hideLoading()
-//                }
-//            }
-
             override fun onShowFileChooser(
                 webView: WebView?,
                 filePathCallback: ValueCallback<Array<Uri>>?,
@@ -123,12 +112,15 @@ class WebViewActivity : IBaseActivity() {
             ): Boolean {
                 filePathCall = filePathCallback
 
-                jsUtils?.let {
-                    when (it.openType) {
-                        JsUtils.OPEN_CAMERA -> {
+                Slog.d("onShowFileChooser ${javaScriptFunction==null}    ")
+
+                javaScriptFunction?.let {
+                    Slog.d("onShowFileChooser ${it.getOpenType()}    ")
+                    when (it.getOpenType()) {
+                        JavaScriptFunction.OPEN_CAMERA -> {
                             openCamera()
                         }
-                        JsUtils.OPEN_GALLERY -> {
+                        JavaScriptFunction.OPEN_GALLERY -> {
                             selectPhoto()
                         }
                         else -> {
@@ -147,18 +139,11 @@ class WebViewActivity : IBaseActivity() {
         }
 
 
-    private fun loadURI(url: String,isMain:Boolean) {
+    private fun loadURI(url: String, isMain: Boolean) {
 
-
+Slog.d("loadURI  ")
         mAgentWeb = AgentWeb.with(this)
-            .setAgentWebParent(
-                fl_main,
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
-                )
-            )
-
+            .setAgentWebParent(fl_main, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
             .useDefaultIndicator()
 //            .setWebViewClient(mWebViewClient)
             .setWebChromeClient(mWebViewClient)
@@ -211,35 +196,48 @@ class WebViewActivity : IBaseActivity() {
                 false
             })
 
-        if(loanStatusResult==null){
-            jsUtils = JsUtils(isMain, lisenter)
-        }else{
-            jsUtils = JsUtils(isMain,loanStatusResult!!, lisenter)
+        if (loanStatusResult == null) {
+            javaScriptFunction = JavaScriptFunction(isMain, lisenter)
+        } else {
+            javaScriptFunction = JavaScriptFunction(isMain, loanStatusResult!!, lisenter)
         }
-        mAgentWeb?.jsInterfaceHolder?.addJavaObject("androidUtils", jsUtils);
+        mAgentWeb?.jsInterfaceHolder?.addJavaObject("androidUtils", javaScriptFunction);
 
     }
 
-    var jsUtils: JsUtils? = null
+    var javaScriptFunction: JavaScriptFunction? = null
 
+
+    var isNeedRef=true
 
     fun openCamera() {
         var dialog: CameraDialog? = null
         dialog = CameraDialog(this).setOnClickBottomListener(object :
             CameraDialog.OnClickBottomListener {
             override fun onOkClick() {
+                isNeedRef=false
                 IDCardCamera.create(this@WebViewActivity)
                     .openCamera(IDCardCamera.TYPE_IDCARD_FRONT)
                 dialog?.dismiss()
             }
         })
         dialog.show()
+
+        dialog.setOnDismissListener {
+     if(isNeedRef){
+         initData()
+         isNeedRef=true
+
+     }
+
+        }
+
     }
 
 
     var PICK_CONTACT = 1
 
-    val lisenter = object : JsUtils.Listener {
+    val lisenter = object : JavaScriptFunction.Listener {
         override fun onStartContact(requestCode: Int) {
             Slog.d("开启联系人 ${PICK_CONTACT}")
             PICK_CONTACT = requestCode
@@ -254,7 +252,7 @@ class WebViewActivity : IBaseActivity() {
         }
 
         override fun setResult(resultCode: Int, isFinish: Boolean) {
-            if (resultCode != JsUtils.Companion.NOTHING) {
+            if (resultCode != JavaScriptFunction.Companion.NOTHING) {
                 setResult(resultCode)
             }
             if (isFinish) {
@@ -266,7 +264,7 @@ class WebViewActivity : IBaseActivity() {
 
 
     private fun getContacts(data: Intent?, code: Int) {
-
+        Slog.d("解析联系人  getContacts")
         var name = ""
         var phoneNumber = ""
         val contactUri = data?.data!!
@@ -307,13 +305,7 @@ class WebViewActivity : IBaseActivity() {
                 val contactMap = HashMap<String, String>()
                 contactMap["name"] = name
                 contactMap["phone"] = phoneNumber
-                when (code) {
-                    PICK_CONTACT -> {
-                        jsUtils?.sendContact(mAgentWeb, contactMap, PICK_CONTACT)
-                    }
-
-
-                }
+                javaScriptFunction?.sendContact(mAgentWeb, contactMap, PICK_CONTACT)
             }
         }
 
@@ -352,29 +344,53 @@ class WebViewActivity : IBaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == IDCardCamera.RESULT_CODE) {
-//            AutoSizeConfig.getInstance().restart()
-            val imagePath = IDCardCamera.getImagePath(data)
-            if (!TextUtils.isEmpty(imagePath)) {
-                if (requestCode == IDCardCamera.TYPE_IDCARD_FRONT) {
-                    //身份证正面
-                    val file = File(imagePath)
+
+        Slog.d("onActivityResult requestCode $requestCode  $resultCode")
+
+
+        if(resultCode==0){
+            Slog.d("重新载入网页")
+            initData()
+        }else  if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == PictureConfig.CHOOSE_REQUEST) {
+                val localMediaList = PictureSelector.obtainMultipleResult(data)
+                if (localMediaList != null && localMediaList.size > 0) {
+                    val localMedia = localMediaList[0]
+                    val imgPath = if (localMedia.isCut && !localMedia.isCompressed) {
+                        localMedia.cutPath
+                    } else if (localMedia.isCompressed || localMedia.isCut && localMedia.isCompressed) {
+                        localMedia.compressPath
+                    } else {
+                        localMedia.path
+                    }
+                    val file = File(imgPath)
+                    Slog.d("相册返回  $imgPath")
                     if (file.exists()) {
                         filePathCall?.onReceiveValue(arrayOf(Uri.fromFile(file)))
                     } else {
                         filePathCall?.onReceiveValue(null)
                     }
                 }
+            } else {
+                Slog.d("解析联系人")
+                getContacts(data, PICK_CONTACT)
+
             }
-        } else if (resultCode == PICK_CONTACT) {
-            getContacts(data, PICK_CONTACT)
-        } else if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == PictureConfig.CHOOSE_REQUEST) {
-                val localMediaList = PictureSelector.obtainMultipleResult(data)
-                if (localMediaList != null && localMediaList.size > 0) {
-                    val localMedia = localMediaList[0]
-                    val imgPath = if (localMedia.isCut && !localMedia.isCompressed) { localMedia.cutPath } else if (localMedia.isCompressed || localMedia.isCut && localMedia.isCompressed) { localMedia.compressPath } else {localMedia.path }
-                    val file = File(imgPath)
+
+
+        }
+
+        if (resultCode == IDCardCamera.RESULT_CODE) {
+//            AutoSizeConfig.getInstance().restart()
+
+            val imagePath = IDCardCamera.getImagePath(data)
+            if (!TextUtils.isEmpty(imagePath)) {
+                if (requestCode == IDCardCamera.TYPE_IDCARD_FRONT) {
+                    //身份证正面
+                    val file = File(imagePath)
+
+                    Slog.d("相机回传  $imagePath")
+                    Slog.d("相机回传  $file")
                     if (file.exists()) {
                         filePathCall?.onReceiveValue(arrayOf(Uri.fromFile(file)))
                     } else {

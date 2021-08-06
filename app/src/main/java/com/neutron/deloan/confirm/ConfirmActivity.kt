@@ -6,7 +6,7 @@ import com.neutron.deloan.base.BaseActivity
 import com.neutron.deloan.bean.ConfirmInfoResult
 import com.neutron.deloan.bean.RequestOrderResult
 import com.neutron.deloan.main.MainActivity
-import com.neutron.deloan.net.BaseResponse
+import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.utils.*
 import com.neutron.deloan.view.CommDialog
 import kotlinx.android.synthetic.main.activity_confirm.*

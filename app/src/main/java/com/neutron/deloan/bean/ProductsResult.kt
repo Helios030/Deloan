@@ -12,5 +12,6 @@ data class ProductsResult(
     val productId: Int,
     val repayNum: Int,
     val riskFee: String,
-    val serviceFee: String
+    val serviceFee: String,
+
 )

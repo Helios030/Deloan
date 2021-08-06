@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.neutron.deloan.NApplication
 import com.neutron.deloan.R
+import com.neutron.deloan.bean.LoanStatusResult
 import com.neutron.deloan.utils.Constants
 import com.neutron.deloan.utils.Slog
 import com.neutron.deloan.utils.Utils
@@ -178,11 +179,12 @@ abstract  class BaseFragment<in V : IView, P : IPresenter<V>> : IBaseFragment(),
     }
 
 
-     fun openUri(uri: String,isMain:Boolean) {
+     fun openUri(uri: String,isMain:Boolean,loanStatusResult: LoanStatusResult? =null) {
 
         startActivity(Intent(activity, WebViewActivity::class.java).apply {
             putExtra(Constants.Intent_URI, "${Constants.H5BaseUri}${uri}")
             putExtra(Constants.IS_MAIN, isMain)
+            putExtra(Constants.LOAN_STATUS_RESULT, loanStatusResult)
         })
 
 

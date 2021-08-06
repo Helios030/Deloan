@@ -18,9 +18,7 @@ class PermisonActivity : IBaseActivity() {
     }
 
 
-    override fun initData() {
 
-    }
 
     var isSelected = false
 

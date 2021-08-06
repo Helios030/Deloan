@@ -2,8 +2,7 @@
     <string name="login_iuput_phone">กรุณากรอกหมายเลขโทรศัพท์</string>
     <string name="login_iuput_code">กรอกรหัสยืนยัน</string>
     <string name="login_get_code">ขอรับรหัสผ่าน</string>
-    <string name="login_pp_check">ฉันได้อ่านอย่างละเอียดและตกลงที่จะปฏิบัติตาม:</string>
-    <string name="login_pp">[นโยบายความเป็นส่วนตัว]</string>
+
     <string name="login_login">เข้าสู่ระบบ</string>
     <string name="dialog_ok">ยืนยัน</string>
     <string name="dialog_cancel">ยกเลิก</string>
@@ -114,7 +113,7 @@
     <string name="review_tip">ใบสมัครของคุณถูกปฏิเสธ โปรดรักษาเครดิตของคุณไว้ โปรดลองอีกครั้งในอีกเจ็ดวัน</string>
     <string name="due_time">ควรย้อนเวลา</string>
     <string name="due_money">จำนวนเงินที่ต้องชำระ</string>
-    <string name="loan_amount">วงเงินกู้</string>
+    <string name="loan_amount">วงเงินกู้(บาท)</string>
     <string name="interest">ดอกเบี้ย</string>
     <string name="rollover_repayment">ชำระค่าขยายเวลา</string>
     <string name="repay_immediately">ชำระคืนทันที</string>
@@ -360,4 +359,48 @@
 
 
     <string name="repayment_amount_sub"> จำนวนการต่ออายุควรส่งคืน</string>
+
+
+
+
+
+
+
+
+
+
+
+
+    <string name="camera">กล้องถ่ายรูป</string>
+    <string name="camera_tip">อนุญาตเปิดสาธารณะการถ่ายกล้องและการอัปโหลด</string>
+    <string name="pp_tip">เมื่อใช้ฟังก์ชันบางอย่างของ Deloan ท่านต้องการเปิดใช้งานสิทธิ์ต่อไปนี้</string>
+    <string name="phone_book">สมุดที่อยู่</string>
+    <string name="phone_book_tip">การเปิดอนุญาติให้เข้าสมุดรายชื่อจะช่วยให้อุปกรณ์เคลื่อนของท่านสามารถรกอกรายชื่อติดต่อฉุกเฉินหรือเมื่อแบ่งปันข้อมูลจะช่วยเลือกบุคคลอ้างอิงได้อย่างรวดเร็ว</string>
+    <string name="call">电话</string>
+    <string name="call_tip">ต้องเปิดใช้งานการโทรเพื่อให้คุณสามารถติดต่อเราได้อย่างรวดเร็วและแก้ปัญหาของคุณได้ดีขึ้น</string>
+    <string name="login_pp">[ นโยบายความเป็นส่วนตัว ]</string>
+    <string name="login_pp_tip">ในการใช้แอปพลิเคชันนี้คุณต้องอ่านอย่างละเอียดและตกลงที่จะปฏิบัติตาม</string>
+    <string name="login_pp_check">ฉันได้อ่านอย่างละเอียดและตกลงที่จะปฏิบัติตาม:</string>
+    <string name="ok_and_go">เห็นด้วยและดำเนินการต่อ</string>
+
+    <string name="pay_order">ประวัติการกู้ยืมและการชำระคืน</string>
+    <string name="exit">ย้อมกลับ</string>
+    <string name="pr_loan_ok">เงินกู้เข้าบัญชีท่านสำเร็จ</string>
+    <string name="pr_tip">จำนวนเงินกู้ที่สมัครได้ปล่อยเข้าบัญชีท่านเรียบร้อยแล้ว กรุณาตรวจสอบ และกรุณาใส่ใจกับเวลาที่กำหนดชำระเงินและชำระคืนตามเวลาที่กำหนดเพื่อให้ได้จำนวนเงินกู้ที่เพิ่มขึ้น</string>
+    <string name="over_tip">การกู้เงินของคุณลูกค้าเกินกำหนดการชำระคืนแล้ว กรุณาชำระคืนให้เร็วที่สุด เราจะเรียกเก็บค่าธรรมเนียมที่ค้างชำระ  หากคุณลูกค้ามีปัญหาใด ๆ  กรุณาติดต่อทางเรา</string>
+    <string name="filed_tip_1">ขออภัย การสมัครกู้เงินครั้งนี้ไม่สำเร็จ</string>
+    <string name="filed_tip_2">ขออภัยการสมัครสินเชื่อของท่านล้มเหลว โปรดรักษาเครดิตให้ดีและยินดีต้อนรับท่านสมัครสินเชื่ออีกครั้งหลัง 7 วัน</string>
+    <string name="filed_title">การตรวจสอบถูกปฏิเสธ</string>
+    <string name="request_ok_title">การสมัครกู้เงินครั้งนี้สำเร็จ</string>
+    <string name="face_dtip">เพียงต้องทำตามขั้นตอนการยืนยันเสร็จ ท่านจะได้รับเงินกู้ทันที</string>
+
+    <string name="start_call">โทร</string>
+    <string name="request_loan_ok">การสมัครกู้เงินครั้งนี้สำเร็จ</string>
+    <string name="request_loan_ok_tip">ทางเราได้รับใบสมัครสินเชื่อของท่านแล้ว</string>
+    <string name="wait_review">อยู่ระหว่างการตรวจสอบ</string>
+    <string name="wait_review_tip">เราจะตรวจสอบให้เร็วที่สุด โปรดเปิดเครื่องและใส่ใจการรับสาย</string>
+
+    <string name="confirm_tip_top">ตามสถานะเครดิตและจำนวนเงินที่คุณเลือก รายละเอียดสินเชื่อของคำสั่งซื้อปัจจุบันคือ:</string>
+    <string name="loan_count">วงเงินกู้</string>
+
 </resources>

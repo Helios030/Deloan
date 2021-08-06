@@ -9,17 +9,18 @@ import  com.neutron.deloan.R
 import com.neutron.deloan.main.MainActivity
 import  com.neutron.deloan.utils.Constants
 import kotlinx.android.synthetic.main.fragment_approval_rejected.*
+import kotlinx.android.synthetic.main.fragment_review.*
 
 class ReviewFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         val mainActivity = (activity as MainActivity)
         val loanStatusResult=  mainActivity.  getloanStatusResult()
-//        loanStatusResult?.let {
-//            tv_money.text = it.principal
-//            tv_due_date.text = "${it.duration} "
-//            tv_time.text = it.app_time
-//        }
+        loanStatusResult?.let {
+            tv_money.text = it.principal
+            tv_due_date.text = "${it.duration} "
+            tv_time.text = it.app_time
+        }
     }
 
     override fun onCreateView(

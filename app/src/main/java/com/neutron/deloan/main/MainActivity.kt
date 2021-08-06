@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.leaf.library.StatusBarUtil
 import com.neutron.deloan.R
 import com.neutron.deloan.base.BaseActivity
 import com.neutron.deloan.bean.LoanStatusResult
@@ -14,7 +15,7 @@ import com.neutron.deloan.fragment.ApprovalRejectedFragment
 import com.neutron.deloan.fragment.OverdueFragment
 import com.neutron.deloan.fragment.PendingRepaymentFragment
 import com.neutron.deloan.fragment.ReviewFragment
-import com.neutron.deloan.net.BaseResponse
+import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.product.ProductFragment
 import com.neutron.deloan.user.UserFragment
 import com.neutron.deloan.utils.*
@@ -32,6 +33,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     }
 
     override fun initData() {
+        showLoading()
         mPresenter?.getRequestState()
     }
 
@@ -55,6 +57,13 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
         mOverdueFragment
 
     )
+
+    override fun onResume() {
+        super.onResume()
+
+//    setStatusBarColor(this,R.color.status_colors)
+        StatusBarUtil.setTransparentForWindow(this)
+    }
 
 
     override fun initView() {
@@ -122,13 +131,18 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     }
 
     var currLoanStatus = 1
-    override fun returnRequestState(loanStatus: BaseResponse<LoanStatusResult>?) {
+    override fun returnRequestState(loanStatus: BaseResponse<LoanStatusResult>) {
         Slog.d("returnRequestState $loanStatus ")
         loanStatus?.let {
             if (it.code == "200") {
                 loanStatusResult = it.result
                 currLoanStatus = it.result.loan_status.toInt()
                 showStateView(currLoanStatus)
+
+
+                nsv_main.setCurrentItem(indexFragmentByName(currFragment.javaClass.simpleName), false)
+                currFragment.onResume()
+                showTabIsMain(true)
 //                bnv_main.selectedItemId = bnv_main.menu.getItem(0).itemId
             } else {
                 toast(it.message)
@@ -184,10 +198,10 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
 //            }
         }
 
-        if (currFragment.javaClass.simpleName == mProductFragment.javaClass.simpleName) {
-            Slog.d("移除刷新监听")
-            mPendingRepaymentFragment.removeListener()
-        }
+//        if (currFragment.javaClass.simpleName == mProductFragment.javaClass.simpleName) {
+//            Slog.d("移除刷新监听")
+//            mPendingRepaymentFragment.removeListener()
+//        }
 
     }
 

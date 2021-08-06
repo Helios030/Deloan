@@ -24,7 +24,7 @@ android:orientation="vertical"
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/img_review">
+                android:background="@mipmap/img_over">
 
                 <com.neutron.deloan.view.ThemeTextView
                     android:layout_width="match_parent"
@@ -99,13 +99,13 @@ android:orientation="vertical"
                         app:textSize="14" />
 
                     <com.neutron.deloan.view.ThemeTextView
-                        android:id="@+id/tv_due_date"
+                        android:id="@+id/tv_due_over_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center"
 
-
+                        app:textColor="@color/red"
                         app:textSize="14" />
 
                 </RelativeLayout>
@@ -146,64 +146,6 @@ android:orientation="vertical"
                     android:layout_marginTop="11dp"
                     android:background="@color/light_blue_d4" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <com.neutron.deloan.view.ThemeTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/loan_amount"
-                        app:textSize="14" />
-
-                    <com.neutron.deloan.view.ThemeTextView
-                        android:id="@+id/tv_due_money"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:gravity="center"
-
-                        app:textSize="14" />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginTop="11dp"
-                    android:background="@color/light_blue_d4" />
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <com.neutron.deloan.view.ThemeTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/loan_time"
-                        app:textSize="14" />
-
-                    <com.neutron.deloan.view.ThemeTextView
-                        android:id="@+id/tv_date_p"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:gravity="center"
-
-                        app:textSize="14" />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginTop="11dp"
-                    android:background="@color/light_blue_d4" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -227,6 +169,67 @@ android:orientation="vertical"
                         app:textSize="14" />
 
                 </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/late_fee"
+                        app:textSize="14" />
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:id="@+id/tv_over_fale_fee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+
+                        app:textSize="14" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="11dp"
+                    android:background="@color/light_blue_d4" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/fine"
+                        app:textSize="14" />
+
+                    <com.neutron.deloan.view.ThemeTextView
+                        android:id="@+id/tv_over_penalty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+
+                        app:textSize="14" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="11dp"
+                    android:background="@color/light_blue_d4" />
+
+
             </LinearLayout>
 
             <LinearLayout

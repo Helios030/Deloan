@@ -4,7 +4,7 @@ import  com.neutron.deloan.base.IPresenter
 import  com.neutron.deloan.base.IView
 import  com.neutron.deloan.bean.ProductsResult
 import  com.neutron.deloan.bean.UserStatusResult
-import  com.neutron.deloan.net.BaseResponse
+import  com.neutron.deloan.bean.BaseResponse
 
 class ProductContract {
 

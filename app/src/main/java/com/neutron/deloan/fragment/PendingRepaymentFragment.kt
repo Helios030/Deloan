@@ -36,13 +36,13 @@ class PendingRepaymentFragment : Fragment() {
         loanStatusResult = mainActivity.getloanStatusResult()
 //        mainActivity.setStatusBarColor(mainActivity, R.color.meet_fc)
         loanStatusResult?.let { result ->
-            tv_money.text = result.principal
+            tv_money.text = result.remainAmount
 //            tv_money.text = result.remainAmount
             tv_due_money.text = result.principal
 //            tv_over_money.text = result.amount2Account
             tv_date_p.text = "${result.duration} "
 //            tv_time.text=result.app_time
-            tv_due_date.text = result.app_time
+            tv_due_date.text = result.deposit_time
 //            tv_due_money_count.text = result.remainAmount
 //            tv_pen_money.text = result.amount2Account
             tv_pen_interest.text = result.interest

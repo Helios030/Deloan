@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.TextView
-
 import androidx.recyclerview.widget.RecyclerView
-import  com.neutron.deloan.NApplication
-import  com.neutron.deloan.R
-
-import  com.neutron.deloan.bean.ProductsResult
-import  com.neutron.deloan.utils.UIUtils
-import  com.neutron.deloan.view.ThemeTextView
+import com.neutron.deloan.R
+import com.neutron.deloan.bean.ProductsResult
+import com.neutron.deloan.utils.Slog
+import com.neutron.deloan.utils.UIUtils
+import com.neutron.deloan.view.ThemeTextView
 import kotlinx.android.synthetic.main.item_products.view.*
 
 
@@ -46,26 +43,67 @@ class ProductCommAdapter(private val context: Context, private val data: List<Pr
 //        holder.tv_str1.text = UIUtils.getString(R.string.loan_term).format(item.duration.toString())
 
 //        val tvNow = holder.tvNow
-        if (item.enable == "2") {
-            holder.llmain.background=UIUtils.getDrawable(context,R.drawable.shape_btn_gray)
 
-//            tvNow.background = (UIUtils.getDrawable(NApplication.sContext, R.drawable.shape_gray))
-//            tvNow.setThemTextColor(R.color.bg_color)
-            holder.llmain.isEnabled = true
 
-        } else {
 
+
+      var index=  position % data.size
+
+//        Slog.d("selectedPos  $selectedPos  position $position")
+        if (selectedPos == index) {
             holder.llmain.background=UIUtils.getDrawable(context,R.drawable.shape_btn_blue)
+            //相同设置高亮
+        } else {
+            if (item.enable == "2") {
+                holder.llmain.background=UIUtils.getDrawable(context,R.drawable.shape_btn_gray)
 
 //            tvNow.background = (UIUtils.getDrawable(NApplication.sContext, R.drawable.shape_gray))
 //            tvNow.setThemTextColor(R.color.bg_color)
-            holder.llmain.isEnabled = false
+                holder.llmain.isEnabled = false
+
+            } else {
+
+                holder.llmain.background=UIUtils.getDrawable(context,R.drawable.shape_btn_blue_light)
+
+//            tvNow.background = (UIUtils.getDrawable(NApplication.sContext, R.drawable.shape_gray))
+//            tvNow.setThemTextColor(R.color.bg_color)
+                holder.llmain.isEnabled = true
+            }
+
         }
 
-//        tvNow.setOnClickListener {
-//            btnClickListener?.onClick(item)
-//        }
 
+
+
+
+
+
+
+        holder.llmain.setOnClickListener {
+            btnClickListener?.onClick(item, holder.llmain,index,position)
+            refreshItem(index)
+        }
+
+
+    }
+
+
+    private var selectedPos = 0
+    private var oldPos = -1
+
+
+
+    fun refreshItem(position: Int) {
+        if (selectedPos != -1) {
+            oldPos = selectedPos
+        }
+        selectedPos = position
+//        if (oldPos != -1) {
+//            notifyItemChanged(oldPos)
+//        }
+//        notifyItemChanged(selectedPos)
+
+        notifyDataSetChanged()
 
     }
 
@@ -97,7 +135,7 @@ class ProductCommAdapter(private val context: Context, private val data: List<Pr
     }
 
     interface onBtnClickListener {
-        fun onClick(data: ProductsResult)
+        fun onClick(data: ProductsResult,view:View,index:Int,realIndex:Int)
     }
 
     var btnClickListener: onBtnClickListener? = null

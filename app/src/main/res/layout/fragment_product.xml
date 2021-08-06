@@ -1,62 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".product.ProductFragment">
 
 
-    <include layout="@layout/toolbar_common"/>
+    <include layout="@layout/toolbar_common" />
 
 
-
-
-
-    <com.neutron.deloan.view.ThemeTextView
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@mipmap/icon_money"
-        android:gravity="center_vertical"
-        android:drawablePadding="8dp"
-        android:text="@string/loan_count"
-        app:textSize="22"
-        />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/icon_index"
-        android:layout_marginLeft="70dp"
-        android:visibility="gone"
-        />
+android:paddingLeft="20dp"
+        android:layout_marginTop="30dp">
+
+        <com.neutron.deloan.view.ThemeTextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/icon_money"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:text="@string/loan_count"
+            app:textSize="22" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/icon_index" />
+
+
+    </RelativeLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/rv_product"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
 
-    />
+        />
 
 
     <com.neutron.deloan.view.ThemeTextView
         android:id="@+id/tv_loan_time"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         android:drawableLeft="@mipmap/icon_money"
-        android:gravity="center_vertical"
         android:drawablePadding="8dp"
+        android:gravity="center_vertical"
         android:text="@string/loan_term"
-        app:textSize="22"
-        />
+        app:textSize="22" />
 
     <LinearLayout
         android:layout_width="111dp"
@@ -65,19 +69,18 @@ android:orientation="vertical"
         android:layout_marginLeft="47dp"
         android:layout_marginTop="22dp"
         android:background="@mipmap/img_item_bg"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
 
         <com.neutron.deloan.view.ThemeTextView
-            android:id="@id/tv_money"
+            android:id="@id/tv_money_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="2000"
             android:layout_gravity="center"
-            android:gravity="center"
             android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:text="7"
             android:textStyle="bold"
             app:textColor="@color/white"
             app:textSize="22"
@@ -88,8 +91,8 @@ android:orientation="vertical"
         <com.neutron.deloan.view.ThemeTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="บาท"
             android:gravity="center"
+            android:text="บาท"
             android:textStyle="bold"
             app:textColor="@color/color_gray_c6"
             app:textSize="16"
@@ -105,8 +108,8 @@ android:orientation="vertical"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
 
-        android:layout_marginTop="50dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="50dp"
 
         android:background="@drawable/shape_btn_blue"
@@ -115,12 +118,10 @@ android:orientation="vertical"
         android:textSize="18dp" />
 
 
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/img_pro"
         android:layout_marginTop="40dp"
-        />
+        android:src="@mipmap/img_pro" />
 
 </LinearLayout>

@@ -10,7 +10,7 @@
         />
 
     <gradient
-        android:angle="0"
+        android:angle="360"
         android:centerColor="@color/light_blue_d4"
         android:endColor="@color/light_blue_d4"
         android:startColor="@color/light_blue_d4"

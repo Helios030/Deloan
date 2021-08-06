@@ -15,15 +15,24 @@ class Constants {
         const val AF_APP_KEY = "yGBMuxgzaU8tuLWvbjqrA8"
         val BaseUri = "http://api.th.golden-union.top/"
         val H5BaseUri = "http://192.168.1.79:9930"
-        const val APPROVE = "/approve"//      个人认证
-        const val BASEINFO = "/baseInfo"//       基本信息
-        const val WORKINFO = "/workInfo"//     工作信息
-        const val CONNECTINFO = "/connectInfo"//         联系人信息
-        const val BANKCARDINFO = "/bankCardInfo"//           银行卡信息
-        const val MYPROFILE = "/myProfile"//        我的资料
-        const val RECORD = "/record"//        借还款记录
-        const val PERIOD = "/period"//     展期还款
-        const val REPAY = "/repay"//       立即还款
+
+
+        const val APPROVE = "/#/approve"//      个人认证
+
+
+
+        const val BASEINFO = "/#/baseInfo"//       基本信息
+        const val WORKINFO = "/#/workInfo"//     工作信息
+        const val CONNECTINFO = "/#/connectInfo"//         联系人信息
+        const val BANKCARDINFO = "/#/bankCardInfo"//           银行卡信息
+
+
+
+
+        const val MYPROFILE = "/#/myProfile"//        我的资料
+        const val RECORD = "/#/record"//        借还款记录
+        const val PERIOD = "/#/period"//     展期还款
+        const val REPAY = "/#/repay"//       立即还款
 
         var privacypolicy = PreferencesHelper.getPPrivate()
         val REALM_VERSION = 1L

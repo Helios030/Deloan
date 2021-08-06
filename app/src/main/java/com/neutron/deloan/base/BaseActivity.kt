@@ -26,9 +26,10 @@ abstract class BaseActivity<in V : IView, P : IPresenter<V>>() : IBaseActivity()
         super.onCreate(savedInstanceState)
         mPresenter = setPresenter()
         mPresenter?.attachView(this as V)
+        initData()
     }
 
-
+    abstract fun initData()
     override fun onDestroy() {
         mPresenter?.detachView()
         mPresenter = null

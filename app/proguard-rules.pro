@@ -37,6 +37,7 @@
 -dontwarn android.support.**                                             #去掉警告
 
 -keep public class * extends android.app.Fragment
+-keep public class * extends androidx.fragment.app.Fragment
 
 #-----------------不需要混淆系统组件等-------------------------------------------------------------------
 -keep public class * extends android.app.Activity
@@ -93,6 +94,7 @@
 
 
 
+
 ## ---------Retrofit混淆方法---------------
 -dontwarn javax.annotation.**
 -dontwarn javax.inject.**
@@ -105,6 +107,41 @@
 -keep class retrofit2.** { *; }
 -keepattributes Signature
 -keepattributes Exceptions
+
+
+-dontnote retrofit2.Platform
+-dontnote retrofit2.Platform$IOS$MainThreadExecutor
+-dontwarn retrofit2.Platform$Java8
+-keepattributes Signature
+-keepattributes Exceptions
+# okhttp 3
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-dontwarn okhttp3.**
+
+
+# RxJava RxAndroid
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+
+# Okio
+-dontwarn com.squareup.**
+-dontwarn okio.**
+-keep public class org.codehaus.* { *; }
+-keep public class java.nio.* { *; }
+#----------okhttp end--------------
+
 
 #
 -keepclassmembers class * implements java.io.Serializable {
@@ -143,4 +180,94 @@
 -keep class com.github.** { *; }
 #---------------------------------
 
--keep class com.annimon:stream
+-keep class com.annimon.stream
+
+-keep class com.github.Wynsbin
+
+
+
+
+
+
+
+
+# Gson
+-keep class com.google.gson.stream.** { *; }
+-keepattributes EnclosingMethod
+-keep class com.neutron.deloan.bean.**{*;} # 自定义数据模型的bean目录
+-keep class com.polidea.rxandroidble2.**{*;} # RxandroidBle
+
+#AppsFlyer
+-dontwarn com.android.installreferrer
+-keep class com.appsflyer** { *; }
+
+-dontwarn com.facebook.**
+-keep class com.facebook.** { *; }
+
+-keep class com.wang.avi.** { *; }
+-keep class com.wang.avi.indicators.** { *; }
+
+
+-dontwarn com.facebook.**
+-keep class com.facebook.** { *; }
+
+# Prevent R8 from leaving Data object members always null
+-keepclassmembers,allowobfuscation class * {
+  @com.google.gson.annotations.SerializedName <fields>;
+}
+
+
+# Prevent proguard from stripping interface information from TypeAdapter, TypeAdapterFactory,
+# JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
+-keep class * implements com.google.gson.TypeAdapter
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+
+
+##---------------Begin: proguard configuration for Gson  ----------
+# Gson uses generic type information stored in a class file when working with fields. Proguard
+# removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
+
+# Gson specific classes
+-dontwarn sun.misc.**
+#-keep class com.google.gson.stream.** { *; }
+
+# Application classes that will be serialized/deserialized over Gson
+
+
+-keep class  com.neutron.deloan.view.** { *; }
+-keep class  com.neutron.deloan.bean.** { *; }
+-keep class  com.neutron.deloan.net.** { *; }
+
+-keep public class * implements java.io.Serializable {*;}
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+
+
+# Gson
+-keep class com.google.gson.stream.** { *; }
+-keepattributes EnclosingMethod
+-keep class com.neutron.deloan.bean.**{*;} # 自定义数据模型的bean目录
+-keep class com.polidea.rxandroidble2.**{*;} # RxandroidBle
+
+# Prevent R8 from leaving Data object members always null
+-keepclassmembers,allowobfuscation class * {
+  @com.google.gson.annotations.SerializedName <fields>;
+}
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
+
+# Gson specific classes
+-dontwarn sun.misc.**
+
+
+
+
+

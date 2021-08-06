@@ -9,7 +9,7 @@ import com.neutron.deloan.R
 import com.neutron.deloan.base.BaseActivity
 import com.neutron.deloan.bean.AdvanceLicenseResult
 import com.neutron.deloan.confirm.ConfirmActivity
-import com.neutron.deloan.net.BaseResponse
+import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.utils.*
 import kotlinx.android.synthetic.main.activity_face_detection.*
 import kotlinx.android.synthetic.main.toolbar_common.*

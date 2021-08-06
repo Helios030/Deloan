@@ -78,7 +78,9 @@ public class ImageUtils {
         boolean ret = false;
         try {
             os = new BufferedOutputStream(new FileOutputStream(file));
-            ret = src.compress(format, 100, os);
+
+//            压缩质量方便上传
+            ret = src.compress(format, 70, os);
             if (recycle && !src.isRecycled()) {
                 src.recycle();
             }
