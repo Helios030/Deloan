@@ -30,12 +30,6 @@ abstract  class BaseFragment<in V : IView, P : IPresenter<V>> : IBaseFragment(),
 
     protected abstract fun createPresenter(): P
 
-
-    override fun onResume() {
-        super.onResume()
-
-    }
-
     override fun initView(view: View) {
         mPresenter = createPresenter()
         mPresenter?.attachView(this as V)

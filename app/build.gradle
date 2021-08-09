@@ -36,11 +36,11 @@ android {
         targetSdkVersion 30
         versionCode releaseVersionCode()
         versionName "1.0"
-
+        resConfigs"th-rTH"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
-//        resConfigs"th-rTH"
+
     buildTypes {
         debug {
 //            signingConfig signingConfigs.release

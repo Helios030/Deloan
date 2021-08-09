@@ -37,46 +37,20 @@ class ProductCommAdapter(private val context: Context, private val data: List<Pr
 
         var item = getItemByPosition(position)
         holder.tv_money.text = item.principal
-//        holder.tv_lv.text = "LV:${data.indexOf(item) + 1}"
-//        holder.tv_str1.text = UIUtils.getString(R.string.loan_term).format(item.duration.toString())
-
-//        val tvNow = holder.tvNow
-
-
-
-
       var index=  position % data.size
 
-//        Slog.d("selectedPos  $selectedPos  position $position")
         if (selectedPos == index) {
             holder.llmain.background=UIUtils.getDrawable(context,R.drawable.shape_btn_blue)
             //相同设置高亮
         } else {
             if (item.enable == "2") {
                 holder.llmain.background=UIUtils.getDrawable(context,R.drawable.shape_btn_gray)
-
-//            tvNow.background = (UIUtils.getDrawable(NApplication.sContext, R.drawable.shape_gray))
-//            tvNow.setThemTextColor(R.color.bg_color)
                 holder.llmain.isEnabled = false
-
             } else {
-
                 holder.llmain.background=UIUtils.getDrawable(context,R.drawable.shape_btn_blue_light)
-
-//            tvNow.background = (UIUtils.getDrawable(NApplication.sContext, R.drawable.shape_gray))
-//            tvNow.setThemTextColor(R.color.bg_color)
                 holder.llmain.isEnabled = true
             }
-
         }
-
-
-
-
-
-
-
-
         holder.llmain.setOnClickListener {
             btnClickListener?.onClick(item, holder.llmain,index,position)
             refreshItem(index)
@@ -96,11 +70,6 @@ class ProductCommAdapter(private val context: Context, private val data: List<Pr
             oldPos = selectedPos
         }
         selectedPos = position
-//        if (oldPos != -1) {
-//            notifyItemChanged(oldPos)
-//        }
-//        notifyItemChanged(selectedPos)
-
         notifyDataSetChanged()
 
     }

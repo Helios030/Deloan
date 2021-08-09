@@ -36,15 +36,21 @@ class WebViewActivity : IBaseActivity() {
         return R.layout.activity_web_view
     }
 
-    fun initData() {
+    fun initData(isNeedReload:Boolean=false) {
         Slog.d("initData $intent")
         val intent = intent
         if (intent != null) {
-            val uri = intent.getStringExtra(Constants.Intent_URI)
+            var uri = intent.getStringExtra(Constants.Intent_URI)
+            Slog.d("切换重载地址  isNeedReload $isNeedReload   uri $uri")
+            if (isNeedReload && uri?.contains(Constants.MYPROFILE) == true) {
+                uri = "${Constants.H5BaseUri}${Constants.BASEINFO}"
+                Slog.d("切换重载地址  $uri ")
+            }
+
+
             val isMain = intent.getBooleanExtra(Constants.IS_MAIN, true)
             loanStatusResult =
                 intent.getSerializableExtra(Constants.LOAN_STATUS_RESULT) as LoanStatusResult?
-            Slog.d("测试  ====     uri $uri  isMain  $isMain  loanStatusResult $loanStatusResult")
             uri?.let {
                 loadURI(it, isMain)
             }
@@ -111,7 +117,7 @@ class WebViewActivity : IBaseActivity() {
             ): Boolean {
                 filePathCall = filePathCallback
 
-                Slog.d("onShowFileChooser ${javaScriptFunction==null}    ")
+                Slog.d("onShowFileChooser ${javaScriptFunction == null}    ")
 
                 javaScriptFunction?.let {
                     Slog.d("onShowFileChooser ${it.getOpenType()}    ")
@@ -140,9 +146,15 @@ class WebViewActivity : IBaseActivity() {
 
     private fun loadURI(url: String, isMain: Boolean) {
 
-Slog.d("loadURI  ")
+        Slog.d("loadURI  ")
         mAgentWeb = AgentWeb.with(this)
-            .setAgentWebParent(fl_main, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+            .setAgentWebParent(
+                fl_main,
+                LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
+            )
             .useDefaultIndicator()
 //            .setWebViewClient(mWebViewClient)
             .setWebChromeClient(mWebViewClient)
@@ -207,27 +219,25 @@ Slog.d("loadURI  ")
     var javaScriptFunction: JavaScriptFunction? = null
 
 
-    var isNeedRef=true
+    var isNeedRef = false
 
     fun openCamera() {
         var dialog: CameraDialog? = null
         dialog = CameraDialog(this).setOnClickBottomListener(object :
             CameraDialog.OnClickBottomListener {
             override fun onOkClick() {
-                isNeedRef=false
+                isNeedRef = true
                 IDCardCamera.create(this@WebViewActivity)
                     .openCamera(IDCardCamera.TYPE_IDCARD_FRONT)
                 dialog?.dismiss()
             }
         })
         dialog.show()
-
         dialog.setOnDismissListener {
-     if(isNeedRef){
-         initData()
-         isNeedRef=true
-
-     }
+            if (isNeedRef) {
+                initData(true)
+                isNeedRef = false
+            }
 
         }
 
@@ -347,10 +357,10 @@ Slog.d("loadURI  ")
         Slog.d("onActivityResult requestCode $requestCode  $resultCode")
 
 
-        if(resultCode==0){
+        if (resultCode == 0) {
             Slog.d("重新载入网页")
-            initData()
-        }else  if (resultCode == Activity.RESULT_OK) {
+            initData(true)
+        } else if (resultCode == Activity.RESULT_OK) {
             if (requestCode == PictureConfig.CHOOSE_REQUEST) {
                 val localMediaList = PictureSelector.obtainMultipleResult(data)
                 if (localMediaList != null && localMediaList.size > 0) {

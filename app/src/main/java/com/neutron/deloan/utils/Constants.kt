@@ -111,9 +111,9 @@ class PreferencesKey {
 
         const val DEVICE_IMEI = "DEVICE_IMEI"
         const val IS_FIRST = "IS_FIRST"
-        const val ABOUT_US = "IS_FIRST"
-        const val PPRIVATE = "IS_FIRST"
-        const val HOT_TEL = "IS_FIRST"
+        const val ABOUT_US = "ABOUT_US"
+        const val PPRIVATE = "PPRIVATE"
+        const val HOT_TEL = "HOT_TEL"
         const val NAME = "NAME"
         const val LIVENESSID = "LIVENESSID"
         const val REFERRER = "REFERRER"

@@ -268,6 +268,7 @@
 -dontwarn sun.misc.**
 
 
+-keep class com.neutron.deloan.database.**{*;}
 
 
 

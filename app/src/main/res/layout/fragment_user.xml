@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
 
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:src="@mipmap/icon_user" />
 
 
@@ -79,13 +79,14 @@
 
         <com.neutron.deloan.view.ThemeTextView
             android:id="@+id/tv_pay"
-            android:layout_width="wrap_content"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:drawableLeft="@mipmap/icon_pay"
             android:drawablePadding="14dp"
+            android:ellipsize="end"
             android:gravity="center"
-
+            android:maxLines="1"
             android:text="@string/pay_order"
             app:textColor="@color/deep_blue"
             app:textSize="16" />
@@ -93,15 +94,16 @@
 
         <com.neutron.deloan.view.ThemeTextView
             android:id="@+id/tv_info"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="14dp"
             android:layout_toRightOf="@+id/tv_pay"
             android:drawableLeft="@mipmap/icon_user_info"
             android:drawablePadding="14dp"
+            android:ellipsize="end"
             android:gravity="center"
-
+            android:maxLines="1"
             android:text="@string/my_info"
             app:textColor="@color/deep_blue"
             app:textSize="16" />
@@ -109,14 +111,15 @@
 
         <com.neutron.deloan.view.ThemeTextView
             android:id="@+id/tv_call"
-            android:layout_width="wrap_content"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_pay"
             android:layout_marginTop="30dp"
             android:drawableLeft="@mipmap/icon_user_call"
             android:drawablePadding="14dp"
-
+            android:ellipsize="end"
             android:gravity="center"
+            android:maxLines="1"
             android:text="@string/call_user"
             app:textColor="@color/deep_blue"
             app:textSize="16" />
@@ -124,15 +127,16 @@
 
         <com.neutron.deloan.view.ThemeTextView
             android:id="@+id/tv_about"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_info"
             android:layout_alignLeft="@+id/tv_info"
-
             android:layout_marginTop="30dp"
             android:drawableLeft="@mipmap/icon_about"
             android:drawablePadding="14dp"
+            android:ellipsize="end"
             android:gravity="center"
+            android:maxLines="1"
             android:text="@string/about_us"
             app:textColor="@color/deep_blue"
             app:textSize="16" />
