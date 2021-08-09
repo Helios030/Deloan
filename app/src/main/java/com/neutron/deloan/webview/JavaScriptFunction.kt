@@ -129,13 +129,35 @@ class JavaScriptFunction(isToBorrow: Boolean, listener: Listener?) {
         this.listener = listener
     }
 
+    //    请求成功
+    @JavascriptInterface
+    fun submitVASuccess() {
+        AfPointUtils.userAppsFlyerReturnDataEvent(
+            Constants.AF_VA_SUCCESS,
+            Constants.EVENT_CODE_VA_SUCCESS,
+            PreferencesHelper.getPhone(),  NApplication.sContext
+        )
+
+    }
+//    发起请求
+    @JavascriptInterface
+    fun clickVASuccess(phone:String) {
+        AfPointUtils.userAppsFlyerReturnDataEvent(
+            Constants.AF_CLICK_VA,
+            Constants.EVENT_CODE_CLICK_VA,
+            PreferencesHelper.getPhone(), NApplication.sContext
+        )
+    }
+
+
+
+
 
     @JavascriptInterface
     fun submitBankCardSuccess() {
         AfPointUtils.trackEvent(Constants.AF_SUBMIT_BANK_SUCCESS, NApplication.sContext)
-
-
     }
+
 
     @JavascriptInterface
     fun repaySuccess() {

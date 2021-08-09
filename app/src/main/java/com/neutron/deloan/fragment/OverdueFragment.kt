@@ -5,12 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import androidx.fragment.app.Fragment
 import  com.neutron.deloan.R
 import com.neutron.deloan.bean.LoanStatusResult
 import com.neutron.deloan.main.MainActivity
-
 import  com.neutron.deloan.utils.Constants
 import  com.neutron.deloan.utils.Slog
 import com.neutron.deloan.web.WebViewActivity
@@ -46,7 +44,7 @@ class OverdueFragment : Fragment() {
 //            tv_over_due_date.text = result.app_time
 //
 
-//            tv_over_interest.text = result.interest
+            tv_pen_interest.text = result.interest
 //            tv_over_risk.text = result.risk
 //            tv_over_service.text = result.service
 //            tv_over_pay.text = result.pay

@@ -38,6 +38,7 @@
         android:inputType="number"
         android:hint="@string/phone_not_null"
         android:textColor="@color/text_color"
+        android:textCursorDrawable="@drawable/shape_login_color_cursor"
         android:textColorHint="@color/text_color_gray_a8"
         android:textStyle="bold" />
 

@@ -3,6 +3,7 @@ package com.neutron.deloan.login
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import android.os.CountDownTimer
 import android.os.Handler
@@ -23,6 +24,7 @@ import com.neutron.deloan.bean.UserInfo
 import com.neutron.deloan.main.MainActivity
 import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.utils.*
+import com.neutron.deloan.web.WebViewActivity
 import com.ronal.crazy.util.AfPointUtils
 import com.tuo.customview.VerificationCodeView
 import com.wynsbin.vciv.VerificationCodeInputView
@@ -53,6 +55,16 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
     var isSelected = false
     var phoneNumber = ""
     override fun initView() {
+
+
+        tv_permison.setOnClickListener {
+            startActivity(Intent(this, WebViewActivity::class.java).apply {
+                putExtra(Constants.Intent_URI, Constants.privacypolicy)
+                putExtra(Constants.IS_MAIN, false)
+            })
+        }
+
+
         iv_select.setOnClickListener {
             isSelected = !isSelected
             if (isSelected) {
