@@ -9,17 +9,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.leaf.library.StatusBarUtil
 import com.neutron.deloan.R
 import com.neutron.deloan.base.BaseActivity
+import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.bean.LoanStatusResult
 import com.neutron.deloan.bean.UserConfigResult
 import com.neutron.deloan.fragment.ApprovalRejectedFragment
 import com.neutron.deloan.fragment.OverdueFragment
 import com.neutron.deloan.fragment.PendingRepaymentFragment
 import com.neutron.deloan.fragment.ReviewFragment
-import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.product.ProductFragment
 import com.neutron.deloan.user.UserFragment
 import com.neutron.deloan.utils.*
-import com.neutron.deloan.web.WebViewActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), MainContract.View {

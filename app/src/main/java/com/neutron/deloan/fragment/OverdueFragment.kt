@@ -6,16 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import  com.neutron.deloan.R
+import com.neutron.deloan.R
 import com.neutron.deloan.bean.LoanStatusResult
 import com.neutron.deloan.main.MainActivity
-import  com.neutron.deloan.utils.Constants
-import  com.neutron.deloan.utils.Slog
+import com.neutron.deloan.utils.Constants
+import com.neutron.deloan.utils.Slog
 import com.neutron.deloan.web.WebViewActivity
 import kotlinx.android.synthetic.main.fragment_overdue.*
-import kotlinx.android.synthetic.main.fragment_overdue.btn_pay
-
-import kotlinx.android.synthetic.main.fragment_overdue.tv_money
 
 
 class OverdueFragment : Fragment() {

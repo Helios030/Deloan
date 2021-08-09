@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import com.neutron.deloan.NApplication
 import com.neutron.deloan.base.BasePresenter
 import com.neutron.deloan.net.RetrofitUtil
-import com.neutron.deloan.utils.*
+import com.neutron.deloan.utils.Constants
+import com.neutron.deloan.utils.PreferencesHelper
+import com.neutron.deloan.utils.Utils
 import com.ronal.crazy.util.AfPointUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,8 +29,6 @@ import ai.advance.liveness.lib.http.entity.ResultEntity;
 import ai.advance.liveness.lib.impl.LivenessCallback;
 import ai.advance.liveness.lib.impl.LivenessGetFaceDataCallback;
 import ai.advance.liveness.sdk.R;
-
-import static ai.advance.liveness.lib.Detector.DetectionType.POS_YAW;
 
 /**
  * fragment of liveness detection

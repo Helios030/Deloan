@@ -1,21 +1,17 @@
 package  com.neutron.deloan.user
 
 import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
-import android.view.View
-import android.widget.TextView
-import  com.neutron.deloan.NApplication
-import  com.neutron.deloan.R
-import  com.neutron.deloan.WelcomeActivity
-import  com.neutron.deloan.base.BaseFragment
-import  com.neutron.deloan.bean.ProductsResult
-import  com.neutron.deloan.bean.UserStatusResult
-import com.neutron.deloan.facedetection.FaceDetectionActivity
-import  com.neutron.deloan.main.MainActivity
-import  com.neutron.deloan.bean.BaseResponse
-import com.neutron.deloan.utils.*
-import com.neutron.deloan.view.ThemeTextView
+import com.neutron.deloan.R
+import com.neutron.deloan.WelcomeActivity
+import com.neutron.deloan.base.BaseFragment
+import com.neutron.deloan.bean.BaseResponse
+import com.neutron.deloan.bean.ProductsResult
+import com.neutron.deloan.bean.UserStatusResult
+import com.neutron.deloan.main.MainActivity
+import com.neutron.deloan.utils.Constants
+import com.neutron.deloan.utils.PreferencesHelper
+import com.neutron.deloan.utils.Slog
+import com.neutron.deloan.utils.makeCall
 import com.neutron.deloan.web.WebViewActivity
 import kotlinx.android.synthetic.main.fragment_user.*
 

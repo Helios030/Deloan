@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-
 import com.ronal.camera.utils.ScreenUtils;
 
 import java.util.List;

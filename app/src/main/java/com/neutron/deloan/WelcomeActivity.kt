@@ -2,12 +2,10 @@ package com.neutron.deloan
 
 import android.os.Handler
 import android.os.Looper
-import com.neutron.deloan.base.BaseActivity
 import com.neutron.deloan.base.IBaseActivity
 import com.neutron.deloan.main.MainActivity
 import com.neutron.deloan.net.RetrofitUtil
 import com.neutron.deloan.utils.*
-
 import com.ronal.crazy.util.AfPointUtils
 import kotlinx.android.synthetic.main.activity_welcome.*
 import kotlinx.coroutines.Dispatchers

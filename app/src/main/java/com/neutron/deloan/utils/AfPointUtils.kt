@@ -3,8 +3,7 @@ package com.ronal.crazy.util
 import android.content.Context
 import android.text.TextUtils
 import com.appsflyer.AppsFlyerLib
-
-import java.util.HashMap
+import java.util.*
 
 /**
  * @author: Leo

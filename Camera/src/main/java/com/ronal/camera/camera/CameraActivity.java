@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,7 +20,6 @@ import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 
-
 import com.ronal.camera.R;
 import com.ronal.camera.cropper.CropImageView;
 import com.ronal.camera.cropper.CropListener;
@@ -31,7 +29,6 @@ import com.ronal.camera.utils.ImageUtils;
 import com.ronal.camera.utils.PermissionUtils;
 import com.ronal.camera.utils.ScreenUtils;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 

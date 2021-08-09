@@ -22,8 +22,6 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
 import com.neutron.deloan.NApplication
-import com.neutron.deloan.utils.PreferencesHelper
-
 import java.io.File
 import java.io.FileFilter
 import java.net.NetworkInterface

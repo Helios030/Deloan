@@ -8,10 +8,8 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.neutron.deloan.R
 import com.neutron.deloan.bean.ProductsResult
-import com.neutron.deloan.utils.Slog
 import com.neutron.deloan.utils.UIUtils
 import com.neutron.deloan.view.ThemeTextView
-import kotlinx.android.synthetic.main.item_products.view.*
 
 
 class ProductCommAdapter(private val context: Context, private val data: List<ProductsResult>) :

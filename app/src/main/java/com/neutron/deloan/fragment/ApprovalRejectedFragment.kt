@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import  com.neutron.deloan.R
+import com.neutron.deloan.R
 import com.neutron.deloan.main.MainActivity
-import  com.neutron.deloan.utils.Constants
-import kotlinx.android.synthetic.main.fragment_approval_rejected.*
 
 class ApprovalRejectedFragment : Fragment() {
 

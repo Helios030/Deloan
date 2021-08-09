@@ -2,9 +2,9 @@ package com.neutron.deloan.main
 
 import com.neutron.deloan.base.IPresenter
 import com.neutron.deloan.base.IView
+import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.bean.LoanStatusResult
 import com.neutron.deloan.bean.UserConfigResult
-import com.neutron.deloan.bean.BaseResponse
 
 class MainContract {
 

@@ -2,27 +2,23 @@ package com.neutron.deloan.login
 
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.CountDownTimer
-import android.os.Handler
-import android.os.Looper
 import android.view.*
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import com.neutron.deloan.R
 import com.neutron.deloan.base.BaseActivity
+import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.bean.LoginResuleResult
 import com.neutron.deloan.bean.SmsLoginResult
 import com.neutron.deloan.bean.UserInfo
 import com.neutron.deloan.main.MainActivity
-import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.utils.*
 import com.neutron.deloan.web.WebViewActivity
 import com.ronal.crazy.util.AfPointUtils

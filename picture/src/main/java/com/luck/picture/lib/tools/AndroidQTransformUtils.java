@@ -2,9 +2,6 @@ package com.luck.picture.lib.tools;
 
 import android.content.Context;
 import android.net.Uri;
-import android.text.TextUtils;
-
-import com.luck.picture.lib.config.PictureSelectionConfig;
 
 import java.io.File;
 import java.io.OutputStream;

@@ -8,15 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import androidx.fragment.app.Fragment
-import  com.neutron.deloan.R
+import com.neutron.deloan.R
 import com.neutron.deloan.bean.LoanStatusResult
 import com.neutron.deloan.main.MainActivity
 import com.neutron.deloan.utils.Constants
 import com.neutron.deloan.web.WebViewActivity
-
-
 import kotlinx.android.synthetic.main.fragment_pending_repayment.*
-import kotlinx.android.synthetic.main.fragment_pending_repayment.btn_pay
 
 class PendingRepaymentFragment : Fragment() {
 

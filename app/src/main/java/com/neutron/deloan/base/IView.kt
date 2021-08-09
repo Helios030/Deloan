@@ -1,8 +1,5 @@
 package com.neutron.deloan.base
 
-import android.view.View
-import kotlinx.android.synthetic.main.toolbar_common.*
-
 
 interface IView {
     /**

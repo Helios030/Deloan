@@ -3,20 +3,18 @@ package  com.neutron.deloan.product
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.neutron.deloan.NApplication
 import com.neutron.deloan.R
 import com.neutron.deloan.base.BaseFragment
+import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.bean.ProductsResult
 import com.neutron.deloan.bean.UserStatusResult
 import com.neutron.deloan.facedetection.FaceDetectionActivity
 import com.neutron.deloan.main.MainActivity
-import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.utils.Constants
 import com.neutron.deloan.utils.PreferencesHelper
 import com.neutron.deloan.utils.Slog
-import com.yalantis.ucrop.util.ScreenUtils
 import kotlinx.android.synthetic.main.fragment_product.*
 
 

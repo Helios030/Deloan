@@ -13,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import android.widget.LinearLayout
-import com.google.gson.Gson
 import com.just.agentweb.AgentWeb
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig

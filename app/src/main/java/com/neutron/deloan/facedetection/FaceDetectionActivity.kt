@@ -4,15 +4,16 @@ import ai.advance.liveness.lib.GuardianLivenessDetectionSDK
 import ai.advance.liveness.lib.LivenessResult
 import ai.advance.liveness.sdk.activity.LivenessActivity
 import android.content.Intent
-import android.view.View
 import com.neutron.deloan.R
 import com.neutron.deloan.base.BaseActivity
 import com.neutron.deloan.bean.AdvanceLicenseResult
-import com.neutron.deloan.confirm.ConfirmActivity
 import com.neutron.deloan.bean.BaseResponse
-import com.neutron.deloan.utils.*
+import com.neutron.deloan.confirm.ConfirmActivity
+import com.neutron.deloan.utils.PreferencesHelper
+import com.neutron.deloan.utils.Slog
+import com.neutron.deloan.utils.startTo
+import com.neutron.deloan.utils.toast
 import kotlinx.android.synthetic.main.activity_face_detection.*
-import kotlinx.android.synthetic.main.toolbar_common.*
 import java.util.*
 
 class FaceDetectionActivity :

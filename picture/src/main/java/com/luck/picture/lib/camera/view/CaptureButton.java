@@ -12,8 +12,8 @@ import android.os.CountDownTimer;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.luck.picture.lib.camera.CustomCameraView;
 import com.luck.picture.lib.camera.CheckPermission;
+import com.luck.picture.lib.camera.CustomCameraView;
 import com.luck.picture.lib.camera.listener.CaptureListener;
 import com.luck.picture.lib.tools.DoubleUtils;
 

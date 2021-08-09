@@ -8,8 +8,6 @@ import android.util.TypedValue;
 
 import androidx.core.content.ContextCompat;
 
-import com.luck.picture.lib.config.PictureSelectionConfig;
-
 /**
  * @author：luck
  * @data：2018/3/28 下午1:00

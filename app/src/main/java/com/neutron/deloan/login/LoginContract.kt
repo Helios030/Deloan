@@ -2,9 +2,9 @@ package com.neutron.deloan.login
 
 import com.neutron.deloan.base.IPresenter
 import com.neutron.deloan.base.IView
+import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.bean.LoginResuleResult
 import com.neutron.deloan.bean.SmsLoginResult
-import com.neutron.deloan.bean.BaseResponse
 
 class LoginContract {
 

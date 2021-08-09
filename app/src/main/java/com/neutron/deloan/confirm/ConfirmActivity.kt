@@ -3,14 +3,13 @@ package com.neutron.deloan.confirm
 
 import com.neutron.deloan.R
 import com.neutron.deloan.base.BaseActivity
+import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.bean.ConfirmInfoResult
 import com.neutron.deloan.bean.RequestOrderResult
 import com.neutron.deloan.main.MainActivity
-import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.utils.*
 import com.neutron.deloan.view.CommDialog
 import kotlinx.android.synthetic.main.activity_confirm.*
-
 import kotlinx.android.synthetic.main.toolbar_common.*
 
 class ConfirmActivity : BaseActivity<ConfirmContract.View, ConfirmContract.Presenter>(),

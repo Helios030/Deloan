@@ -1,7 +1,5 @@
 package com.neutron.deloan
 
-import androidx.appcompat.app.AppCompatActivity
-import com.neutron.deloan.base.BaseActivity
 import com.neutron.deloan.base.IBaseActivity
 import com.neutron.deloan.login.LoginActivity
 import com.neutron.deloan.main.MainActivity

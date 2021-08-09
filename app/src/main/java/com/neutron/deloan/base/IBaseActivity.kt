@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Message
 import android.view.*
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.Animation
@@ -13,7 +12,6 @@ import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.just.agentweb.AgentWeb
 import com.neutron.deloan.NApplication
 import com.neutron.deloan.R
 import com.neutron.deloan.bean.AppList

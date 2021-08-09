@@ -19,7 +19,6 @@ import android.util.Log;
 
 import androidx.core.content.PermissionChecker;
 
-
 import com.neutron.deloan.bean.PContacts;
 import com.neutron.deloan.database.entity.ApplistEntity;
 import com.neutron.deloan.database.entity.CallLogEntity;

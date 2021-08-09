@@ -2,11 +2,8 @@ package  com.neutron.deloan.product
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import  com.neutron.deloan.NApplication
-import  com.neutron.deloan.R
-import  com.neutron.deloan.bean.ProductsResult
-import  com.neutron.deloan.utils.UIUtils
-import  com.neutron.deloan.view.ThemeTextView
+import com.neutron.deloan.R
+import com.neutron.deloan.bean.ProductsResult
 
 
 class ProductAdapter(layoutResId: Int, data: MutableList<ProductsResult>) :
