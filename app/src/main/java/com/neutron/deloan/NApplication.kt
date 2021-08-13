@@ -24,7 +24,7 @@ class NApplication : Application() {
         sContext = this
         initAF()
         AfPointUtils.trackEvent(Constants.AF_APP_ACTIVATION, this)
-        val isDeBug = true
+        val isDeBug = false
         Slog.d("isDeBug  $isDeBug")
         Slog.getSettings().setLogEnable(isDeBug).setBorderEnable(isDeBug)
         GuardianLivenessDetectionSDK.init(this, Market.Thailand)
