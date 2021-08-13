@@ -1,5 +1,6 @@
 package  com.neutron.deloan.user
 
+import android.Manifest
 import android.content.Intent
 import com.neutron.deloan.R
 import com.neutron.deloan.WelcomeActivity
@@ -13,6 +14,7 @@ import com.neutron.deloan.utils.PreferencesHelper
 import com.neutron.deloan.utils.Slog
 import com.neutron.deloan.utils.makeCall
 import com.neutron.deloan.web.WebViewActivity
+import com.permissionx.guolindev.PermissionX
 import kotlinx.android.synthetic.main.fragment_user.*
 
 
@@ -53,7 +55,7 @@ class UserFragment : BaseFragment<UserContract.View, UserContract.Presenter>(),
         tv_about.setOnClickListener {
 
             startActivity(Intent(activity, WebViewActivity::class.java).apply {
-                putExtra(Constants.Intent_URI, Constants.privacypolicy)
+                putExtra(Constants.Intent_URI, PreferencesHelper.getAboutUs())
                 putExtra(Constants.IS_MAIN, false)
             })
 
@@ -77,10 +79,7 @@ class UserFragment : BaseFragment<UserContract.View, UserContract.Presenter>(),
                 showPopWindow(it,getString(R.string.is_call),getString(R.string.start_call),
                     {
 
-                      val phone=  PreferencesHelper.getPhone()
-                        if (phone.isNotEmpty()) {
-                            makeCall(phone)
-                        }
+                        call()
 
                     } ,rl_main)
             }
@@ -91,9 +90,26 @@ class UserFragment : BaseFragment<UserContract.View, UserContract.Presenter>(),
 
     }
 
+    private fun call() {
 
 
+                PermissionX.init(this)
+                    .permissions(Manifest.permission.CALL_PHONE)
+                    .onExplainRequestReason { scope, deniedList -> scope.showRequestReasonDialog(deniedList, getString(R.string.not_pp), getString(R.string.dialog_ok), getString(R.string.dialog_cancel)) }
+                    .onForwardToSettings { scope, deniedList -> scope.showForwardToSettingsDialog(deniedList, getString(R.string.not_pp), getString(R.string.dialog_ok), getString(R.string.dialog_cancel)) }
+                    .request { allGranted, _, _ ->
+                        if (allGranted) {
+                            val phone=  PreferencesHelper.getPhone()
+                            if (phone.isNotEmpty()) {
+                                makeCall(phone)
+                            }
+                        } else {
+                           showToast(R.string.not_pp)
 
+                        }
+                    }
+
+    }
 
 
     override fun returnRequestState(products: BaseResponse<List<ProductsResult>>) {

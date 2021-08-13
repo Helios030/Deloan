@@ -12,9 +12,12 @@ class Constants {
         const val SIGNKEY = "signkey1"
         const val SIGNRANDOMCODE = "signkey2"
         const val Unit = "วัน"
-        const val AF_APP_KEY = "yGBMuxgzaU8tuLWvbjqrA8"
-        val BaseUri = "http://api.th.golden-union.top/"
-        val H5BaseUri = "http://192.168.1.79:9930"
+//        const val AF_APP_KEY = "yGBMuxgzaU8tuLWvbjqrA8"
+        const val AF_APP_KEY = "BuPCWdVodX32VUQXTtJhbV"
+        //  val BaseUri = "http://api.th.golden-union.top/"
+        val BaseUri = "https://api.dedeloan.com"
+//        val H5BaseUri = "http://192.168.1.79:9930"
+        val H5BaseUri = "https://h5.dedeloan.com"
         const val APPROVE = "/#/approve"//      个人认证
         const val BASEINFO = "/#/baseInfo"//       基本信息
         const val WORKINFO = "/#/workInfo"//     工作信息

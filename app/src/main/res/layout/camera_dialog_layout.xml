@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="证件上传示例"
+        android:text="@string/id_dialog_1"
         android:textColor="#1F3068"
         android:textSize="16dp" />
 
@@ -23,7 +23,7 @@
         android:drawableTop="@mipmap/img_idcard"
         android:drawablePadding="20dp"
         android:gravity="center"
-        android:text="  四角完整、照片清晰"
+        android:text="@string/id_dialog_2"
         android:textColor="@color/text_color"
 
         android:textSize="16dp" />

@@ -1,5 +1,6 @@
 package com.neutron.deloan.web
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -24,6 +25,7 @@ import com.neutron.deloan.facedetection.FaceDetectionActivity
 import com.neutron.deloan.utils.*
 import com.neutron.deloan.view.CameraDialog
 import com.neutron.deloan.webview.JavaScriptFunction
+import com.permissionx.guolindev.PermissionX
 import com.ronal.camera.camera.IDCardCamera
 import kotlinx.android.synthetic.main.activity_web_view.*
 import java.io.File
@@ -131,12 +133,10 @@ class WebViewActivity : IBaseActivity() {
                         else -> {
                             Slog.d("未知状态")
                         }
-
-
                     }
-
-
                 }
+
+
                 return true
 
             }
@@ -226,18 +226,22 @@ class WebViewActivity : IBaseActivity() {
         dialog = CameraDialog(this).setOnClickBottomListener(object :
             CameraDialog.OnClickBottomListener {
             override fun onOkClick() {
-                isNeedRef = true
                 IDCardCamera.create(this@WebViewActivity)
                     .openCamera(IDCardCamera.TYPE_IDCARD_FRONT)
+                isNeedRef=true
                 dialog?.dismiss()
             }
         })
         dialog.show()
+//        dialog.setOnShowListener {
+//            isNeedRef = true
+//        }
         dialog.setOnDismissListener {
-            if (isNeedRef) {
-                initData(true)
-                isNeedRef = false
+            if (!isNeedRef) {
+                filePathCall?.onReceiveValue(null)
             }
+
+//
 
         }
 
@@ -248,10 +252,31 @@ class WebViewActivity : IBaseActivity() {
 
     val lisenter = object : JavaScriptFunction.Listener {
         override fun onStartContact(requestCode: Int) {
-            Slog.d("开启联系人 ${PICK_CONTACT}")
-            PICK_CONTACT = requestCode
-            val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
-            startActivityForResult(intent, PICK_CONTACT)
+            Slog.d("onStartContact   ")
+
+            runOnUiThread {
+                PermissionX.init(this@WebViewActivity)
+                    .permissions(Manifest.permission.READ_CONTACTS)
+                    .onExplainRequestReason { scope, deniedList -> scope.showRequestReasonDialog(deniedList, getString(R.string.not_pp), getString(R.string.dialog_ok), getString(R.string.dialog_cancel)) }
+                    .onForwardToSettings { scope, deniedList -> scope.showForwardToSettingsDialog(deniedList, getString(R.string.not_pp), getString(R.string.dialog_ok), getString(R.string.dialog_cancel)) }
+                    .request { allGranted, _, _ ->
+                        if (allGranted) {
+                            Slog.d("开启联系人 ${PICK_CONTACT}")
+                            PICK_CONTACT = requestCode
+                            val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+                            startActivityForResult(intent, PICK_CONTACT)
+
+                        } else {
+                            toast(R.string.not_pp)
+
+                        }
+                    }
+
+
+                Slog.d("onStartContact   ")
+            }
+
+
 
 
         }
@@ -357,10 +382,9 @@ class WebViewActivity : IBaseActivity() {
         Slog.d("onActivityResult requestCode $requestCode  $resultCode")
 
 
-        if (resultCode == 0) {
-            Slog.d("重新载入网页")
-            initData(true)
-        } else if (resultCode == Activity.RESULT_OK) {
+        if(requestCode==1&&resultCode==0){
+            filePathCall?.onReceiveValue(null)
+        }else    if (resultCode == Activity.RESULT_OK) {
             if (requestCode == PictureConfig.CHOOSE_REQUEST) {
                 val localMediaList = PictureSelector.obtainMultipleResult(data)
                 if (localMediaList != null && localMediaList.size > 0) {
@@ -397,14 +421,16 @@ class WebViewActivity : IBaseActivity() {
                 if (requestCode == IDCardCamera.TYPE_IDCARD_FRONT) {
                     //身份证正面
                     val file = File(imagePath)
-
                     Slog.d("相机回传  $imagePath")
                     Slog.d("相机回传  $file")
+
                     if (file.exists()) {
                         filePathCall?.onReceiveValue(arrayOf(Uri.fromFile(file)))
                     } else {
                         filePathCall?.onReceiveValue(null)
                     }
+
+
                 }
             }
         }

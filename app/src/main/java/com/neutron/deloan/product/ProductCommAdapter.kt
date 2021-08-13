@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.neutron.deloan.R
 import com.neutron.deloan.bean.ProductsResult
+import com.neutron.deloan.utils.Slog
 import com.neutron.deloan.utils.UIUtils
 import com.neutron.deloan.view.ThemeTextView
 
@@ -15,12 +16,7 @@ import com.neutron.deloan.view.ThemeTextView
 class ProductCommAdapter(private val context: Context, private val data: List<ProductsResult>) :
     RecyclerView.Adapter<ProductCommAdapter.SimpleViewHolder>() {
 
-
-//    private val mBannerAdapterHelper = BannerAdapterHelper()
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleViewHolder {
-
         val itemView: View = LayoutInflater.from(context)
             .inflate(R.layout.item_products, parent, false)
 //        mBannerAdapterHelper.onCreateViewHolder(parent, itemView)
@@ -30,26 +26,29 @@ class ProductCommAdapter(private val context: Context, private val data: List<Pr
 
     override fun onBindViewHolder(holder: SimpleViewHolder, position: Int) {
 //        mBannerAdapterHelper.onBindViewHolder(holder.itemView, position, itemCount)
-
         if (data.isEmpty()) {
             return
         }
-
         var item = getItemByPosition(position)
         holder.tv_money.text = item.principal
-      var index=  position % data.size
+        var index=  position % data.size
 
         if (selectedPos == index) {
             holder.llmain.background=UIUtils.getDrawable(context,R.drawable.shape_btn_blue)
+            holder.llmain.isEnabled = true
             //相同设置高亮
         } else {
             if (item.enable == "2") {
                 holder.llmain.background=UIUtils.getDrawable(context,R.drawable.shape_btn_gray)
                 holder.llmain.isEnabled = false
+
             } else {
                 holder.llmain.background=UIUtils.getDrawable(context,R.drawable.shape_btn_blue_light)
                 holder.llmain.isEnabled = true
             }
+
+
+
         }
         holder.llmain.setOnClickListener {
             btnClickListener?.onClick(item, holder.llmain,index,position)
@@ -72,6 +71,11 @@ class ProductCommAdapter(private val context: Context, private val data: List<Pr
         selectedPos = position
         notifyDataSetChanged()
 
+    }
+
+
+    fun setSelectedPos(post:Int){
+        selectedPos=post
     }
 
     private fun getItemByPosition(position: Int): ProductsResult {

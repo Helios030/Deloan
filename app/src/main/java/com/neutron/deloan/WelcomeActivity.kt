@@ -23,28 +23,31 @@ class WelcomeActivity : IBaseActivity() {
     }
 
 
-
     override fun initView() {
         if (PreferencesHelper.isFirstStart()) {
-            AfPointUtils.userAppsFlyerReturnDataEvent(Constants.AF_APP_INSTALL, Constants.EVENT_CODE_INSTALL, "", this)
+            AfPointUtils.userAppsFlyerReturnDataEvent(
+                Constants.AF_APP_INSTALL,
+                Constants.EVENT_CODE_INSTALL,
+                "",
+                this
+            )
             uploadAppDownload()
             PreferencesHelper.setFirstStart(false)
         }
         iv_welcome.post {
-
             Handler(Looper.getMainLooper()).postDelayed({
-
                 if (PreferencesHelper.getUserID().isNullOrEmpty()) {
-                    startTo(PermisonActivity::class.java,true)
+                    startTo(PermisonActivity::class.java, true)
                 } else {
-                    startTo(MainActivity::class.java,true)
+                    startTo(MainActivity::class.java, true)
                 }
-finish()
-            },startTime)
+                finish()
+            }, startTime)
 
         }
 
     }
+
     private fun uploadAppDownload() {
         GlobalScope.launch(Dispatchers.Main) {
             val map = HashMap<String, Any>();
@@ -53,7 +56,7 @@ finish()
             map["referrer"] = PreferencesHelper.getReferrer()
             map["download_time"] = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date())
             try {
-                val result=   RetrofitUtil.service.uploadAppFirst(Utils.createBody(Utils.createCommonParams(map)))
+                val result = RetrofitUtil.service.uploadAppFirst(Utils.createBody(Utils.createCommonParams(map)))
                 Slog.d("第一次上传结果  $result")
             } catch (e: Exception) {
                 e.printStackTrace()

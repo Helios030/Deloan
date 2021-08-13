@@ -253,7 +253,7 @@ app:textColor="@color/red"
                     android:maxLines="1"
                     android:text="@string/rollover_repayment"
                     android:textColor="@color/deep_blue_1a"
-                    android:textSize="20dp"
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     />
 
@@ -268,7 +268,7 @@ app:textColor="@color/red"
                     android:maxLines="1"
                     android:text="@string/repay_immediately"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
+                    android:textSize="18dp"
                     android:textStyle="bold"
 
                     />

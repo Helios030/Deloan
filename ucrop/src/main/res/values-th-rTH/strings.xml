@@ -96,7 +96,7 @@
     <string name="select_contact_number">กรุณากรอกเบอร์ติดต่อ</string>
     <string name="contact_information">ข้อมูลติดต่อ</string>
     <string name="face_tip">หากต้องการยืนยันว่าเป็นคุณ โปรดยืนยันใบหน้าให้เรียบร้อย แล้วเงินจะออกให้คุณ</string>
-    <string name="confirm_tip">ส่งใบสมัครของคุณแล้ว\n โปรดอดใจรอและรอการตรวจสอบ โปรดติดต่อทางโทรศัพท์</string>
+    <string name="confirm_tip">ใบสมัครของคุณถูกส่งสำเร็จ \n กรุณารอการตรวจสอบ และติดต่อกลับ</string>
     <string name="know_this">รู้แล้ว</string>
     <string name="confirm_request">ยืนยันการสมัคร</string>
     <string name="borrower_name">ชื่อผู้กู้</string>
@@ -264,12 +264,6 @@
     <string name="pp_tip4">2.contactList: คุณต้องอนุญาตให้ APP เข้าถึงรายการสมุดที่อยู่ของคุณ</string>
     <string name="pp_tip5">3.appList: รายการแอพที่ติดตั้งในอุปกรณ์ที่คุณใช้อยู่</string>
     <string name="pp_tip6">เพื่อความเป็นส่วนตัวของข้อมูลส่วนบุคคลของคุณ ข้อมูลข้างต้นจะถูกเข้ารหัส หลังจากเสร็จสิ้นการประเมินเครดิตของคุณ เราจะลบข้อมูลนี้</string>
-
-
-    <!--    part 1  end -->
-
-
-    <!-- 第三方相册库 -->
     <string name="ucrop_label_original">ภาษาต้นฉบับ</string>
     <string name="ucrop_label_edit_photo">แก้ไขรูปภาพ</string>
     <string name="ucrop_menu_crop">พืชผล</string>
@@ -343,46 +337,30 @@
     <string name="not_pp">ไม่สามารถทำงานได้หากไม่มีการอนุญาตที่จำเป็น โปรดไปที่การตั้งค่าเพื่อเปิด! </string>
     <string name="quit_app">กดปุ่มย้อนกลับอีกครั้งเพื่อออก</string>
     <string name="loan">เงินกู้</string>
-
     <string name="request_feiled"> ล้มเหลว</string>
     <string name="order_id"> หมายเลขคำสั่งซื้อ</string>
     <string name="loan_time">ระยะเวลายืม</string>
     <string name="curr_version"> เวอร์ชันปัจจุบัน</string>
-
     <string name="agree">ตกลง</string>
-
     <string name="face_d">การจดจำใบหน้า</string>
     <string name="requestting">ในแอปพลิเคชัน</string>
     <string name="all_pay">การชำระคืนทั้งหมด</string>
     <string name="ok_pay">ยืนยันการชำระ</string>
     <string name="repayment_amount"> จำนวนเงินที่ชำระคืน</string>
-
-
     <string name="repayment_amount_sub"> จำนวนการต่ออายุควรส่งคืน</string>
-
-
-
-
-
-
-
-
-
-
-
-
+    <string name="call">โทรศัพท์</string>
+    <string name="id_dialog_1">ตัวอย่างการอัปโหลดใบรับรอง</string>
+    <string name="id_dialog_2">ครบทั้งสี่มุมและรูปถ่ายชัดเจน</string>
     <string name="camera">กล้องถ่ายรูป</string>
     <string name="camera_tip">อนุญาตเปิดสาธารณะการถ่ายกล้องและการอัปโหลด</string>
     <string name="pp_tip">เมื่อใช้ฟังก์ชันบางอย่างของ Deloan ท่านต้องการเปิดใช้งานสิทธิ์ต่อไปนี้</string>
     <string name="phone_book">สมุดที่อยู่</string>
     <string name="phone_book_tip">การเปิดอนุญาติให้เข้าสมุดรายชื่อจะช่วยให้อุปกรณ์เคลื่อนของท่านสามารถรกอกรายชื่อติดต่อฉุกเฉินหรือเมื่อแบ่งปันข้อมูลจะช่วยเลือกบุคคลอ้างอิงได้อย่างรวดเร็ว</string>
-    <string name="call">电话</string>
     <string name="call_tip">ต้องเปิดใช้งานการโทรเพื่อให้คุณสามารถติดต่อเราได้อย่างรวดเร็วและแก้ปัญหาของคุณได้ดีขึ้น</string>
     <string name="login_pp">[ นโยบายความเป็นส่วนตัว ]</string>
     <string name="login_pp_tip">ในการใช้แอปพลิเคชันนี้คุณต้องอ่านอย่างละเอียดและตกลงที่จะปฏิบัติตาม</string>
     <string name="login_pp_check">ฉันได้อ่านอย่างละเอียดและตกลงที่จะปฏิบัติตาม:</string>
     <string name="ok_and_go">เห็นด้วยและดำเนินการต่อ</string>
-
     <string name="pay_order">ประวัติการกู้ยืมและการชำระคืน</string>
     <string name="exit">ย้อมกลับ</string>
     <string name="pr_loan_ok">เงินกู้เข้าบัญชีท่านสำเร็จ</string>
@@ -392,14 +370,12 @@
     <string name="filed_tip_2">ขออภัยการสมัครสินเชื่อของท่านล้มเหลว โปรดรักษาเครดิตให้ดีและยินดีต้อนรับท่านสมัครสินเชื่ออีกครั้งหลัง 7 วัน</string>
     <string name="filed_title">การตรวจสอบถูกปฏิเสธ</string>
     <string name="request_ok_title">การสมัครกู้เงินครั้งนี้สำเร็จ</string>
-    <string name="face_dtip">เพียงต้องทำตามขั้นตอนการยืนยันเสร็จ ท่านจะได้รับเงินกู้ทันที</string>
-
+    <string name="face_dtip">เพียงทำตามขั้นตอนสำเร็จ จะได้รับเงินสินเชื่อทันท</string>
     <string name="start_call">โทร</string>
     <string name="request_loan_ok">การสมัครกู้เงินครั้งนี้สำเร็จ</string>
     <string name="request_loan_ok_tip">ทางเราได้รับใบสมัครสินเชื่อของท่านแล้ว</string>
     <string name="wait_review">อยู่ระหว่างการตรวจสอบ</string>
     <string name="wait_review_tip">เราจะตรวจสอบให้เร็วที่สุด โปรดเปิดเครื่องและใส่ใจการรับสาย</string>
-
     <string name="confirm_tip_top">ตามสถานะเครดิตและจำนวนเงินที่คุณเลือก รายละเอียดสินเชื่อของคำสั่งซื้อปัจจุบันคือ:</string>
     <string name="loan_count">วงเงินกู้</string>
 

@@ -83,7 +83,7 @@ class JavaScriptFunction(isToBorrow: Boolean, listener: Listener?) {
 
     @JavascriptInterface
     fun startContact(index: Int) {
-        Slog.d("startContact  $index")
+        Slog.d("startContact  $index ${listener==null}")
         listener?.onStartContact(index)
     }
 
@@ -141,7 +141,7 @@ class JavaScriptFunction(isToBorrow: Boolean, listener: Listener?) {
     }
 //    发起请求
     @JavascriptInterface
-    fun clickVASuccess(phone:String) {
+    fun clickVASuccess() {
         AfPointUtils.userAppsFlyerReturnDataEvent(
             Constants.AF_CLICK_VA,
             Constants.EVENT_CODE_CLICK_VA,

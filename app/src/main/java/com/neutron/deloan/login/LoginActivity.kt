@@ -2,16 +2,21 @@ package com.neutron.deloan.login
 
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.CountDownTimer
 import android.view.*
+import android.view.LayoutInflater
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.PopupWindow
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.neutron.deloan.R
 import com.neutron.deloan.base.BaseActivity
 import com.neutron.deloan.bean.BaseResponse
@@ -89,7 +94,50 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
         }
 
 
+    }
 
+
+    fun showCodeDialog() {
+        @SuppressLint("InflateParams") val view: View =
+            LayoutInflater.from(this).inflate(R.layout.layout_keybord, null)
+        val vciv_code: VerificationCodeInputView =
+            view.findViewById<VerificationCodeInputView>(R.id.vciv_code)
+        icv = view.findViewById<VerificationCodeView>(R.id.icv)
+
+        val dialog = AlertDialog.Builder(this).setView(view).create()
+
+
+
+        icv?.isFocusable = true
+        icv?.editText?.isFocusableInTouchMode = true
+        icv?.setInputCompleteListener(object : VerificationCodeView.InputCompleteListener {
+            override fun inputComplete() {
+                Slog.d("输入完成")
+
+                val str = icv?.editText?.text.toString()
+
+                if (str.isNotBlank()) {
+                    sb.append(str)
+                    Slog.d("str  $str     sb ${sb.toString()}")
+                    if (sb.length == 6) {
+                        mPresenter?.testCode(phoneNumber, sb.toString())
+
+                    }
+                }
+            }
+
+            override fun deleteContent() {
+                Slog.d("删除")
+
+                sb.deleteCharAt(sb.length - 1)
+
+                Slog.d("deleteContent  sb ${sb.toString()}")
+
+
+            }
+        })
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
 
 
     }
@@ -99,49 +147,44 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
     )
 
-
-
+    var sb = StringBuffer()
+    var icv: VerificationCodeView? = null
 
     @SuppressLint("WrongConstant")
     private fun showPopupWindow() {
-        et_phone.isEnabled=false
+        et_phone.isEnabled = false
 
         val popupView = LayoutInflater.from(this).inflate(R.layout.layout_keybord, null)
-        val vciv_code: VerificationCodeInputView = popupView.findViewById<VerificationCodeInputView>(R.id.vciv_code)
-        val icv: VerificationCodeView = popupView.findViewById<VerificationCodeView>(R.id.icv)
+        val vciv_code: VerificationCodeInputView =
+            popupView.findViewById<VerificationCodeInputView>(R.id.vciv_code)
+        icv = popupView.findViewById<VerificationCodeView>(R.id.icv)
 
 
-        icv.isFocusable = true
-        icv.editText.isFocusableInTouchMode=true
+        icv?.isFocusable = true
+        icv?.editText?.isFocusableInTouchMode = true
 
-        val sb=StringBuffer()
 
-        icv.setInputCompleteListener(object :VerificationCodeView.InputCompleteListener{
+
+        icv?.setInputCompleteListener(object : VerificationCodeView.InputCompleteListener {
             override fun inputComplete() {
 
+                Slog.d("输入完成")
 
-           val str=     icv.editText.text.toString()
+                val str = icv?.editText?.text.toString()
 
                 if (str.isNotBlank()) {
                     sb.append(str)
                     Slog.d("str  $str     sb ${sb.toString()}")
-                    if(sb.length==6){
-                        mPresenter?.testCode(phoneNumber,sb.toString() )
+                    if (sb.length == 6) {
+                        mPresenter?.testCode(phoneNumber, sb.toString())
+
                     }
-
                 }
-
-
-//
-
             }
 
             override fun deleteContent() {
-
             }
-
         })
-
 
 
         val layoutParams = LinearLayout.LayoutParams(
@@ -159,17 +202,18 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
         animation.duration = 200
         popupWindow.contentView = popupView
         popupWindow.isClippingEnabled = false
-        popupWindow.isOutsideTouchable = true;
+        popupWindow.isOutsideTouchable = false
         popupWindow.softInputMode = PopupWindow.INPUT_METHOD_NEEDED;
         popupWindow.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
-        popupWindow.isFocusable = true;
+        popupWindow.isFocusable = true
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             this.window.setDecorFitsSystemWindows(false)
-
             ll_main.setOnApplyWindowInsetsListener { _, windowInsets ->
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    val insets = windowInsets.getInsets(WindowInsets.Type.ime() or WindowInsets.Type.systemGestures())
+                    val insets =
+                        windowInsets.getInsets(WindowInsets.Type.ime() or WindowInsets.Type.systemGestures())
                     insets
                 }
 
@@ -189,10 +233,9 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
             )
             popupView.startAnimation(animation)
             changeBackground(0.5F)
-
-//            showSoftInputFromWindow(this,icv.editText)
+//          showSoftInputFromWindow(this,icv.editText)
             val imm = this.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(icv.editText, 0)
+            imm.showSoftInput(icv?.editText, 0)
 
         }
         popupWindow.setOnDismissListener {
@@ -219,12 +262,24 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
     }
 
 
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+
+        if (popupWindow != null && popupWindow.isShowing) {
+            return false
+        }
+        return super.dispatchTouchEvent(ev);
+
+    }
+
+
     override fun getCodeState(loginResult: BaseResponse<LoginResuleResult>?) {
         Slog.d("getCodeState  $loginResult ")
         loginResult?.let {
             if (it.code == "200") {
                 toast(R.string.get_code_success)
-                showPopupWindow()
+//                showPopupWindow()
+
+                showCodeDialog()
 
             } else {
                 toast(it.message)
@@ -236,53 +291,56 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
     override fun loginState(smsLoginResults: BaseResponse<SmsLoginResult>) {
 
         smsLoginResults?.let {
-       if(it.code=="200"){
-           PreferencesHelper.setUserID(it.result.user_id)
-           PreferencesHelper.setPhone(it.result.phone)
-           PreferencesHelper.setPhoneEPRE(it.result.phonepre)
+            if (it.code == "200") {
+                PreferencesHelper.setUserID(it.result.user_id)
+                PreferencesHelper.setPhone(it.result.phone)
+                PreferencesHelper.setPhoneEPRE(it.result.phonepre)
+                val vCode = if (it.result.vcode == null) {
+                    ""
+                } else {
+                    it.result.vcode.toString()
+                }
+                val register = if (it.result.register == null) {
+                    ""
+                } else {
+                    it.result.register.toString()
+                }
+
+                PreferencesHelper.setUserInfo(
+                    UserInfo(
+                        it.result.user_id,
+                        it.result.userName,
+                        it.result.signKeyToken,
+                        vCode,
+                        it.result.phone,
+                        it.result.phonepre,
+                        register
+                    )
+                )
+                if (!it.result.register) {
+                    AfPointUtils.userAppsFlyerReturnDataEvent(
+                        Constants.AF_APP_REGISTER,
+                        Constants.EVENT_NEW_REGISTER,
+                        it.result.phone,
+                        this@LoginActivity
+                    )
+                }
+                AfPointUtils.userAppsFlyerReturnDataEvent(
+                    Constants.AF_APP_LOGIN,
+                    Constants.EVENT_CODE_LOGIN,
+                    it.result.phone,
+                    this@LoginActivity
+                )
+                toast(R.string.login_success)
+                startTo(MainActivity::class.java, true)
+            } else {
+                toast(it.message)
+                sb = StringBuffer()
+
+                icv?.clearInputContent()
 
 
-           val vCode = if (it.result.vcode == null) {
-               ""
-           } else {
-               it.result.vcode.toString()
-           }
-           val register = if (it.result.register == null) {
-               ""
-           } else {
-               it.result.register.toString()
-           }
-
-           PreferencesHelper.setUserInfo(
-               UserInfo(
-                   it.result.user_id,
-                   it.result.userName,
-                   it.result.signKeyToken,
-                   vCode,
-                   it.result.phone,
-                   it.result.phonepre,
-                   register
-               )
-           )
-           if (!it.result.register) {
-               AfPointUtils.userAppsFlyerReturnDataEvent(
-                   Constants.AF_APP_REGISTER,
-                   Constants.EVENT_NEW_REGISTER,
-                   it.result.phone,
-                   this@LoginActivity
-               )
-           }
-           AfPointUtils.userAppsFlyerReturnDataEvent(
-               Constants.AF_APP_LOGIN,
-               Constants.EVENT_CODE_LOGIN,
-               it.result.phone,
-               this@LoginActivity
-           )
-           toast(R.string.login_success)
-           startTo(MainActivity::class.java, true)
-       }else{
-           toast(it.message)
-       }
+            }
         }
 
     }

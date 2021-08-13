@@ -4,6 +4,9 @@
     <string name="login_iuput_code">输入验证码</string>
     <string name="login_get_code">获取验证码</string>
 
+    <string name="call">电话</string>
+    <string name="id_dialog_1">证件上传示例</string>
+    <string name="id_dialog_2">四角完整、照片清晰</string>
 
     <string name="login_login">登录</string>
     <string name="dialog_ok">确认</string>
@@ -96,8 +99,7 @@
     <string name="contact_number">联系电话</string>
     <string name="select_contact_number">请填写联系电话</string>
     <string name="contact_information">联系人信息</string>
-
-    <string name="confirm_tip">您的申请已提交 \n 请耐心等待审核， 请保持电话联系</string>
+    <string name="confirm_tip">您的申请订单已提交 \n 请耐心等待 并保持联系</string>
     <string name="know_this">我知道了</string>
     <string name="confirm_request">确认申请</string>
     <string name="borrower_name">借款人姓名</string>
@@ -122,7 +124,6 @@
     <string name="fine">罚金</string>
     <string name="late_fee">滞纳金</string>
     <string name="not_net">请检查网络设置</string>
-    <!--    数据字典-->
     <string name="gender_Male">男</string>
     <string name="gender_Female">女</string>
     <string name="dic_renting">租房</string>
@@ -150,16 +151,11 @@
     <string name="dic_children_one">1个</string>
     <string name="dic_children_three">3个</string>
     <string name="dic_children_two">2个</string>
-
-
     <string name="dic_father">父亲</string>
     <string name="dic_mother">母亲</string>
     <string name="dic_spouse">配偶</string>
     <string name="dic_son">儿子</string>
     <string name="dic_daughter">女儿</string>
-
-
-
     <string name="dic_brothers">哥哥/弟弟</string>
     <string name="dic_sisters">姐姐/妹妹</string>
     <string name="dic_nephew_and_niece">侄儿/侄女</string>
@@ -182,9 +178,7 @@
     <string name="dic_office_worker">上班族</string>
     <string name="dic_freelance_motorcycle_driver_or_farmer_or_fisherman">自由职业(摩的司机/农民/渔夫等)</string>
     <string name="dic_retired_unemployed_housewife">退休/待业/无业/家庭主妇</string>
-
     <string name="dic_school_student">在校学生</string>
-
     <string name="dic_financial">IT</string>
     <string name="dic_agriculture_forestry_fishery_and_animal_husbandry">医师</string>
     <string name="dic_manufacturing">养殖员</string>
@@ -205,26 +199,19 @@
     <string name="dic_legal">金融机构</string>
     <string name="dic_retail">餐饮</string>
     <string name="dic_communication">其他</string>
-
-
     <string name="date_year">年</string>
     <string name="date_month">月</string>
     <string name="date_day">日</string>
-
     <string name="address_province">省</string>
     <string name="address_city">市</string>
     <string name="address_area">区</string>
     <string name="address_county">县</string>
-
-
     <string name="data_submitted_successfully">资料提交成功</string>
     <string name="data_submitted_failed">资料提交失败，请稍后再试</string>
     <string name="input_nick_name">请填写昵称!</string>
     <string name="plese_input">请填写</string>
     <string name="take_id_photo">请拍摄身份证</string>
     <string name="loan_term">贷款期限</string>
-
-
     <string name="main_str_money">借款金额（泰铢）</string>
     <string name="main_str_money_repay">还款金额（泰铢）</string>
     <string name="main_str_money_must">应还金额（泰铢）</string>
@@ -249,27 +236,17 @@
     <string name="please_input_repay_account">请添加你的还款账号</string>
     <string name="upload_success">恭喜您！上传成功</string>
     <string name="upload_tip">还款凭证上传成功，我们将尽快核对 注意查看您的还款状态</string>
-
-
     <string name="main_certified_success">已认证</string>
     <string name="binding">绑定</string>
-
     <string name="amount2account">到账金额</string>
-
     <string name="tree_contact_name">第三联系人姓名</string>
     <string name="select_tree_contact_name">请填写第三联系人姓名</string>
-
-
     <string name="contact_customer">联系客服</string>
     <string name="user_line">客服Line</string>
-
     <string name="payday">发薪日</string>
-
     <string name="day_pay">日薪</string>
     <string name="week_pay">周薪</string>
     <string name="month_pay">月薪</string>
-
-
     <string name="day_all">每日</string>
     <string name="day_1">星期一</string>
     <string name="day_2">星期二</string>
@@ -278,7 +255,6 @@
     <string name="day_5">星期五</string>
     <string name="day_6">星期六</string>
     <string name="day_7">星期日</string>
-
     <string name="pp_tip1">尊敬的客户：为了评估您的信用，您需允许我们收集（contactList，deviceInfo，appList等信息）上传至：</string>
     <string name="pp_tip2">具体如下：</string>
     <string name="pp_tip3">1.deviceInfo: 您正在使用的设备的相关信息（包括品牌、型号、ABIs，ROM、Android版本等）</string>
@@ -378,7 +354,7 @@
     <string name="pp_tip">在使用 Deloan 中的某些功能时，需要激活以下权限</string>
     <string name="phone_book">通讯录</string>
     <string name="phone_book_tip">启动通讯录权限将使得您的移动设备在填写紧急联系人或共享信息时快速选择朋友</string>
-    <string name="call">电话</string>
+
     <string name="call_tip">启动拨打电话权限将允许应用跳转至拨打电话界面快速联系我们</string>
     <string name="login_pp">《隐私政策》</string>
     <string name="login_pp_tip">通过使用此应用程序，您需要仔细阅读并同意遵守：</string>

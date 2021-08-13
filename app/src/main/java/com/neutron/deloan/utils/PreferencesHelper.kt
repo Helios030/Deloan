@@ -35,12 +35,13 @@ object PreferencesHelper {
         PreferencesUtil.saveValue(PreferencesKey.IS_FIRST, isFirst)
 
 
-    fun getAboutUs(): String = PreferencesUtil.getString(PreferencesKey.ABOUT_US, "")
+    fun getAboutUs(): String = PreferencesUtil.getString(PreferencesKey.ABOUT_US, "https://privacy.dedeloan.com")
     fun setAboutUs(str: String) = PreferencesUtil.saveValue(PreferencesKey.ABOUT_US, str)
 
 
+//    todo 发布版替换
     fun getPPrivate(): String =
-        PreferencesUtil.getString(PreferencesKey.PPRIVATE, "https://privacy.loanbeer.com")
+        PreferencesUtil.getString(PreferencesKey.PPRIVATE, "https://privacy.dedeloan.com")
 
     fun setPPrivate(str: String) = PreferencesUtil.saveValue(PreferencesKey.PPRIVATE, str)
 

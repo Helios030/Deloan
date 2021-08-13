@@ -1,6 +1,7 @@
 <resources>
 
-    <string name="facebook_app_id" translatable="false">510455430251279</string>
+<!--    <string name="facebook_app_id" translatable="false">510455430251279</string>-->
+    <string name="facebook_app_id" translatable="false">141661218051017</string>
 <!--    <string name="facebook_app_id" translatable="false">522042912213574</string>-->
 <!--    <string name="fb_login_protocol_scheme" translatable="false">fb522042912213574</string>-->
 </resources>

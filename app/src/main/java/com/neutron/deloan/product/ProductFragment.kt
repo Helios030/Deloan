@@ -59,9 +59,13 @@ class ProductFragment : BaseFragment<ProductContract.View, ProductContract.Prese
         LinearSnapHelper().attachToRecyclerView(rv_product)
         adapter?.setBtnClickListener(object : ProductCommAdapter.onBtnClickListener {
             override fun onClick(data: ProductsResult, view: View, index: Int, realIndex: Int) {
-                (rv_product.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(realIndex-1, 0)
-                tv_money_date.text=data.duration.toString()
+                (rv_product.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(
+                    realIndex - 1,
+                    0
+                )
+                tv_money_date.text = data.duration.toString()
                 PreferencesHelper.setProductId(data.productId.toString())
+
 
             }
 
@@ -116,21 +120,26 @@ class ProductFragment : BaseFragment<ProductContract.View, ProductContract.Prese
     }
 
     override fun returnRequestState(products: BaseResponse<List<ProductsResult>>) {
-        if(products.result.isNotEmpty()){
-            if(PreferencesHelper.getProductId().isEmpty()){
+        if (products.result.isNotEmpty()) {
+            if (PreferencesHelper.getProductId().isEmpty()) {
                 PreferencesHelper.setProductId(products.result.first().productId.toString())
             }
         }
         productsResults.clear()
         productsResults.addAll(products.result)
+
+        tv_money_date.text = products.result.first().duration.toString()
+
         Slog.d("产品列表 $productsResults")
         adapter?.notifyDataSetChanged()
 //        rv_product.scrollToPosition(Int.MAX_VALUE/2)
-        (rv_product.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(
-            (Int.MAX_VALUE / 2)-1,
-            0
-        )
-
+        val centerIndex = (Int.MAX_VALUE / 2) - 1
+        (rv_product.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(centerIndex, 0)
+        try {
+            adapter?.setSelectedPos(productsResults.indexOf(productsResults.find { it.enable == "1" }))
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
     }
 
@@ -148,7 +157,7 @@ class ProductFragment : BaseFragment<ProductContract.View, ProductContract.Prese
             if (isClick) {
                 openUri(Constants.CONNECTINFO, true)
             }
-        }else if (result.result.card_status == "0") {
+        } else if (result.result.card_status == "0") {
             if (isClick) {
                 openUri(Constants.BANKCARDINFO, true)
             }
