@@ -11,7 +11,6 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-
         android:layout_height="match_parent">
 
 
@@ -251,7 +250,8 @@ app:textColor="@color/red"
                     android:background="@mipmap/img_line_btn"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="@string/rollover_repayment"
+                    android:visibility="gone"
+                    android:text="@string/repay_immediately"
                     android:textColor="@color/deep_blue_1a"
                     android:textSize="18dp"
                     android:textStyle="bold"

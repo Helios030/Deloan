@@ -13,6 +13,10 @@ import com.neutron.deloan.utils.Constants
 import com.neutron.deloan.utils.Slog
 import com.neutron.deloan.web.WebViewActivity
 import kotlinx.android.synthetic.main.fragment_overdue.*
+import kotlinx.android.synthetic.main.fragment_overdue.btn_pay
+import kotlinx.android.synthetic.main.fragment_overdue.tv_money
+import kotlinx.android.synthetic.main.fragment_overdue.tv_pen_interest
+import kotlinx.android.synthetic.main.fragment_pending_repayment.*
 
 
 class OverdueFragment : Fragment() {
@@ -49,10 +53,19 @@ class OverdueFragment : Fragment() {
             tv_due_over_date.text = result.deposit_time
             tv_over_fale_fee.text = result.fale_fee
 //            tv_order_count.text = result.application_id
-
-
             applicationId = result.application_id
             amount = result.remainAmount
+            val repayment = mainActivity.getrepaymentResult()
+            val banana=  repayment?.result?.find { it.bank_code==Constants.BANK_NAME_BANANA }
+            banana?.let {
+                btn_sub_pay.visibility = View.VISIBLE
+                btn_sub_pay.text=it.bank_name.toString()
+            }
+            val offline=  repayment?.result?.find { it.bank_code==Constants.BANK_NAME_OFFLINE }
+            offline?.let {
+                btn_pay.visibility = View.VISIBLE
+                btn_pay.text=it.bank_name.toString()
+            }
 
         }
 
@@ -64,25 +77,36 @@ class OverdueFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         btn_pay.setOnClickListener {
-            startToPay(true)
-        }
-        btn_sub_pay.setOnClickListener {
             startToPay(false)
         }
-
+        btn_sub_pay.setOnClickListener {
+            startToPay(true)
+        }
     }
 
-    fun startToPay(payAll: Boolean) {
+//    fun startToPay(payAll: Boolean) {
+//        loanStatusResult?.let {
+//            if (payAll) {
+//                openUri(Constants.REPAY, true, it)
+//            } else {
+//                openUri(Constants.PERIOD, true, it)
+//            }
+//        }
+//    }
+
+
+    private fun startToPay(payAll: Boolean) {
         loanStatusResult?.let {
             if (payAll) {
-                openUri(Constants.REPAY, true, it)
+                openUri(Constants.REPAY2, true, it)
             } else {
-                openUri(Constants.PERIOD, true, it)
+                openUri(Constants.REPAY, true, it)
             }
         }
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

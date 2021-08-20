@@ -11,6 +11,7 @@ import com.neutron.deloan.R
 import com.neutron.deloan.base.BaseActivity
 import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.bean.LoanStatusResult
+import com.neutron.deloan.bean.RepaymentBeanResult
 import com.neutron.deloan.bean.UserConfigResult
 import com.neutron.deloan.fragment.ApprovalRejectedFragment
 import com.neutron.deloan.fragment.OverdueFragment
@@ -34,6 +35,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     override fun initData() {
         showLoading()
         mPresenter?.getRequestState()
+        mPresenter?.getRepayment()
     }
 
     fun getRefresh(): SwipeRefreshLayout? {
@@ -46,7 +48,6 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     val mApprovalRejectedFragment = ApprovalRejectedFragment()
     val mPendingRepaymentFragment = PendingRepaymentFragment()
     val mOverdueFragment = OverdueFragment()
-
     var fragmentList = mutableListOf(
         mProductFragment,
         mUserFragment,
@@ -59,15 +60,11 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
 
     override fun onResume() {
         super.onResume()
-
-//    setStatusBarColor(this,R.color.status_colors)
         StatusBarUtil.setTransparentForWindow(this)
     }
 
 
     override fun initView() {
-
-
         nsv_main.adapter = ViewPagerAdapter(supportFragmentManager)
         nsv_main.offscreenPageLimit = fragmentList.size
         tv_tab_main.setOnClickListener {
@@ -137,9 +134,10 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                 loanStatusResult = it.result
                 currLoanStatus = it.result.loan_status.toInt()
                 showStateView(currLoanStatus)
-
-
-                nsv_main.setCurrentItem(indexFragmentByName(currFragment.javaClass.simpleName), false)
+                nsv_main.setCurrentItem(
+                    indexFragmentByName(currFragment.javaClass.simpleName),
+                    false
+                )
                 currFragment.onResume()
                 showTabIsMain(true)
 //                bnv_main.selectedItemId = bnv_main.menu.getItem(0).itemId
@@ -162,6 +160,24 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
         } else {
             toast(userConfig.message)
         }
+    }
+
+
+    var repaymentResult: BaseResponse<List<RepaymentBeanResult>>? = null
+
+    fun getrepaymentResult(): BaseResponse<List<RepaymentBeanResult>>? {
+        return repaymentResult
+    }
+
+    override fun returnRepayment(repayment: BaseResponse<List<RepaymentBeanResult>>) {
+        if (repayment.code == "200") {
+            this.repaymentResult = repayment
+
+        } else {
+            toast(repayment.message)
+        }
+
+
     }
 
 

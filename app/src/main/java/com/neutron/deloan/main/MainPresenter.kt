@@ -41,6 +41,20 @@ class MainPresenter : BasePresenter<MainContract.View>(),
 
         }
     }
+//pay_type     string     true     2     支付默认
+    override fun getRepayment() {
+        job = GlobalScope.launch(Dispatchers.Main) {
+            val map = HashMap<String, Any>()
+            map["pay_type"] = 2
+//            try {
+            mView?.returnRepayment(RetrofitUtil.service.getRepayment(Utils.createBody(Utils.createCommonParams(map))))
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//                mView?.showError(e)
+//            }
+
+        }
+    }
 
 
 }

@@ -12,6 +12,7 @@ import com.neutron.deloan.R
 import com.neutron.deloan.bean.LoanStatusResult
 import com.neutron.deloan.main.MainActivity
 import com.neutron.deloan.utils.Constants
+import com.neutron.deloan.utils.Slog
 import com.neutron.deloan.web.WebViewActivity
 import kotlinx.android.synthetic.main.fragment_pending_repayment.*
 
@@ -48,6 +49,26 @@ class PendingRepaymentFragment : Fragment() {
         }
         isNeed = true
         scrollView?.viewTreeObserver?.addOnScrollChangedListener(lister)
+
+
+
+
+        val repayment = mainActivity.getrepaymentResult()
+
+        Slog.d("repayment  $repayment")
+
+      val banana=  repayment?.result?.find { it.bank_code==Constants.BANK_NAME_BANANA }
+        banana?.let {
+            btn_sub_pay_r.visibility = View.VISIBLE
+            btn_sub_pay_r.text=it.bank_name.toString()
+        }
+        val offline=  repayment?.result?.find { it.bank_code==Constants.BANK_NAME_OFFLINE }
+        offline?.let {
+            btn_pay.visibility = View.VISIBLE
+            btn_pay.text=it.bank_name.toString()
+        }
+
+
     }
 
 
@@ -65,20 +86,20 @@ class PendingRepaymentFragment : Fragment() {
 
     }
 
-    var isPayAll: Boolean? = null
+    var isOnLine: Boolean? = null
     var applicationId: String? = null
     var amount: String? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btn_pay.setOnClickListener {
-            isPayAll = true
-            startToPay(isPayAll!!)
+            isOnLine = false
+            startToPay(isOnLine!!)
         }
 
 
         btn_sub_pay_r.setOnClickListener {
-            isPayAll = false
-            startToPay(isPayAll!!)
+            isOnLine = true
+            startToPay(isOnLine!!)
         }
 
 
@@ -87,9 +108,9 @@ class PendingRepaymentFragment : Fragment() {
     private fun startToPay(payAll: Boolean) {
         loanStatusResult?.let {
             if (payAll) {
-                openUri(Constants.REPAY, true, it)
+                openUri(Constants.REPAY2, true, it)
             } else {
-                openUri(Constants.PERIOD, true, it)
+                openUri(Constants.REPAY, true, it)
             }
         }
     }

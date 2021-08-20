@@ -14,8 +14,9 @@ class Constants {
         const val Unit = "วัน"
 //        const val AF_APP_KEY = "yGBMuxgzaU8tuLWvbjqrA8"
         const val AF_APP_KEY = "BuPCWdVodX32VUQXTtJhbV"
-        //  val BaseUri = "http://api.th.golden-union.top/"
+//          val BaseUri = "http://api.th.golden-union.top/"
         val BaseUri = "https://api.dedeloan.com"
+
 //        val H5BaseUri = "http://192.168.1.79:9930"
         val H5BaseUri = "https://h5.dedeloan.com"
         const val APPROVE = "/#/approve"//      个人认证
@@ -27,6 +28,12 @@ class Constants {
         const val RECORD = "/#/record"//        借还款记录
         const val PERIOD = "/#/period"//     展期还款
         const val REPAY = "/#/repay"//       立即还款
+        const val REPAY2 = "/#/repay2"//       还款方式2
+        const val BANK_NAME_BANANA = "BANANA"//     金象
+        const val BANK_NAME_OFFLINE = "OFFLINE"//     离线
+
+
+
 
         var privacypolicy = PreferencesHelper.getPPrivate()
         val REALM_VERSION = 1L

@@ -104,22 +104,9 @@ class DeviceFactory {
     fun getIMEI(): String? {
         mIMEI = PreferencesHelper.getIMEI()
         if (mIMEI.isNullOrEmpty()) {
-//            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-//                try {
-//                    if (checkPermission(mContext, permission.READ_PHONE_STATE)) {
-//                        mIMEI = mTelephonyManager?.deviceId
-//                    }
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                    mIMEI = getUUID().toString()
-//                }
-//            } else {
             mIMEI = getUUID().toString()
-//            }
             mIMEI?.let { PreferencesHelper.setIMEI(it.replace("-", "").substring(0, 11)) }
-
         }
-
         return mIMEI
     }
 

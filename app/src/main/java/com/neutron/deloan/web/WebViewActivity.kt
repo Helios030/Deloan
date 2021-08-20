@@ -159,6 +159,7 @@ class WebViewActivity : IBaseActivity() {
 //            .setWebViewClient(mWebViewClient)
             .setWebChromeClient(mWebViewClient)
             .createAgentWeb()
+
             .ready()
             .go(url)
 

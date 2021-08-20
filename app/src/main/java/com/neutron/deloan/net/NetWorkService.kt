@@ -68,7 +68,7 @@ interface NetWorkService {
     @POST("/api/user/queryUserwork")
     suspend fun getServiceWorkInfo(@Body body: RequestBody): BaseResponse<SWorkInfoResult>
 
-    //    //   确认信息
+    //   确认信息
     @POST("api/loan/confirm")
     suspend fun confirmInfo(@Body body: RequestBody): BaseResponse<ConfirmInfoResult>
 
@@ -80,7 +80,6 @@ interface NetWorkService {
     @POST("/api/user/queryUserContact")
     suspend fun getServiceContactInfo(@Body body: RequestBody): BaseResponse<SContactInfoResult>
 
-
     @POST("api/loan/loanappquery")
     suspend fun getOrderList(@Body body: RequestBody): BaseResponse<List<OrderBeanResult>>
 
@@ -89,7 +88,6 @@ interface NetWorkService {
 
     @POST("/api/user/queryUsercard")
     suspend fun getServiceMoneyCard(@Body body: RequestBody): BaseResponse<SMoneyCardInfoResult>
-
 
     @POST("/api/user/queryUserBase")
     suspend fun getServiceUserInfo(@Body body: RequestBody): BaseResponse<SUserInfoResult>
@@ -130,6 +128,10 @@ interface NetWorkService {
     @POST("api/user/queryuserMedia")
     suspend fun getUploadImg(@Body body: RequestBody): BaseResponse<SImgInfoResult>
 
+
+//    获取还款方式
+    @POST("api/query/bankcode")
+    suspend fun getRepayment(@Body body: RequestBody): BaseResponse<List<RepaymentBeanResult>>
 
 
 }
