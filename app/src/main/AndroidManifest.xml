@@ -37,11 +37,15 @@
 
         <activity
             android:name=".facedetection.FaceDetectionActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance"
+            />
 
         <activity
             android:name=".PermisonActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+
+            />
         <activity
             android:name=".WelcomeActivity"
             android:screenOrientation="portrait">

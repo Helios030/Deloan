@@ -195,7 +195,11 @@ private fun ImageView.getOptions(
 
 //----------toast----------
 fun Context.toast(text: CharSequence, duration: Int = Toast.LENGTH_LONG) {
-    Toast.makeText(this, text, duration).show()
+    if(text.isNotEmpty()){
+        Toast.makeText(this, text, duration).show()
+    }
+
+
 }
 
 fun Context.toast(resId: Int, duration: Int = Toast.LENGTH_LONG) {

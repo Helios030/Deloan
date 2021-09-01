@@ -5,17 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".facedetection.FaceDetectionActivity">
-
     <include layout="@layout/toolbar_common" />
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
@@ -25,7 +23,6 @@
             android:textColor="@color/text_color"
             android:textSize="20dp"
          />
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,8 +30,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="70dp"
             android:src="@mipmap/img_face" />
-
-
         <TextView
             android:id="@+id/btn_next"
             android:layout_width="match_parent"
@@ -53,8 +48,6 @@
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold" />
-
-
     </RelativeLayout>
 
 

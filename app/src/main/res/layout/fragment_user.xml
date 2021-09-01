@@ -56,9 +56,9 @@
             android:layout_toRightOf="@+id/iv_icon"
             android:background="@drawable/shape_btn_blue_small"
             android:paddingLeft="12dp"
-
+            android:paddingTop="4dp"
             android:paddingRight="12dp"
-
+            android:paddingBottom="4dp"
             android:text="已认证"
             app:textColor="@color/color_blue_65"
             app:textSize="10" />

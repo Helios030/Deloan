@@ -46,12 +46,12 @@ class MainPresenter : BasePresenter<MainContract.View>(),
         job = GlobalScope.launch(Dispatchers.Main) {
             val map = HashMap<String, Any>()
             map["pay_type"] = 2
-//            try {
+            try {
             mView?.returnRepayment(RetrofitUtil.service.getRepayment(Utils.createBody(Utils.createCommonParams(map))))
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//                mView?.showError(e)
-//            }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                mView?.showError(e)
+            }
 
         }
     }

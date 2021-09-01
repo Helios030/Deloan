@@ -34,8 +34,9 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
 
     override fun initData() {
         showLoading()
-        mPresenter?.getRequestState()
         mPresenter?.getRepayment()
+        mPresenter?.getRequestState()
+
     }
 
     fun getRefresh(): SwipeRefreshLayout? {
@@ -60,6 +61,14 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
 
     override fun onResume() {
         super.onResume()
+        if(repaymentResult==null){
+            mPresenter?.getRepayment()
+        }
+        if(loanStatusResult==null){
+            mPresenter?.getRequestState()
+
+        }
+
         StatusBarUtil.setTransparentForWindow(this)
     }
 
@@ -170,8 +179,11 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     }
 
     override fun returnRepayment(repayment: BaseResponse<List<RepaymentBeanResult>>) {
+        Slog.d("returnRepayment $repayment ")
         if (repayment.code == "200") {
             this.repaymentResult = repayment
+
+            currFragment.onResume()
 
         } else {
             toast(repayment.message)
@@ -208,6 +220,8 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
 
                 currFragment = mProductFragment
             }
+
+
 //            MoneyState.STATE_PAY_REVIEW -> {
 //                currFragment = mProductFragment
 //            }

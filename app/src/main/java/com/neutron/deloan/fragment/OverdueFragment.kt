@@ -37,35 +37,51 @@ class OverdueFragment : Fragment() {
 //        mainActivity.setStatusBarColor(mainActivity, R.color.red_ef)
         loanStatusResult = mainActivity.getloanStatusResult()
         loanStatusResult?.let { result ->
-            tv_money.text = result.remainAmount
-            tv_money.text = result.remainAmount
+            tv_money.text = result.remainAmount?:""
+            tv_money.text = result.remainAmount?:""
 //            tv_over_money.text = result.principal
 //            tv_over_money.text = result.amount2Account
 //            tv_date.text = "${result.duration} "
 //            tv_over_due_date.text = result.app_time
 //
 
-            tv_pen_interest.text = result.interest
+            tv_pen_interest.text = result.interest?:""
 //            tv_over_risk.text = result.risk
 //            tv_over_service.text = result.service
 //            tv_over_pay.text = result.pay
-            tv_over_penalty.text = result.penalty
-            tv_due_over_date.text = result.deposit_time
-            tv_over_fale_fee.text = result.fale_fee
+            tv_over_penalty.text = result.penalty?:""
+            tv_due_over_date.text = result.deposit_time?:""
+            tv_over_fale_fee.text = result.fale_fee?:""
 //            tv_order_count.text = result.application_id
-            applicationId = result.application_id
-            amount = result.remainAmount
+            applicationId = result.application_id?:""
+            amount = result.remainAmount?:""
             val repayment = mainActivity.getrepaymentResult()
             val banana=  repayment?.result?.find { it.bank_code==Constants.BANK_NAME_BANANA }
+
+
             banana?.let {
                 btn_sub_pay.visibility = View.VISIBLE
-                btn_sub_pay.text=it.bank_name.toString()
+                it.bank_name?.let { name->
+                    if(!name.isNullOrEmpty()){
+                        btn_sub_pay.text=name
+                    }
+                }
+
             }
+
+
             val offline=  repayment?.result?.find { it.bank_code==Constants.BANK_NAME_OFFLINE }
             offline?.let {
                 btn_pay.visibility = View.VISIBLE
-                btn_pay.text=it.bank_name.toString()
+
+                it.bank_name?.let { name->
+                    if(!name.isNullOrEmpty()){
+                        btn_pay.text=name
+                    }
+                }
             }
+
+
 
         }
 

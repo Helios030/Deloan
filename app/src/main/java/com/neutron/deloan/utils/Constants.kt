@@ -12,13 +12,21 @@ class Constants {
         const val SIGNKEY = "signkey1"
         const val SIGNRANDOMCODE = "signkey2"
         const val Unit = "วัน"
-//        const val AF_APP_KEY = "yGBMuxgzaU8tuLWvbjqrA8"
-        const val AF_APP_KEY = "BuPCWdVodX32VUQXTtJhbV"
-//          val BaseUri = "http://api.th.golden-union.top/"
-        val BaseUri = "https://api.dedeloan.com"
 
+        //        const val AF_APP_KEY = "yGBMuxgzaU8tuLWvbjqrA8"
+        const val AF_APP_KEY = "BuPCWdVodX32VUQXTtJhbV"
+
+           val BaseUri = "https://api.dedeloan.com"
+           val H5BaseUri = "https://h5.dedeloan.com"
+
+        //todo 测试
 //        val H5BaseUri = "http://192.168.1.79:9930"
-        val H5BaseUri = "https://h5.dedeloan.com"
+//        val BaseUri = "http://api.th.golden-union.top/"
+
+//    android:layout_marginLeft="20dp"2563
+
+
+
         const val APPROVE = "/#/approve"//      个人认证
         const val BASEINFO = "/#/baseInfo"//       基本信息
         const val WORKINFO = "/#/workInfo"//     工作信息
@@ -31,8 +39,6 @@ class Constants {
         const val REPAY2 = "/#/repay2"//       还款方式2
         const val BANK_NAME_BANANA = "BANANA"//     金象
         const val BANK_NAME_OFFLINE = "OFFLINE"//     离线
-
-
 
 
         var privacypolicy = PreferencesHelper.getPPrivate()

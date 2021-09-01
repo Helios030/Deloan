@@ -82,8 +82,7 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
                     toast(R.string.phone_not_null)
                 } else {
                     btn_login.isEnabled = false
-                    timer.cancel()
-                    timer.start()
+
                     Slog.d("btn_login  $phoneNumber  ${mPresenter == null}")
                     mPresenter?.getVerificationCode(phoneNumber)
 
@@ -252,7 +251,7 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
 
     val timer = object : CountDownTimer(60000L, 1000L) {
         override fun onTick(millisUntilFinished: Long) {
-            btn_login.text = "${millisUntilFinished / 1000 % 60}S"
+            btn_login.text = "${millisUntilFinished / 1000 % 60}s"
         }
 
         override fun onFinish() {
@@ -278,9 +277,9 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
             if (it.code == "200") {
                 toast(R.string.get_code_success)
 //                showPopupWindow()
-
+                timer.cancel()
+                timer.start()
                 showCodeDialog()
-
             } else {
                 toast(it.message)
             }

@@ -4,6 +4,7 @@ import ai.advance.liveness.lib.GuardianLivenessDetectionSDK
 import ai.advance.liveness.lib.LivenessResult
 import ai.advance.liveness.sdk.activity.LivenessActivity
 import android.content.Intent
+import com.leaf.library.StatusBarUtil
 import com.neutron.deloan.R
 import com.neutron.deloan.base.BaseActivity
 import com.neutron.deloan.bean.AdvanceLicenseResult
@@ -37,7 +38,7 @@ class FaceDetectionActivity :
     }
 
     override fun initView() {
-
+        StatusBarUtil.setTransparentForWindow(this)
 initToolbar(getString(R.string.face_d),true)
 
         btn_next.setOnClickListener {

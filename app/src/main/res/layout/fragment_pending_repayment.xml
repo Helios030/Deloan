@@ -270,10 +270,10 @@ app:textColor="@color/red"
                     android:textColor="@color/white"
                     android:textSize="18dp"
                     android:textStyle="bold"
-
+                    android:visibility="gone"
                     />
 
-
+<!--0053542563-->
             </LinearLayout>
 
         </LinearLayout>
