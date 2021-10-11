@@ -32,9 +32,8 @@ class UserFragment : BaseFragment<UserContract.View, UserContract.Presenter>(),
 //        tv_name.text = PreferencesHelper.getRealname()
 
 //        mainActivity.getRefresh()?.isEnabled = false
-       mPresenter?. getUserStatus(false)
+        mPresenter?.getUserStatus(false)
     }
-
 
 
     override fun createPresenter(): UserContract.Presenter {
@@ -48,9 +47,9 @@ class UserFragment : BaseFragment<UserContract.View, UserContract.Presenter>(),
     override fun lazyLoad() {
 
         val mainActivity = (activity as MainActivity)
-      val   loanStatusResult = mainActivity.getloanStatusResult()
-        tv_pay.setOnClickListener { openUri(Constants.RECORD,false,loanStatusResult) }
-        tv_info.setOnClickListener { openUri(Constants.MYPROFILE,false,loanStatusResult) }
+        val loanStatusResult = mainActivity.getloanStatusResult()
+        tv_pay.setOnClickListener { openUri(Constants.RECORD, false, loanStatusResult) }
+        tv_info.setOnClickListener { openUri(Constants.MYPROFILE, false, loanStatusResult) }
 
         tv_about.setOnClickListener {
 
@@ -64,49 +63,40 @@ class UserFragment : BaseFragment<UserContract.View, UserContract.Presenter>(),
 
         tv_exit.setOnClickListener {
             context?.let {
-                showPopWindow(it,getString(R.string.exit_login_tip),getString(R.string.exit_login),
+                showPopWindow(it,
+                    getString(R.string.exit_login_tip),
+                    getString(R.string.exit_login),
                     {
                         PreferencesHelper.setUserID("")
                         PreferencesHelper.setPhone("")
                         PreferencesHelper.setShowFeiled(true)
-                        startTo(WelcomeActivity::class.java,true)
-                    } ,rl_main)
+//                        todo 2021年9月2日 添加
+                        PreferencesHelper.setUploadTime(0L)
+                        startTo(WelcomeActivity::class.java, true)
+                    },
+                    rl_main)
             }
-            }
+        }
 
         tv_call.setOnClickListener {
             context?.let {
-                showPopWindow(it,getString(R.string.is_call),getString(R.string.start_call),
+                showPopWindow(it, getString(R.string.is_call), getString(R.string.start_call),
                     {
 
                         call()
 
-                    } ,rl_main)
+                    }, rl_main)
             }
         }
-
-
 
 
     }
 
     private fun call() {
 
-
-                PermissionX.init(this)
-                    .permissions(Manifest.permission.CALL_PHONE)
-                    .onExplainRequestReason { scope, deniedList -> scope.showRequestReasonDialog(deniedList, getString(R.string.not_pp), getString(R.string.dialog_ok), getString(R.string.dialog_cancel)) }
-                    .onForwardToSettings { scope, deniedList -> scope.showForwardToSettingsDialog(deniedList, getString(R.string.not_pp), getString(R.string.dialog_ok), getString(R.string.dialog_cancel)) }
-                    .request { allGranted, _, _ ->
-                        if (allGranted) {
-                            val phone=  PreferencesHelper.getPhone()
-                            if (phone.isNotEmpty()) {
-                                makeCall(phone)
-                            }
-                        } else {
-                           showToast(R.string.not_pp)
-
-                        }
+                    val phone = PreferencesHelper.getHotTel()
+                    if (phone.isNotEmpty()) {
+                        makeCall(phone)
                     }
 
     }
@@ -118,14 +108,13 @@ class UserFragment : BaseFragment<UserContract.View, UserContract.Presenter>(),
 
     override fun returnUserStatus(click: Boolean, result: BaseResponse<UserStatusResult>) {
 
-     Slog.d("returnUserStatus  $result")
+        Slog.d("returnUserStatus  $result")
         if (result.result.person_status == "0" || result.result.comp_status == "0" || result.result.card_status == "0" || result.result.contact_status == "0") {
 
             tv_user_ok.text = getString(R.string.main_not_certified)
         } else {
             tv_user_ok.text = getString(R.string.main_certified_success)
         }
-
 
 
     }

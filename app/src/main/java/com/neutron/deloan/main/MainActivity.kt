@@ -35,6 +35,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     override fun initData() {
         showLoading()
         mPresenter?.getRepayment()
+        mPresenter?.getUserConfig()
         mPresenter?.getRequestState()
 
     }

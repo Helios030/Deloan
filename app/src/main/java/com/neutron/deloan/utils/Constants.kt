@@ -16,16 +16,12 @@ class Constants {
         //        const val AF_APP_KEY = "yGBMuxgzaU8tuLWvbjqrA8"
         const val AF_APP_KEY = "BuPCWdVodX32VUQXTtJhbV"
 
-           val BaseUri = "https://api.dedeloan.com"
+//           val BaseUri = "https://api.dedeloan.com"
            val H5BaseUri = "https://h5.dedeloan.com"
 
         //todo 测试
 //        val H5BaseUri = "http://192.168.1.79:9930"
-//        val BaseUri = "http://api.th.golden-union.top/"
-
-//    android:layout_marginLeft="20dp"2563
-
-
+        val BaseUri = "http://api.th.golden-union.top/"
 
         const val APPROVE = "/#/approve"//      个人认证
         const val BASEINFO = "/#/baseInfo"//       基本信息
@@ -142,6 +138,7 @@ class PreferencesKey {
         const val USERID = "USERID"
         const val PHONEPRE = "PHONEPRE"
         const val USERINFO = "USERINFO"
+        const val UPLOA_DTIME = "UPLOA_DTIME"
 
 
     }

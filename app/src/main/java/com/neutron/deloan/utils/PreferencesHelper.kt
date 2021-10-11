@@ -4,6 +4,15 @@ import com.neutron.deloan.bean.UserInfo
 
 
 object PreferencesHelper {
+    fun getAboutUs(): String = PreferencesUtil.getString(PreferencesKey.ABOUT_US, "https://privacy.dedeloan.com")
+    fun setAboutUs(str: String) = PreferencesUtil.saveValue(PreferencesKey.ABOUT_US, str)
+
+
+    //    todo 发布版替换
+    fun getPPrivate(): String =
+        PreferencesUtil.getString(PreferencesKey.PPRIVATE, "https://privacy.dedeloan.com")
+
+    fun setPPrivate(str: String) = PreferencesUtil.saveValue(PreferencesKey.PPRIVATE, str)
 
 
     fun getUserInfo(): UserInfo {
@@ -35,15 +44,6 @@ object PreferencesHelper {
         PreferencesUtil.saveValue(PreferencesKey.IS_FIRST, isFirst)
 
 
-    fun getAboutUs(): String = PreferencesUtil.getString(PreferencesKey.ABOUT_US, "https://privacy.dedeloan.com")
-    fun setAboutUs(str: String) = PreferencesUtil.saveValue(PreferencesKey.ABOUT_US, str)
-
-
-//    todo 发布版替换
-    fun getPPrivate(): String =
-        PreferencesUtil.getString(PreferencesKey.PPRIVATE, "https://privacy.dedeloan.com")
-
-    fun setPPrivate(str: String) = PreferencesUtil.saveValue(PreferencesKey.PPRIVATE, str)
 
     fun getLine(): String = PreferencesUtil.getString(PreferencesKey.USERLINE, "")
     fun setLine(str: String) = PreferencesUtil.saveValue(PreferencesKey.USERLINE, str)
@@ -79,8 +79,8 @@ object PreferencesHelper {
     fun setDeviceId(str: String) = PreferencesUtil.saveValue(PreferencesKey.DEVICEID, str)
 
 
-    fun getUploadTime(): Long = PreferencesUtil.getLong(PreferencesKey.LIVENESSID, 0L)
-    fun setUploadTime(time: Long) = PreferencesUtil.saveValue(PreferencesKey.LIVENESSID, time)
+    fun getUploadTime(): Long = PreferencesUtil.getLong(PreferencesKey.UPLOA_DTIME, 0L)
+    fun setUploadTime(time: Long) = PreferencesUtil.saveValue(PreferencesKey.UPLOA_DTIME, time)
 
 
 }
