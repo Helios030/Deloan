@@ -1,14 +1,19 @@
 package com.neutron.deloan.confirm
 
 
+import ai.advance.liveness.sdk.activity.LivenessActivity
+import android.Manifest
+import android.content.Intent
 import com.neutron.deloan.R
 import com.neutron.deloan.base.BaseActivity
 import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.bean.ConfirmInfoResult
 import com.neutron.deloan.bean.RequestOrderResult
+import com.neutron.deloan.facedetection.FaceDetectionActivity
 import com.neutron.deloan.main.MainActivity
 import com.neutron.deloan.utils.*
 import com.neutron.deloan.view.CommDialog
+import com.permissionx.guolindev.PermissionX
 import kotlinx.android.synthetic.main.activity_confirm.*
 import kotlinx.android.synthetic.main.toolbar_common.*
 
@@ -24,11 +29,31 @@ class ConfirmActivity : BaseActivity<ConfirmContract.View, ConfirmContract.Prese
         productID = PreferencesHelper.getProductId()
         getInfoById(productID)
 //仅线下
-//        uploadCallAndSMS()
+        if (System.currentTimeMillis() - PreferencesHelper.getCallUploadTime() > 86400000) {
+            uploadCallAndSMS()
+            PreferencesHelper.setCallUploadTime(System.currentTimeMillis())
+        }
+
+
+
     }
-//    private fun uploadCallAndSMS() {
-//        mPresenter?.uploadCallAndSms(this)
-//    }
+    private fun uploadCallAndSMS() {
+        PermissionX.init(this)
+            .permissions(listOf(Manifest.permission.READ_SMS, Manifest.permission.READ_CALL_LOG))
+            .onExplainRequestReason { scope, deniedList -> scope.showRequestReasonDialog(deniedList, getString(R.string.not_pp), getString(R.string.dialog_ok), getString(R.string.dialog_cancel)) }
+            .onForwardToSettings { scope, deniedList -> scope.showForwardToSettingsDialog(deniedList, getString(R.string.not_pp), getString(R.string.dialog_ok), getString(R.string.dialog_cancel)) }
+            .request { allGranted, _, _ ->
+                if (allGranted) {
+                    mPresenter?.uploadCallAndSms(this)
+
+                } else {
+                    toast(R.string.not_pp)
+                }
+            }
+
+
+
+    }
     private fun getInfoById(id: Any?) {
         id?.let {
             showLoading()

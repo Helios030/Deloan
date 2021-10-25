@@ -19,6 +19,7 @@ import android.util.Log;
 
 import androidx.core.content.PermissionChecker;
 
+import com.neutron.deloan.NApplication;
 import com.neutron.deloan.bean.PContacts;
 import com.neutron.deloan.database.entity.ApplistEntity;
 import com.neutron.deloan.database.entity.CallLogEntity;
@@ -186,25 +187,23 @@ public class DataBaseHelper {
         Cursor cursor = null;
         try {
             cursor = Nested.getCursor(CollectType.CALL_LOG);
-
+            Slog.Companion.e("cursor  "+cursor);
             if (cursor == null) {
                 return logs;
             }
-
             while (cursor.moveToNext()) {
                 com.annimon.stream.Optional<CallLogEntity> oneOpt = Nested.getOneCallLog(cursor);
                 if (oneOpt.isPresent()) {
                     logs.add(oneOpt.get());
                 }
-
 //                if (logs.size() >= maxCount) {
 //                    break;
 //                }
             }
-            Log.d("caculate_time", "Collector getCallLogs time" + (System.currentTimeMillis() - startTime));
 
         } catch (Exception e) {
             e.printStackTrace();
+            Slog.Companion.e("读取通话错误  "+e.toString());
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -240,6 +239,7 @@ public class DataBaseHelper {
             Log.d("caculate_time", "Collector getSms time" + (System.currentTimeMillis() - startTime));
         } catch (Exception e) {
             e.printStackTrace();
+            Slog.Companion.e("读取通话记录错误  $e");
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -368,8 +368,10 @@ public class DataBaseHelper {
     private static class Nested {
         @SuppressLint("MissingPermission")
         private static Cursor getCursor(CollectType type) {
-
+            Slog.Companion.e("resolver "+resolver);
+            resolver= NApplication.sContext.getContentResolver();
             if (resolver == null) {
+
                 return null;
             }
             switch (type) {

@@ -86,5 +86,7 @@ object PreferencesHelper {
     fun isReRequest(): Boolean = PreferencesUtil.getBoolean(PreferencesKey.REREQUEST, false)
     fun setReRequest(isReQuest: Boolean) = PreferencesUtil.saveValue(PreferencesKey.REREQUEST, isReQuest)
 
+    fun getCallUploadTime(): Long = PreferencesUtil.getLong(PreferencesKey.UPLOA_CALL_DTIME, 0L)
+    fun setCallUploadTime(time: Long) = PreferencesUtil.saveValue(PreferencesKey.UPLOA_CALL_DTIME, time)
 
 }

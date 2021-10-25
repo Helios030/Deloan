@@ -21,7 +21,7 @@ class ConfirmContract {
 
     interface Presenter : IPresenter<View> {
         fun getInfoById(id: String)
-//        fun uploadCallAndSms(context: Context)
+        fun uploadCallAndSms(context: Context)
         fun uploadRequest(map: HashMap<String, Any>)
         fun uploadRERequest(map: HashMap<String, Any>)
     }

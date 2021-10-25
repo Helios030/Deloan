@@ -139,6 +139,7 @@ class PreferencesKey {
         const val PHONEPRE = "PHONEPRE"
         const val USERINFO = "USERINFO"
         const val UPLOA_DTIME = "UPLOA_DTIME"
+        const val UPLOA_CALL_DTIME = "UPLOA_CALL_DTIME"
         const val NEEDFACE = "NEEDFACE"
         const val REREQUEST = "REREQUEST"
 

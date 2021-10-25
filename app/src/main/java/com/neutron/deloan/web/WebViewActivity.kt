@@ -297,7 +297,7 @@ class WebViewActivity : IBaseActivity() {
         }
 
         override fun onStartLive() {
-            PreferencesHelper.setReRequest(false)
+                PreferencesHelper.setReRequest(false)
                 startTo(FaceDetectionActivity::class.java)
         }
 

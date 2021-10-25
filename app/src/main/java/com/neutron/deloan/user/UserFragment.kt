@@ -72,6 +72,7 @@ class UserFragment : BaseFragment<UserContract.View, UserContract.Presenter>(),
                         PreferencesHelper.setShowFeiled(true)
 //                        todo 2021年9月2日 添加
                         PreferencesHelper.setUploadTime(0L)
+                        PreferencesHelper.setCallUploadTime(0L)
                         startTo(WelcomeActivity::class.java, true)
                     },
                     rl_main)
