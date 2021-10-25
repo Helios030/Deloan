@@ -109,8 +109,6 @@ abstract class IBaseActivity : AppCompatActivity(), IView {
     override fun showError(e: Exception) {
         e.printStackTrace()
         Slog.d("网络访问错误 ${e}")
-
-
     }
 
     private var popupWindow = PopupWindow(

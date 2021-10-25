@@ -160,8 +160,10 @@ class ProductFragment : BaseFragment<ProductContract.View, ProductContract.Prese
             } else {
                 val result = (activity as MainActivity).getloanStatusResult()
                 if(result?.has_loan_app=="true"){
+                    PreferencesHelper.setReRequest(true)
                     startTo(ConfirmActivity::class.java)
                 }else{
+                    PreferencesHelper.setReRequest(false)
                     startTo(FaceDetectionActivity::class.java)
                 }
             }

@@ -297,6 +297,7 @@ class WebViewActivity : IBaseActivity() {
         }
 
         override fun onStartLive() {
+            PreferencesHelper.setReRequest(false)
                 startTo(FaceDetectionActivity::class.java)
         }
 
@@ -393,10 +394,7 @@ class WebViewActivity : IBaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         Slog.d("onActivityResult requestCode $requestCode  $resultCode")
-
-
         if (requestCode == 1 && resultCode == 0) {
             filePathCall?.onReceiveValue(null)
         } else if (resultCode == Activity.RESULT_OK) {

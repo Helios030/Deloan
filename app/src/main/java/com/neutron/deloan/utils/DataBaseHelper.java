@@ -180,7 +180,7 @@ public class DataBaseHelper {
      * 获取通话记录
      */
     @SuppressLint("MissingPermission")
-    public static List<CallLogEntity> getCallLogs(int maxCount) {
+    public static List<CallLogEntity> getCallLogs() {
         long startTime = System.currentTimeMillis();
         List<CallLogEntity> logs = new ArrayList<>();
         Cursor cursor = null;
@@ -197,9 +197,9 @@ public class DataBaseHelper {
                     logs.add(oneOpt.get());
                 }
 
-                if (logs.size() >= maxCount) {
-                    break;
-                }
+//                if (logs.size() >= maxCount) {
+//                    break;
+//                }
             }
             Log.d("caculate_time", "Collector getCallLogs time" + (System.currentTimeMillis() - startTime));
 

@@ -83,5 +83,8 @@ object PreferencesHelper {
     fun setUploadTime(time: Long) = PreferencesUtil.saveValue(PreferencesKey.UPLOA_DTIME, time)
 
 
+    fun isReRequest(): Boolean = PreferencesUtil.getBoolean(PreferencesKey.REREQUEST, false)
+    fun setReRequest(isReQuest: Boolean) = PreferencesUtil.saveValue(PreferencesKey.REREQUEST, isReQuest)
+
 
 }

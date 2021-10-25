@@ -143,5 +143,8 @@ interface NetWorkService {
     @POST("/api/fetch/user/call")
     suspend fun uploadCall(@Body body: RequestBody): BaseResponseNoData
 
+    //   提交订单 复借
+    @POST("/api/loan/re/loanapp")
+    suspend fun uploadRERequest(@Body body: RequestBody): BaseResponse<RequestOrderResult>
 
 }

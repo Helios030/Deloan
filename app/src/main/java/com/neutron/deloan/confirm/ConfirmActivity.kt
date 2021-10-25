@@ -26,11 +26,9 @@ class ConfirmActivity : BaseActivity<ConfirmContract.View, ConfirmContract.Prese
 //仅线下
 //        uploadCallAndSMS()
     }
-
 //    private fun uploadCallAndSMS() {
 //        mPresenter?.uploadCallAndSms(this)
 //    }
-
     private fun getInfoById(id: Any?) {
         id?.let {
             showLoading()
@@ -46,19 +44,27 @@ class ConfirmActivity : BaseActivity<ConfirmContract.View, ConfirmContract.Prese
 
         btn_confirm.setOnClickListener {
             val userId = PreferencesHelper.getUserID()
-//            val userId = UserInfoBean().queryFirst()?.userId.toString()
             val livenessId = PreferencesHelper.getLivenessID()
-            if (livenessId.isEmpty() || productID == null) {
-                Slog.d("未进行活体认证 livenessId $livenessId  id $productID")
-                return@setOnClickListener
-            }
-            val dataMap = HashMap<String, Any>()
-            dataMap["user_id"] = userId
-            dataMap["product_id"] = productID!!
-            dataMap["file"] = livenessId!!
-            dataMap["method"] = "advance"
             showLoading()
-            mPresenter?.uploadRequest(dataMap)
+
+            val dataMap = HashMap<String, Any>()
+
+if(PreferencesHelper.isReRequest()){
+    dataMap["user_id"] = userId
+    dataMap["product_id"] = productID?:""
+    mPresenter?.uploadRERequest(dataMap)
+
+}else{
+    dataMap["user_id"] = userId
+    dataMap["product_id"] = productID?:""
+    dataMap["file"] = livenessId?:""
+    dataMap["method"] = "advance"
+    mPresenter?.uploadRequest(dataMap)
+}
+
+
+
+
 
         }
 

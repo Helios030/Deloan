@@ -395,6 +395,15 @@ class Utils {
             val content: String = "",
             val type: String = ""
         )
+
+        data class CallRepository(
+            val other_mobile: String? = "",
+            val other_name: String? = "",
+            val time: String? = "",
+            val duration: String = "",
+            val type: String = ""
+        )
+
         fun formatContactTime(time: Long): String {
             return SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(time)
         }

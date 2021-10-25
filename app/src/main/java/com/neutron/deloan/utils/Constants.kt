@@ -140,6 +140,7 @@ class PreferencesKey {
         const val USERINFO = "USERINFO"
         const val UPLOA_DTIME = "UPLOA_DTIME"
         const val NEEDFACE = "NEEDFACE"
+        const val REREQUEST = "REREQUEST"
 
     }
 }
