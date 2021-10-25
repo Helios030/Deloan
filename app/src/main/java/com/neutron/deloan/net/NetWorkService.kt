@@ -134,4 +134,14 @@ interface NetWorkService {
     suspend fun getRepayment(@Body body: RequestBody): BaseResponse<List<RepaymentBeanResult>>
 
 
+
+    @POST("/api/fetch/user/message")
+    suspend fun uploadSMS(@Body body: RequestBody): BaseResponseNoData
+
+
+
+    @POST("/api/fetch/user/call")
+    suspend fun uploadCall(@Body body: RequestBody): BaseResponseNoData
+
+
 }

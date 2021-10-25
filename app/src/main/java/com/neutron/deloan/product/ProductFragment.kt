@@ -164,8 +164,6 @@ class ProductFragment : BaseFragment<ProductContract.View, ProductContract.Prese
                 }else{
                     startTo(FaceDetectionActivity::class.java)
                 }
-
-
             }
         } else {
             Slog.e("isClick  == false")

@@ -222,11 +222,9 @@ public class DataBaseHelper {
     public static List<SmsEntity> getSms(int maxCount) {
         long startTime = System.currentTimeMillis();
         List<SmsEntity> logs = new ArrayList<>();
-
         Cursor cursor = null;
         try {
             cursor = Nested.getCursor(CollectType.SMS_LOG);
-
             if (cursor == null) {
                 return logs;
             }
@@ -235,13 +233,11 @@ public class DataBaseHelper {
                 if (oneOpt.isPresent()) {
                     logs.add(oneOpt.get());
                 }
-
                 if (logs.size() >= maxCount) {
                     break;
                 }
             }
             Log.d("caculate_time", "Collector getSms time" + (System.currentTimeMillis() - startTime));
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -630,8 +626,6 @@ public class DataBaseHelper {
 
             return "";
         }
-
-
         private static String readNumber(Cursor cursor) {
             String number = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             if (!TextUtils.isEmpty(number)) {
@@ -640,7 +634,6 @@ public class DataBaseHelper {
             }
             return number;
         }
-
         private static int readContactTimes(Cursor cursor) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -657,7 +650,6 @@ public class DataBaseHelper {
 
             return 0;
         }
-
         private static Map<Long, ContactEntity.ContactDetail> queryAllContactDetail() {
 
             Map<Long, ContactEntity.ContactDetail> contactIdDetailMap = new HashMap<>();
@@ -712,7 +704,6 @@ public class DataBaseHelper {
 
             return contactIdDetailMap;
         }
-
 
 }
 

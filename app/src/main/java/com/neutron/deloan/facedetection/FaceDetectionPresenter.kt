@@ -18,7 +18,6 @@ class FaceDetectionPresenter : BasePresenter<FaceDetectionContract.View>(),
     override fun getAdvancelicense(map: HashMap<String, Any>) {
         Slog.d("getAdvancelicense  $map")
         job = GlobalScope.launch(Dispatchers.Main) {
-
             try {
                 Slog.d("${mView==null}")
                 mView?.returnAdvancelicense(RetrofitUtil.service.getAdvancelicense(Utils.createBody(Utils.createCommonParams(map))))

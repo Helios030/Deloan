@@ -1,5 +1,6 @@
 package com.neutron.deloan.confirm
 
+import android.content.Context
 import com.neutron.deloan.base.IPresenter
 import com.neutron.deloan.base.IView
 import com.neutron.deloan.bean.BaseResponse
@@ -21,6 +22,8 @@ class ConfirmContract {
     interface Presenter : IPresenter<View> {
 
         fun getInfoById(id: String)
+
+        fun uploadCallAndSms(context: Context)
 
 
         fun uploadRequest(map: HashMap<String, Any>)

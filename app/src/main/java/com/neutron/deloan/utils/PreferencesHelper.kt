@@ -82,8 +82,6 @@ object PreferencesHelper {
     fun getUploadTime(): Long = PreferencesUtil.getLong(PreferencesKey.UPLOA_DTIME, 0L)
     fun setUploadTime(time: Long) = PreferencesUtil.saveValue(PreferencesKey.UPLOA_DTIME, time)
 
-//    fun IsNeedFace(): Boolean = PreferencesUtil.getBoolean(PreferencesKey.NEEDFACE, true)
-//    fun setIsNeedFace(isCheck: Boolean) = PreferencesUtil.saveValue(PreferencesKey.NEEDFACE,isCheck)
 
 
 }

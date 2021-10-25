@@ -23,8 +23,13 @@ class ConfirmActivity : BaseActivity<ConfirmContract.View, ConfirmContract.Prese
     override fun initData() {
         productID = PreferencesHelper.getProductId()
         getInfoById(productID)
-
+//仅线下
+//        uploadCallAndSMS()
     }
+
+//    private fun uploadCallAndSMS() {
+//        mPresenter?.uploadCallAndSms(this)
+//    }
 
     private fun getInfoById(id: Any?) {
         id?.let {
