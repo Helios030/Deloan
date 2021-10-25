@@ -24,6 +24,10 @@ data class LoanStatusResult(
     val principal: String,
     val reach_amount: String,
     val remainAmount: String,
+
+    val reApplyFace: String,
+    val has_loan_app: String,
+
     val risk: String,
     val service: String,
     val pay: String,
