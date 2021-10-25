@@ -67,7 +67,6 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
         }
         if(loanStatusResult==null){
             mPresenter?.getRequestState()
-
         }
 
         StatusBarUtil.setTransparentForWindow(this)
@@ -167,6 +166,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
             PreferencesHelper.setHotTel(userConfig.result.hot_tel)
             PreferencesHelper.setPPrivate(userConfig.result.k_private)
 //            PreferencesHelper.setLine(userConfig.result.line.toString())
+            configResult=userConfig.result
         } else {
             toast(userConfig.message)
         }
@@ -183,17 +183,11 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
         Slog.d("returnRepayment $repayment ")
         if (repayment.code == "200") {
             this.repaymentResult = repayment
-
             currFragment.onResume()
-
         } else {
             toast(repayment.message)
         }
-
-
     }
-
-
     var currFragment: Fragment = mProductFragment
     fun showStateView(LoanStatus: Int) {
         when (LoanStatus) {
@@ -203,13 +197,11 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
             }
             MoneyState.STATE_APPROVAL_REJECTED -> {
                 currFragment = mApprovalRejectedFragment
-
                 if (PreferencesHelper.isShowFeiled()) {
                     PreferencesHelper.setShowFeiled(false)
                 } else {
                     currFragment = mProductFragment
                 }
-
             }
             MoneyState.STATE_PENDING_REPAYMENT -> {
                 currFragment = mPendingRepaymentFragment
@@ -286,6 +278,12 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
             }
         }
         return super.onKeyUp(keyCode, event)
+    }
+
+    var configResult: UserConfigResult? = null
+
+    fun getconfigResult(): UserConfigResult? {
+        return configResult
     }
 
 }

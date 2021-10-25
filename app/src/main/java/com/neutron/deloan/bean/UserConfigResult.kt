@@ -11,6 +11,7 @@ data class UserConfigResult(
     val line: Any,
     val loan_agree: String,
     val riskReportBackImg: String,
+    val reApplyFace: String?,
     val riskReportUrl: String,
     val sensitive_words_version: String,
     val switch: Boolean,

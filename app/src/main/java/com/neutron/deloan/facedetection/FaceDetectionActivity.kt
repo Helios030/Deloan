@@ -3,7 +3,9 @@ package com.neutron.deloan.facedetection
 import ai.advance.liveness.lib.GuardianLivenessDetectionSDK
 import ai.advance.liveness.lib.LivenessResult
 import ai.advance.liveness.sdk.activity.LivenessActivity
+import android.Manifest
 import android.content.Intent
+import android.provider.ContactsContract
 import com.leaf.library.StatusBarUtil
 import com.neutron.deloan.R
 import com.neutron.deloan.base.BaseActivity
@@ -14,6 +16,7 @@ import com.neutron.deloan.utils.PreferencesHelper
 import com.neutron.deloan.utils.Slog
 import com.neutron.deloan.utils.startTo
 import com.neutron.deloan.utils.toast
+import com.permissionx.guolindev.PermissionX
 import kotlinx.android.synthetic.main.activity_face_detection.*
 import java.util.*
 
@@ -39,13 +42,22 @@ class FaceDetectionActivity :
 
     override fun initView() {
         StatusBarUtil.setTransparentForWindow(this)
-initToolbar(getString(R.string.face_d),true)
-
+        initToolbar(getString(R.string.face_d),true)
         btn_next.setOnClickListener {
             if(isSupprotFace){
-                uploadAppAndPhone(this)
-                val intent = Intent(this, LivenessActivity::class.java)
-                startActivityForResult(intent, REQUEST_LIVENESS_CODE)
+                PermissionX.init(this)
+                    .permissions(listOf(Manifest.permission.READ_CONTACTS,Manifest.permission.CAMERA))
+                    .onExplainRequestReason { scope, deniedList -> scope.showRequestReasonDialog(deniedList, getString(R.string.not_pp), getString(R.string.dialog_ok), getString(R.string.dialog_cancel)) }
+                    .onForwardToSettings { scope, deniedList -> scope.showForwardToSettingsDialog(deniedList, getString(R.string.not_pp), getString(R.string.dialog_ok), getString(R.string.dialog_cancel)) }
+                    .request { allGranted, _, _ ->
+                        if (allGranted) {
+                            uploadAppAndPhone(this)
+                            val intent = Intent(this, LivenessActivity::class.java)
+                            startActivityForResult(intent, REQUEST_LIVENESS_CODE)
+                        } else {
+                            toast(R.string.not_pp)
+                        }
+                    }
             }else{
                 finish()
             }
@@ -66,11 +78,9 @@ initToolbar(getString(R.string.face_d),true)
         if (it.code == "200") {
             val expireTimestamp = it.result.expireTimestamp
             val license = it.result.license
-
             val checkResult = GuardianLivenessDetectionSDK.setLicenseAndCheck(license)
             Slog.d("活体检测key认证 $checkResult")
             if ("SUCCESS" == checkResult) {
-
             }
             isSupprotFace=true
         } else {

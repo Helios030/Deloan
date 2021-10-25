@@ -21,6 +21,7 @@ import com.luck.picture.lib.config.PictureMimeType
 import com.neutron.deloan.R
 import com.neutron.deloan.base.IBaseActivity
 import com.neutron.deloan.bean.LoanStatusResult
+import com.neutron.deloan.confirm.ConfirmActivity
 import com.neutron.deloan.facedetection.FaceDetectionActivity
 import com.neutron.deloan.utils.*
 import com.neutron.deloan.view.CameraDialog
@@ -38,7 +39,7 @@ class WebViewActivity : IBaseActivity() {
         return R.layout.activity_web_view
     }
 
-    fun initData(isNeedReload:Boolean=false) {
+    fun initData(isNeedReload: Boolean = false) {
         Slog.d("initData $intent")
         val intent = intent
         if (intent != null) {
@@ -229,7 +230,7 @@ class WebViewActivity : IBaseActivity() {
             override fun onOkClick() {
                 IDCardCamera.create(this@WebViewActivity)
                     .openCamera(IDCardCamera.TYPE_IDCARD_FRONT)
-                isNeedRef=true
+                isNeedRef = true
                 dialog?.dismiss()
             }
         })
@@ -258,13 +259,28 @@ class WebViewActivity : IBaseActivity() {
             runOnUiThread {
                 PermissionX.init(this@WebViewActivity)
                     .permissions(Manifest.permission.READ_CONTACTS)
-                    .onExplainRequestReason { scope, deniedList -> scope.showRequestReasonDialog(deniedList, getString(R.string.not_pp), getString(R.string.dialog_ok), getString(R.string.dialog_cancel)) }
-                    .onForwardToSettings { scope, deniedList -> scope.showForwardToSettingsDialog(deniedList, getString(R.string.not_pp), getString(R.string.dialog_ok), getString(R.string.dialog_cancel)) }
+                    .onExplainRequestReason { scope, deniedList ->
+                        scope.showRequestReasonDialog(
+                            deniedList,
+                            getString(R.string.not_pp),
+                            getString(R.string.dialog_ok),
+                            getString(R.string.dialog_cancel)
+                        )
+                    }
+                    .onForwardToSettings { scope, deniedList ->
+                        scope.showForwardToSettingsDialog(
+                            deniedList,
+                            getString(R.string.not_pp),
+                            getString(R.string.dialog_ok),
+                            getString(R.string.dialog_cancel)
+                        )
+                    }
                     .request { allGranted, _, _ ->
                         if (allGranted) {
                             Slog.d("开启联系人 ${PICK_CONTACT}")
                             PICK_CONTACT = requestCode
-                            val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+                            val intent =
+                                Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
                             startActivityForResult(intent, PICK_CONTACT)
 
                         } else {
@@ -278,12 +294,14 @@ class WebViewActivity : IBaseActivity() {
             }
 
 
-
-
         }
 
         override fun onStartLive() {
-            startTo(FaceDetectionActivity::class.java)
+            if (PreferencesHelper.IsNeedFace()) {
+                startTo(FaceDetectionActivity::class.java)
+            } else {
+                startTo(ConfirmActivity::class.java)
+            }
         }
 
         override fun setResult(resultCode: Int, isFinish: Boolean) {
@@ -383,9 +401,9 @@ class WebViewActivity : IBaseActivity() {
         Slog.d("onActivityResult requestCode $requestCode  $resultCode")
 
 
-        if(requestCode==1&&resultCode==0){
+        if (requestCode == 1 && resultCode == 0) {
             filePathCall?.onReceiveValue(null)
-        }else    if (resultCode == Activity.RESULT_OK) {
+        } else if (resultCode == Activity.RESULT_OK) {
             if (requestCode == PictureConfig.CHOOSE_REQUEST) {
                 val localMediaList = PictureSelector.obtainMultipleResult(data)
                 if (localMediaList != null && localMediaList.size > 0) {

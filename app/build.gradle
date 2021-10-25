@@ -35,7 +35,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 30
         versionCode releaseVersionCode()
-        versionName "1.2"
+        versionName "1.3"
         resConfigs"th-rTH"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true

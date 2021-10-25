@@ -10,6 +10,7 @@ import com.neutron.deloan.base.BaseFragment
 import com.neutron.deloan.bean.BaseResponse
 import com.neutron.deloan.bean.ProductsResult
 import com.neutron.deloan.bean.UserStatusResult
+import com.neutron.deloan.confirm.ConfirmActivity
 import com.neutron.deloan.facedetection.FaceDetectionActivity
 import com.neutron.deloan.main.MainActivity
 import com.neutron.deloan.utils.Constants
@@ -144,27 +145,33 @@ class ProductFragment : BaseFragment<ProductContract.View, ProductContract.Prese
     }
 
     override fun returnUserStatus(isClick: Boolean, result: BaseResponse<UserStatusResult>) {
-
-        if (result.result.person_status == "0") {
-            if (isClick) {
+        if (isClick) {
+            if (result.result.file_status1 == "0") {
+                openUri(Constants.APPROVE, true)
+            } else if (result.result.person_status == "0") {
                 openUri(Constants.BASEINFO, true)
-            }
-        } else if (result.result.comp_status == "0") {
-            if (isClick) {
+            } else if (result.result.comp_status == "0") {
                 openUri(Constants.WORKINFO, true)
-            }
-        } else if (result.result.contact_status == "0") {
-            if (isClick) {
+            } else if (result.result.contact_status == "0") {
                 openUri(Constants.CONNECTINFO, true)
-            }
-        } else if (result.result.card_status == "0") {
-            if (isClick) {
+            } else if (result.result.card_status == "0") {
                 openUri(Constants.BANKCARDINFO, true)
+            } else {
+                val result = (activity as MainActivity).getconfigResult()
+                if(PreferencesHelper.IsNeedFace()){
+                    startTo(FaceDetectionActivity::class.java)
+                }else{
+                    if (result?.reApplyFace == "false") {
+                        startTo(ConfirmActivity::class.java)
+                    } else {
+                        startTo(FaceDetectionActivity::class.java)
+                    }
+                }
+
+
             }
         } else {
-            if (isClick) {
-                startTo(FaceDetectionActivity::class.java)
-            }
+            Slog.e("isClick  == false")
         }
 
 

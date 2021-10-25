@@ -204,7 +204,6 @@ abstract class IBaseActivity : AppCompatActivity(), IView {
     fun uploadAppAndPhone(context: Context) {
         val phone = getUserPhone()
         val userID =  getUserId()
-
         if (System.currentTimeMillis() - PreferencesHelper.getUploadTime() <= 86400000) {
             Slog.d("今天已经上传过个人信息")
             return
