@@ -297,11 +297,7 @@ class WebViewActivity : IBaseActivity() {
         }
 
         override fun onStartLive() {
-            if (PreferencesHelper.IsNeedFace()) {
                 startTo(FaceDetectionActivity::class.java)
-            } else {
-                startTo(ConfirmActivity::class.java)
-            }
         }
 
         override fun setResult(resultCode: Int, isFinish: Boolean) {

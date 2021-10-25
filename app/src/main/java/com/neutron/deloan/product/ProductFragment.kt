@@ -15,6 +15,7 @@ import com.neutron.deloan.facedetection.FaceDetectionActivity
 import com.neutron.deloan.main.MainActivity
 import com.neutron.deloan.utils.Constants
 import com.neutron.deloan.utils.PreferencesHelper
+
 import com.neutron.deloan.utils.Slog
 import kotlinx.android.synthetic.main.fragment_product.*
 
@@ -157,15 +158,11 @@ class ProductFragment : BaseFragment<ProductContract.View, ProductContract.Prese
             } else if (result.result.card_status == "0") {
                 openUri(Constants.BANKCARDINFO, true)
             } else {
-                val result = (activity as MainActivity).getconfigResult()
-                if(PreferencesHelper.IsNeedFace()){
-                    startTo(FaceDetectionActivity::class.java)
+                val result = (activity as MainActivity).getloanStatusResult()
+                if(result?.has_loan_app=="true"){
+                    startTo(ConfirmActivity::class.java)
                 }else{
-                    if (result?.reApplyFace == "false") {
-                        startTo(ConfirmActivity::class.java)
-                    } else {
-                        startTo(FaceDetectionActivity::class.java)
-                    }
+                    startTo(FaceDetectionActivity::class.java)
                 }
 
 
